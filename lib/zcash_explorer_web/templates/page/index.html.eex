@@ -1,0 +1,67 @@
+<div class="grid gap-4 grid-cols-1 mx-8">
+    <dl class="mt-5 grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-6">
+        <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-bold text-gray-500">
+            Price
+            </dt>
+            <dd class="mt-1 text-xl font-semibold text-midnight-500">
+            <%= live_render(@conn, ZcashExplorerWeb.PriceLive) %>
+            </dd>
+        </div>
+        <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-gray-500">
+            Blocks
+            </dt>
+            <dd class="mt-1 text-xl font-semibold text-midnight-500 ">
+            <%= live_render(@conn, ZcashExplorerWeb.BlockCountLive) %>
+            </dd>
+        </div>
+        <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-gray-500">
+            Mempool Transactions
+            </dt>
+            <dd class="mt-1 text-xl font-semibold text-midnight-500">
+            <%= live_render(@conn, ZcashExplorerWeb.MempoolInfoLive) %>
+            </dd>
+        </div>
+        <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-gray-500">
+            Blockchain size
+            </dt>
+            <dd class="mt-1 text-xl font-semibold text-midnight-500">
+            <%= live_render(@conn, ZcashExplorerWeb.BlockChainSizeLive) %>
+            </dd>
+        </div>
+        <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium  text-gray-500">
+            Difficulty
+            </dt>
+            <dd class="mt-1 text-x1 m:text-m font-semibold">
+            <%= live_render(@conn, ZcashExplorerWeb.DifficultyLive) %>              </dd>
+        </div>
+        
+        <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+            <dt class="text-sm font-medium text-midnight-500 truncate">
+            Network Sols/Sec
+            </dt>
+            <dd class="mt-1 text-x1 m:text-m font-semibold">
+            <%= live_render(@conn, ZcashExplorerWeb.NetworkSolpsLive) %>
+            </dd>
+        </div>
+    </dl>
+</div>
+<div class="grid gap-4 grid-cols-1  md:grid-cols-1 mx-8 my-2">
+    <div>
+        <h3 class="text-lg leading-6 font-medium text-midnight-500 py-3">
+        Recent Blocks
+        </h3>
+        <%= live_render(@conn, ZcashExplorerWeb.RecentBlocksLive) %>
+    </div>
+</div>
+<div>
+    <h3 class="text-lg leading-6 font-medium text-gray-900 py-3">
+    Recent Transactions
+    </h3>
+    <%= live_render(@conn, ZcashExplorerWeb.RecentTransactionsLive) %>
+</div>
+</div>

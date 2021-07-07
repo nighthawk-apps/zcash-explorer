@@ -1,0 +1,117 @@
+<header>
+<nav x-data="{ open: false }" class="flex-shrink-0 bg-indigo-600">
+    <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+        <div class="relative flex items-center justify-between h-16">
+            <!-- Logo section -->
+            <div class="flex items-center px-2 lg:px-0 xl:w-64">
+              <a href="/">
+                <div class="flex-shrink-0">
+                    <img class="h-8 w-auto" src="https://z.cash/wp-content/uploads/2020/03/zcash-icon-white.svg" alt="Zcash Explorer">
+                </div>
+              </a>
+                <a href="/">
+                <div class="flex-shrink-0 px-1 text-white">
+                    Zcash Explorer
+                </div>
+              </a>
+            </div>
+
+            <!-- Search section -->
+            <div class="flex-1 flex justify-center lg:justify-end">
+                <div class="w-full px-2 lg:px-6">
+                    <label for="search" class="sr-only">transaction / block / address</label>
+                    <div class="relative text-indigo-200 focus-within:text-gray-400">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <input id="search" name="search" class="block w-full pl-10 pr-3 py-2 bg-white border border-transparent rounded-md leading-5 bg-indigo-400 bg-opacity-25 text-indigo-100 placeholder-indigo-200 focus:outline-none focus:bg-white focus:ring-0 focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm" placeholder="transaction / block / address" type="search">
+                    </div>
+                </div>
+            </div>
+            <div class="flex lg:hidden">
+                <!-- Mobile menu button -->
+                <button type="button" class="bg-indigo-600 inline-flex items-center justify-center p-2 rounded-md text-indigo-400 hover:text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white" aria-controls="mobile-menu" @click="open = !open" aria-expanded="true" x-bind:aria-expanded="open.toString()">
+                    <span class="sr-only">Open main menu</span>
+                    <svg x-description="Icon when menu is closed.
+Heroicon name: outline/menu-alt-1" x-state:on="Menu open" x-state:off="Menu closed" class="h-6 w-6 hidden" :class="{ 'hidden': open, 'block': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+                    </svg>
+                    <svg x-description="Icon when menu is open.
+Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class="h-6 w-6 block" :class="{ 'block': open, 'hidden': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Links section -->
+            <div class="hidden lg:block lg:w-80">
+                <div class="flex items-center justify-end">
+                    <div class="flex">
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Blocks</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Transactions</a>
+
+                        <div x-data="{ open: false }" @keydown.escape.stop="open = false" @click.away="open = false" class="relative inline-block text-left">
+                            <div>
+                                <button type="button" class=" inline-flex justify-center rounded-md px-4 py-2 text-sm font-medium  focus:outline-none text-indigo-200 hover:text-white" id="options-menu" aria-expanded="true" @click="open = !open" aria-haspopup="true" x-bind:aria-expanded="open">
+                                    Tools
+                                    <svg class="-mr-1 ml-2 h-5 w-5" x-description="Heroicon name: solid/chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div x-description="Dropdown menu, show/hide based on menu state." x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                <div class="py-1" role="none">
+                                    <a href="/broadcast" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white" role="menuitem">Broadcast Transaction</a>
+                                    <a href="/payment-disclosure" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white" role="menuitem">Payment Disclosure</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div x-description="Mobile menu, show/hide based on menu state." class="lg:hidden" id="mobile-menu" x-show="open">
+        <div class="px-2 pt-2 pb-3">
+            <a href="#" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Blocks</a>
+            <a href="#" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Transactions</a>
+        </div>
+        <div class="pt-4 pb-3 border-t ">
+            <div class="px-2">
+                <a href="/broadcast" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Broadcast Transaction</a>
+                <a href="/payment-disclosure" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Payment Disclosure</a>
+            </div>
+        </div>
+    </div>
+</nav>
+</header>
+<div class="bg-gray-50">
+<%= @inner_content %>
+  <footer>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
+      <div class="border-t border-gray-200 py-8 text-sm text-gray-500 text-center sm:text-left"><span class="block sm:inline">&copy; <%= DateTime.utc_now.year %> Nighthawk Apps.</span> <span class="block sm:inline">Funded by ZOMG.</span></div>
+    </div>
+  </footer>
+</div>
+<%# 
+<div class="flex items-center m-2 fixed bottom-0 right-0 border border-gray-400 rounded p-2 bg-gray-300 text-pink-600 text-sm">
+    <svg class="h-6 w-auto inline" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="url(#paint0_linear)" fill-rule="evenodd" clip-rule="evenodd" d="M32 16C24.8 16 20.3 19.6 18.5 26.8C21.2 23.2 24.35 21.85 27.95 22.75C30.004 23.2635 31.4721 24.7536 33.0971 26.4031C35.7443 29.0901 38.8081 32.2 45.5 32.2C52.7 32.2 57.2 28.6 59 21.4C56.3 25 53.15 26.35 49.55 25.45C47.496 24.9365 46.0279 23.4464 44.4029 21.7969C41.7557 19.1099 38.6919 16 32 16ZM18.5 32.2C11.3 32.2 6.8 35.8 5 43C7.7 39.4 10.85 38.05 14.45 38.95C16.504 39.4635 17.9721 40.9536 19.5971 42.6031C22.2443 45.2901 25.3081 48.4 32 48.4C39.2 48.4 43.7 44.8 45.5 37.6C42.8 41.2 39.65 42.55 36.05 41.65C33.996 41.1365 32.5279 39.6464 30.9029 37.9969C28.2557 35.3099 25.1919 32.2 18.5 32.2Z"></path>
+        <defs>
+            <linearGradient id="paint0_linear" x1="3.5" y1="16" x2="59" y2="48" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#2298BD"></stop>
+                <stop offset="1" stop-color="#0ED7B5"></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+    Current breakpoint
+    <span class="ml-1 sm:hidden md:hidden lg:hidden xl:hidden">default (&lt; 640px)</span>
+    <span class="ml-1 hidden sm:inline md:hidden font-extrabold">sm</span>
+    <span class="ml-1 hidden md:inline lg:hidden font-extrabold">md</span>
+    <span class="ml-1 hidden lg:inline xl:hidden font-extrabold">lg</span>
+    <span class="ml-1 hidden xl:inline font-extrabold">xl</span>
+</div> %>

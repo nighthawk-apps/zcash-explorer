@@ -1,0 +1,194 @@
+<main class="py-4">
+<div class="grid grid-cols-3 gap-4 px-4">
+  <div class="col-span-3 md:col-span-1 lg:col-span-1 sm:col-span-3">
+    <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 sticky top-10">
+
+<h2 id="technical-details" class="font-medium text-gray-900">Details for the Zcash address:
+</h2>
+    <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words">
+      <%= @address %>
+    </p>
+   <div class="px-0">
+    <img src='data:image/png;base64, <%= @qr %>' atl="QR code for the Zcash address <%= @address %>"/>
+    </div>
+
+
+
+<div>
+  <div class="flow-root mt-6">
+    <ul class="-my-5 divide-y divide-gray-200">
+      <li class="py-4 hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-gray-900 font-medium ">
+              Balance
+            </p>
+          </div>
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
+            <%= ZcashExplorerWeb.TransactionView.format_zec(zatoshi_to_zec(@balance["balance"])) %>
+          </div>
+        </div>
+      </li>
+
+
+      <li class="py-4 hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-gray-900 font-medium">
+              Received
+            </p>
+          </div>
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
+             
+            <%= ZcashExplorerWeb.TransactionView.format_zec(zatoshi_to_zec(@balance["received"])) %>
+           
+          </div>
+        </div>
+      </li>
+
+
+      <li class="py-4 hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-gray-900 font-medium">
+              Spent
+            </p>
+          </div>
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
+             
+            <%= ZcashExplorerWeb.TransactionView.format_zec(spend_zatoshi(@balance["received"],@balance["balance"])) %>
+            
+          </div>
+        </div>
+      </li>
+    </ul>
+<div class="py-6 float-right hidden md:inline  xl:inline sm:hidden lg:inline">
+  <!-- This example requires Tailwind CSS v2.0+ -->
+<span class="relative z-0 inline-flex shadow-sm rounded-md">
+
+
+
+    <%= if !disable_previous(@start_block) do %>
+  <button type="button" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+      <a href='/address/<%= @address %>?s=<%= elem(previous_pagination(@start_block, @end_block),0) %>&e=<%= elem(previous_pagination(@start_block, @end_block),1) %>'>
+    <span class="sr-only">Previous</span>
+    <!-- Heroicon name: solid/chevron-left -->
+    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+    </svg>
+  </a>
+  </button>
+  <% end %>
+</a>
+
+  <%= if !disable_next(@end_block, @latest_block) do %>
+  <button type="button" class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+    <span class="sr-only">Next</span>
+    <!-- Heroicon name: solid/chevron-right -->
+    <a href='/address/<%= @address %>?s=<%= elem(next_pagination(@start_block, @end_block),0) %>&e=<%= elem(next_pagination(@start_block, @end_block),1) %>'>
+    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+    </svg>
+  </a>
+  </button>
+  <%= end %>
+
+
+
+
+</span>
+
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  <div class="col-span-2 md:col-span-2 lg:col-span-2 sm:col-span-3">
+      <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
+<h2 id="technical-details" class="text-lg font-medium text-gray-900">Transactions from block
+  <%= if @capped_e == nil do%>
+  #<%= @end_block %>
+  <% else %>
+  #<%= @capped_e %>
+  <% end %>
+  <%= if ( @capped_e  != @start_block) and ( @end_block != @start_block) do %>  
+  to #<%= @start_block %>
+  <% end %>
+</h2>
+
+
+      <!-- TX List -->
+      <div class="bg-white lg:min-w-0 lg:flex-1">
+      
+        <ul class="relative z-0 divide-y divide-gray-200 border-b border-gray-200">
+
+
+<%= for delta <- @txs do %>
+      
+      <li class="relative pl-4 pr-6 py-5 hover:bg-indigo-50 sm:py-6 sm:pl-6 lg:pl-8 xl:pl-6">
+
+            <div class="flex items-center justify-between space-x-4">
+              <div class="min-w-0 space-y-3">
+                <div class="flex items-center space-x-3">
+                  
+   <%= if delta["satoshis"] > 0 do %>
+  <span class="h-4 w-4 bg-green-100 rounded-full flex items-center justify-center" aria-hidden="true">
+  <span class="h-2 w-2 bg-green-400 rounded-full"></span>
+  </span>
+  <% end %>
+
+ <%= if delta["satoshis"] < 0 do %>
+   <span class="h-4 w-4 bg-red-100 rounded-full flex items-center justify-center" aria-hidden="true">
+  <span class="h-2 w-2 bg-red-400 rounded-full"></span>
+ </span>
+ <% end %>
+
+                  <span class="block">
+                    <h2 class="text-sm font-medium">
+                      <a href='/transactions/<%= delta["txid"] %>'>
+                        <span class="absolute inset-0" aria-hidden="true"></span>
+                         <%= if delta["satoshis"] > 0 do %>
+                            Received
+                         <% end %>
+                         <%= if delta["satoshis"] < 0 do %>
+                            Sent
+                         <% end %>
+                      </a>
+                    </h2>
+                  </span>
+                </div>
+                <a href='' class="relative group flex items-center space-x-2.5">
+                  <span class="text-sm text-gray-500 group-hover:text-gray-900 font-medium ">
+                    <%= ZcashExplorerWeb.TransactionView.format_zec(abs(zatoshi_to_zec(delta["satoshis"])))%> 
+                  </span>
+                </a>
+              </div>
+              <div class="hidden sm:flex flex-col flex-shrink-0 items-end space-y-3">  
+                <p class="flex items-center space-x-4">
+                  <a href='/transactions/<%= delta["txid"] %>' class="relative text-sm text-gray-500 hover:text-gray-900 font-medium">
+                    View transaction
+                  </a>
+                   <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+                </p>
+
+              </div>
+
+            </div>
+          </li>
+ <% end %>
+</ul>
+ 
+</div>
+
+  </div>
+
+</div>
+
+</main>
