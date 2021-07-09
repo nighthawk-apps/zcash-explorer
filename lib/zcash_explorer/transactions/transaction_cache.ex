@@ -13,19 +13,19 @@ defmodule ZcashExplorer.Transactions.TransactionWarmer do
   """
   def execute(_state) do
     high = DateTime.utc_now() |> DateTime.to_unix()
-    low = DateTime.utc_now() |> DateTime.add(-600, :second) |> DateTime.to_unix()
+    low = DateTime.utc_now() |> DateTime.add(-900, :second) |> DateTime.to_unix()
     # get the blocks mined in that duration
 
-    case Zcashex.getblockhashes(high, low, true, false) do
+    case Zcashex.getblockhashes(high, low, true, true) do
       {:ok, blocks} ->
-        # enrich the blocks
         blocks
+        |> Enum.sort(&(&1["logicalts"] >= &2["logicalts"]))
         |> Enum.map(fn x ->
-          {:ok, block} = Zcashex.getblock(x, 1)
+          {:ok, block} = Zcashex.getblock(Map.get(x, "blockhash"), 1)
           tx = block["tx"]
         end)
         |> List.flatten()
-        |> Enum.take(5)
+        |> Enum.take(10)
         |> Enum.map(fn y ->
           {:ok, tx} = Zcashex.getrawtransaction(y, 1)
           tx
