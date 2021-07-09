@@ -7,6 +7,10 @@ defmodule ZcashExplorerWeb.BlockView do
     abs <> " " <> "(#{rel})"
   end
 
+  def mined_time_without_rel(timestamp) do
+    timestamp |> Timex.from_unix() |> Timex.format!("{ISOdate} {ISOtime}")
+  end
+
   def transaction_count(txs) do
     txs |> length
   end
