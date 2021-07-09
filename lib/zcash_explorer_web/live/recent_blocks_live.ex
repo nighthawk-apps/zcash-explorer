@@ -8,17 +8,17 @@ defmodule ZcashExplorerWeb.RecentBlocksLive do
             <thead class="bg-white-500">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Height</th>
-                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Hash</th>                
+                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Hash</th>
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Mined on</th>
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Txns</th>
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Size</th>
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Output (ZEC)</th>
             </tr>
             </thead>
-  <tbody class="bg-white-500 divide-y divide-gray-200">
+    <tbody class="bg-white-500 divide-y divide-gray-200">
       <%= for block <- @block_cache do %>
             <tr>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-midnight-500">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
             <a href='/blocks/<%= block["height"] %>'>
                 <%= block["height"] %>
               </td>
@@ -44,14 +44,14 @@ defmodule ZcashExplorerWeb.RecentBlocksLive do
             </tr>                                           
             <% end %>
     </tbody>
-</table>
-<nav class="bg-white-500 px-4 py-3 flex items-center justify-between border-t border-gray-200 px-4">
+    </table>
+    <nav class="bg-white-500 px-4 py-3 flex items-center justify-between border-t border-gray-200 px-4">
     <div class="flex-1 flex justify-between sm:justify-end">
         <a href="/blocks" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         View More
         </a>
     </div>
-</nav>
+    </nav>
     """
   end
 

@@ -1,0 +1,79 @@
+<main class="py-4">
+<div class="grid grid-cols-3 gap-4 px-4">
+  <div class="col-span-3 md:col-span-1 lg:col-span-1 sm:col-span-3">
+    <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 sticky top-10">
+
+<h2 id="technical-details" class="font-medium text-gray-900">Details for the Zcash address:
+</h2>
+    <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words">
+      <%= @address %>
+    </p>
+   <div class="px-0">
+    <img src='data:image/png;base64, <%= @qr %>' atl="QR code for the Zcash address <%= @address %>"/>
+    </div>
+
+<div>
+  <div class="flow-root mt-6">
+    <ul class="-my-5 divide-y divide-gray-200">
+      <li class="py-4 hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-gray-900 font-medium ">
+              Balance
+            </p>
+          </div>
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
+            Private
+          </div>
+        </div>
+      </li>
+
+
+      <li class="py-4 hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-gray-900 font-medium">
+              Received
+            </p>
+          </div>
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
+            Private
+          </div>
+        </div>
+      </li>
+
+      <li class="py-4 hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-gray-900 font-medium">
+              Spent
+            </p>
+          </div>
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
+             Private
+          </div>
+        </div>
+      </li>
+    </ul>
+    </div>
+
+</div>
+</div>
+</div>
+
+<div class="col-span-3 md:col-span-2 lg:col-span-2 sm:col-span-3 
+">
+      <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
+      <div class="bg-white lg:min-w-0 lg:flex-1">
+        <h2 class="text-2xl tracking-tight font-extrabold text-gray-900 sm:text-2xl md:text-2xl">
+              <span class="block xl:inline">Transactions using Z addresses are</span>
+              <!-- space -->
+              <span class="block text-indigo-600 inline">Private.</span>
+            </h2>
+     </div>
+
+  </div>
+
+</div>
+
+</main>

@@ -34,6 +34,7 @@ defmodule ZcashExplorerWeb.Router do
     get "/payment-disclosure", PageController, :disclosure
     post "/payment-disclosure", PageController, :do_disclosure
     get "/address/:address", AddressController, :get_address
+    get "/search", SearchController, :search
   end
 
   # Other scopes may use custom stacks.

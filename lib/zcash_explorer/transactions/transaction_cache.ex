@@ -28,15 +28,17 @@ defmodule ZcashExplorer.Transactions.TransactionWarmer do
         |> Enum.take(10)
         |> Enum.map(fn y ->
           {:ok, tx} = Zcashex.getrawtransaction(y, 1)
-          tx
+          tx_data = Zcashex.Transaction.from_map(tx)
+          tx_data
         end)
         |> Enum.map(fn z ->
           %{
-            "txid" => z["txid"],
-            "block_height" => z["height"],
-            "time" => ZcashExplorerWeb.BlockView.mined_time(z["time"]),
+            "txid" => Map.get(z, :txid),
+            "block_height" => Map.get(z, :height),
+            "time" => ZcashExplorerWeb.BlockView.mined_time(Map.get(z, :time)),
             "tx_out_total" => ZcashExplorerWeb.BlockView.tx_out_total(z),
-            "size" => z["size"]
+            "size" => Map.get(z, :size),
+            "type" => ZcashExplorerWeb.BlockView.tx_type(z)
           }
         end)
         |> handle_result

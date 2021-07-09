@@ -2,6 +2,16 @@ defmodule ZcashExplorerWeb.AddressController do
   use ZcashExplorerWeb, :controller
 
   def get_address(conn, %{"address" => address, "s" => s, "e" => e}) do
+    if String.starts_with?(address, ["zc", "zs"]) do
+      qr =
+        address
+        |> EQRCode.encode()
+        |> EQRCode.png(width: 150, color: <<0, 0, 0>>, background_color: :transparent)
+        |> Base.encode64()
+
+      render(conn, "z_address.html", address: address, qr: qr)
+    end
+
     {:ok, info} = Cachex.get(:app_cache, "metrics")
     blocks = info["blocks"]
 
@@ -34,6 +44,16 @@ defmodule ZcashExplorerWeb.AddressController do
   end
 
   def get_address(conn, %{"address" => address}) do
+    if String.starts_with?(address, ["zc", "zs"]) do
+      qr =
+        address
+        |> EQRCode.encode()
+        |> EQRCode.png(width: 150, color: <<0, 0, 0>>, background_color: :transparent)
+        |> Base.encode64()
+
+      render(conn, "z_address.html", address: address, qr: qr)
+    end
+
     c = 128
     {:ok, info} = Cachex.get(:app_cache, "metrics")
     latest_block = info["blocks"]

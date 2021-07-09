@@ -2,7 +2,6 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
   use Phoenix.LiveView
 
   def render(assigns) do
-
     ~L"""
     <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
@@ -11,11 +10,11 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Block#</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Transaction ID</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Time (UTC )</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Size (bytes) </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Output (ZEC) </th>
+                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">TX Type</th>
             </tr>
             </thead>
-  <tbody class="bg-white-500 divide-y divide-gray-200">
+    <tbody class="bg-white-500 divide-y divide-gray-200">
       <%= for tx <- @transaction_cache do %>
             <tr>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
@@ -31,16 +30,45 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
                 <%= tx["time"] %>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
-                <%= tx["size"] %>
-              </td>
              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
                 <%= tx["tx_out_total"] %>
+             </td>
+             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= if tx["type"] == "coinbase" do %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-yellow-400 text-gray-900 capitalize">
+                    💰 Coinbase
+                  </span>
+                  <% end %>
+                  <%= if tx["type"] == "shielded" do %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-green-400 text-gray-900 capitalize">
+                    🛡 Shielded
+                  </span>
+                  <% end %>
+                  <%= if tx["type"] == "transparent" do %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-red-200 text-gray-900 capitalize">
+                    🔍 Public
+                  </span>
+                  <% end %>
+                  <%= if tx["type"] == "shielding" do %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-red-50 text-gray-900 capitalize">
+                    Shielding ( t-z )
+                  </span>
+                  <% end %>
+                  <%= if tx["type"] == "deshielding" do %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-red-50 text-gray-900 capitalize">
+                    Deshielding ( z-t )
+                  </span>
+                  <% end %>
+                  <%= if tx["type"] == "mixed" do %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-gray-200 text-gray-900 capitalize">
+                    Mixed
+                  </span>
+                  <% end %>
               </td>
             </tr>
             <% end %>
     </tbody>
-</table>
+    </table>
     """
   end
 

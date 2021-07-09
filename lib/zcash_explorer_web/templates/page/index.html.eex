@@ -41,7 +41,7 @@
         </div>
         
         <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-            <dt class="text-sm font-medium text-midnight-500 truncate">
+            <dt class="text-sm font-medium truncate text-gray-500">
             Network Sols/Sec
             </dt>
             <dd class="mt-1 text-x1 m:text-m font-semibold">
