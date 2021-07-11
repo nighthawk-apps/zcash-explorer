@@ -3,7 +3,9 @@ defmodule ZcashExplorerWeb.NetworkSolpsLive do
 
   def render(assigns) do
     ~L"""
+    <p class="text-2xl font-semibold text-gray-900">
     <%= @networksolps %>
+    </p>
     """
   end
 

@@ -7,8 +7,8 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
         <table class="min-w-full divide-y divide-gray-200">
             <thead  class="bg-white-500">
             <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Block#</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Transaction ID</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Block#</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Time (UTC )</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Output (ZEC) </th>
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">TX Type</th>
@@ -16,17 +16,18 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
             </thead>
     <tbody class="bg-white-500 divide-y divide-gray-200">
       <%= for tx <- @transaction_cache do %>
-            <tr>
+            <tr class="hover:bg-indigo-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                <a href='/transactions/<%= tx["txid"] %>'>
+                  <%= tx["txid"] %>
+                </a>
+              </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
               <a href='/blocks/<%= tx["block_height"] %>'>
                 <%= tx["block_height"] %>
               </a>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
-                <a href='/transactions/<%= tx["txid"] %>'>
-                  <%= tx["txid"] %>
-                </a>
-              </td>
+
               <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
                 <%= tx["time"] %>
               </td>

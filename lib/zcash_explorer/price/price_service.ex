@@ -7,7 +7,7 @@ defmodule ZcashExplorer.Price.PriceService do
         {:error, "Unable to fetch ZEC price in USD"}
 
       price ->
-        {:ok, String.to_float(price)}
+        {:ok, price}
     end
   end
 
@@ -16,10 +16,9 @@ defmodule ZcashExplorer.Price.PriceService do
     |> HTTPoison.get!()
     |> Map.get(:body)
     |> Poison.decode!()
-    |> Map.get("bid")
   end
 
   defp url() do
-    "https://api.gemini.com/v2/ticker/zecusd"
+    "https://api.coingecko.com/api/v3/simple/price?ids=zcash&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true"
   end
 end

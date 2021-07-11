@@ -47,7 +47,7 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
                 </button>
             </div>
             <!-- Links section -->
-            <div class="hidden lg:block lg:w-80">
+            <div class="hidden lg:block lg:w-80 z-40">
                 <div class="flex items-center justify-end">
                     <div class="flex">
                         <a href="/blocks" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Blocks</a>
@@ -79,7 +79,7 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
 
     <div x-description="Mobile menu, show/hide based on menu state." class="lg:hidden" id="mobile-menu" x-show="open">
         <div class="px-2 pt-2 pb-3">
-            <a href="#" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Blocks</a>
+            <a href="/blocks" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Blocks</a>
            
         </div>
         <div class="pt-4 pb-3 border-t ">

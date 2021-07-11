@@ -17,13 +17,13 @@ defmodule ZcashExplorerWeb.RecentBlocksLive do
             </thead>
     <tbody class="bg-white-500 divide-y divide-gray-200">
       <%= for block <- @block_cache do %>
-            <tr>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+            <tr class="hover:bg-indigo-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
             <a href='/blocks/<%= block["height"] %>'>
                 <%= block["height"] %>
               </td>
             </a>
-            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
                     <a href='/blocks/<%= block["hash"] %>'>
                     <%= block["hash"] %>
                     </a>

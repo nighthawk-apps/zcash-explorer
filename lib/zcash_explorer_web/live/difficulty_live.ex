@@ -3,7 +3,9 @@ defmodule ZcashExplorerWeb.DifficultyLive do
 
   def render(assigns) do
     ~L"""
-    <%= @difficulty %>
+    <p class="text-2xl font-semibold text-gray-900">
+    <%= Float.ceil(@difficulty,6) %>
+    </p>
     """
   end
 

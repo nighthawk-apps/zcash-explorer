@@ -18,8 +18,8 @@
             </thead>
             <tbody class="bg-white-500 divide-y divide-gray-200">
       <%= for block <- @blocks_data do %>
-            <tr>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+            <tr class="hover:bg-indigo-50">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
             <a href='/blocks/<%= block["height"] %>'>
                 <%= block["height"] %>
             </td>

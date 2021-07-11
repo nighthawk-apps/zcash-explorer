@@ -3,7 +3,9 @@ defmodule ZcashExplorerWeb.MempoolInfoLive do
 
   def render(assigns) do
     ~L"""
+    <p class="text-2xl font-semibold text-gray-900">
     <%= @mempool_info %>
+    </p>
     """
   end
 

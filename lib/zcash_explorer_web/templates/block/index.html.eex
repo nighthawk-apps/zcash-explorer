@@ -31,9 +31,11 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Miner
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900 break-words">
+                <a href='/address/<%= mined_by(@block_data.tx) %>'>
+                <dd class="mt-1 text-sm text-indigo-600 hover:text-indigo-500 break-words">
                 <%= mined_by @block_data.tx %>
                 </dd>
+              </a>
               </div>
               
               <div class="sm:col-span-1">
@@ -185,7 +187,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <%= @block_data.height %>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
                   <a href='/transactions/<%= transaction.txid %>'>
                     <%= transaction.txid %>
                   </a>

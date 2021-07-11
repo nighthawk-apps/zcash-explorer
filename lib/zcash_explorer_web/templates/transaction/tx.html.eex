@@ -1,5 +1,5 @@
 <main class="py-4">
-  <div class="grid gap-4 grid-cols-1 mx-8">
+  <div class="grid gap-4 mx-2 grid-cols-1 md:mx-8">
     <div class="space-y-6 lg:col-start-1 lg:col-span-2">
       <section aria-labelledby="block-details-title">
         <div class="bg-white-500 shadow rounded-lg">
@@ -144,12 +144,12 @@ Inputs (<%= vin_count(@tx.vin) %>)
           <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
             <div class="w-0 flex-1 flex items-center">
               <a href='/address/<%= input.address %>'>
-            <span class="ml-2 flex-1 w-0 truncate">
+            <span class="ml-2 flex-1 w-0 truncate break-words">
             <%= input.address %>
             </span>
           </a>
             </div>
-            <div class="ml-4 flex-shrink-0 font-medium text-indigo-600 hover:text-indigo-500">
+            <div class="ml-4 flex-shrink-0 font-medium text-indigo-600 hover:text-indigo-500 break-words">
               <%= format_zec input.value %>
             </div>
           </li>
@@ -188,22 +188,22 @@ Inputs (<%= vin_count(@tx.vin) %>)
 <div class="lg:col-span-4">
 Outputs (<%= vout_count(@tx.vout) %>)
 
-<div class="py-4">
+<div class="py-3">
       <%= if vout_count(@tx.vout) > 0 do %>
       <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 py-2">
           <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
           <%= for op <- @tx.vout do %>
           <%= for address <- op.scriptPubKey.addresses do %>
           
-          <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+          <li class="pl-2 pr-4 py-3 flex items-center justify-between text-sm">
             <a href='/address/<%= address %>'>
             <div class="w-0 flex-1 flex items-center">
-            <span class="ml-2 flex-1 w-0 truncate">
+            <span class="flex-1 w-0 break-all">
             <%= address %>
             </span>
             </a>
             </div>
-            <div class="ml-4 flex-shrink-0 font-medium text-indigo-600 hover:text-indigo-500">
+            <div class="ml-4 flex-shrink-0 font-medium text-indigo-600 hover:text-indigo-500 break-words">
             <%= format_zec op.value %>
              </div>
           </li>
