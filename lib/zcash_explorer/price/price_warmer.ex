@@ -9,7 +9,7 @@ defmodule ZcashExplorer.Price.PriceWarmer do
   Returns the interval for this warmer.
   """
   def interval,
-      do: :timer.seconds(3)
+    do: :timer.seconds(3)
 
   @doc """
   Executes this cache warmer.
@@ -19,12 +19,10 @@ defmodule ZcashExplorer.Price.PriceWarmer do
   end
 
   # ignores the warmer result in case of error
-  defp handle_result({ :error, _reason }),
-       do: :ignore
+  defp handle_result({:error, _reason}),
+    do: :ignore
 
-  defp handle_result({ :ok, price }) do
-    # IO.inspect(price)
-    { :ok, [{"price", price}] }
+  defp handle_result({:ok, price}) do
+    {:ok, [{"price", price}]}
   end
-
 end

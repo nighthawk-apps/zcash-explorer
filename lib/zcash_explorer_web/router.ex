@@ -29,6 +29,7 @@ defmodule ZcashExplorerWeb.Router do
     live "/metrics/networksolps", NetworkSolpsLive
     live "/index/recent_blocks", RecentBlocksLive
     live "/index/recent_transactions", RecentTransactionsLive
+    live "/live/raw_mempool", RawMempoolLive
     get "/broadcast", PageController, :broadcast
     post "/broadcast", PageController, :do_broadcast
     get "/payment-disclosure", PageController, :disclosure
@@ -36,6 +37,7 @@ defmodule ZcashExplorerWeb.Router do
     get "/address/:address", AddressController, :get_address
     get "/search", SearchController, :search
     get "/blocks", BlockController, :index
+    get "/mempool", PageController, :mempool
   end
 
   # Other scopes may use custom stacks.

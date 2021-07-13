@@ -61,7 +61,6 @@ defmodule ZcashExplorerWeb.PriceLive do
   def handle_info(:update, socket) do
     Process.send_after(self(), :update, 3000)
     {:ok, price} = Cachex.get(:app_cache, "price")
-    IO.inspect(price)
     {:noreply, assign(socket, :price, price)}
   end
 end

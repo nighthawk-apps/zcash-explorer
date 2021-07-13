@@ -58,4 +58,8 @@ defmodule ZcashExplorerWeb.PageController do
         )
     end
   end
+
+  def mempool(conn, _params) do
+    render(conn, "mempool.html")
+  end
 end

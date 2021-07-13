@@ -32,7 +32,12 @@
                 Confirmations
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900">
+                <%= if @tx.confirmations == nil do %>
+                0
+                <% else %>
                 <%= @tx.confirmations %>
+                <% end %>
+
                 </dd>
               </div>
               

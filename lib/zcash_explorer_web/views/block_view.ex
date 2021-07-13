@@ -1,6 +1,10 @@
 defmodule ZcashExplorerWeb.BlockView do
   use ZcashExplorerWeb, :view
 
+  def mined_time(nil) do
+    "Not yet mined"
+  end
+
   def mined_time(timestamp) do
     abs = timestamp |> Timex.from_unix() |> Timex.format!("{ISOdate} {ISOtime}")
     rel = timestamp |> Timex.from_unix() |> Timex.format!("{relative}", :relative)
@@ -9,6 +13,10 @@ defmodule ZcashExplorerWeb.BlockView do
 
   def mined_time_without_rel(timestamp) do
     timestamp |> Timex.from_unix() |> Timex.format!("{ISOdate} {ISOtime}")
+  end
+
+  def mined_time_rel(timestamp) do
+    rel = timestamp |> Timex.from_unix() |> Timex.format!("{relative}", :relative)
   end
 
   def transaction_count(txs) do

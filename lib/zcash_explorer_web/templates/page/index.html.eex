@@ -31,7 +31,7 @@
         
         <div class="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
           <div class="text-sm">
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> View blocks<span class="sr-only"> View blocks</span></a>
+            <a href="/blocks" class="font-medium text-indigo-600 hover:text-indigo-500"> View blocks<span class="sr-only"> View blocks</span></a>
           </div>
         </div>
       </dd>
@@ -52,7 +52,7 @@
         
         <div class="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
           <div class="text-sm">
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">View mempool transactions<span class="sr-only"> View mempool transactions</span></a>
+            <a href="/mempool" class="font-medium text-indigo-600 hover:text-indigo-500">View mempool transactions<span class="sr-only"> View mempool transactions</span></a>
           </div>
         </div>
       </dd>
