@@ -1,10 +1,8 @@
 <main class="py-4">
-<div class="grid gap-4 grid-cols-1 mx-8">
- <h3 class="text-lg leading-6 font-medium text-gray-500 py-4">
+<div class="grid grid-cols-1 mx-8">
+ <h3 class="text-lg leading-6 font-medium text-gray-500 py-2">
         Zcash Mempool
  </h3>
- <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
-      <%= live_render(@conn, ZcashExplorerWeb.RawMempoolLive) %>
-  </div>
+    <%= live_render(@conn, ZcashExplorerWeb.RawMempoolLive) %>
 </div>
 </main>
