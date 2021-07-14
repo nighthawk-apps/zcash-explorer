@@ -149,7 +149,7 @@ Inputs (<%= vin_count(@tx.vin) %>)
           <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
             <div class="w-0 flex-1 flex items-center">
               <a href='/address/<%= input.address %>'>
-            <span class="ml-2 flex-1 w-0 truncate break-words">
+            <span class="ml-2 flex-1 w-0 truncate break-all">
             <%= input.address %>
             </span>
           </a>
