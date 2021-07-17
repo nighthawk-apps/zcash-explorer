@@ -9,7 +9,11 @@ defmodule ZcashExplorerWeb.AddressController do
         |> EQRCode.png(width: 150, color: <<0, 0, 0>>, background_color: :transparent)
         |> Base.encode64()
 
-      render(conn, "z_address.html", address: address, qr: qr)
+      render(conn, "z_address.html",
+        address: address,
+        qr: qr,
+        page_title: "Zcash Shielded Address"
+      )
     end
 
     {:ok, info} = Cachex.get(:app_cache, "metrics")
@@ -39,7 +43,8 @@ defmodule ZcashExplorerWeb.AddressController do
       end_block: e,
       start_block: s,
       latest_block: blocks,
-      capped_e: capped_e
+      capped_e: capped_e,
+      page_title: "Zcash Address #{address}"
     )
   end
 
@@ -51,7 +56,11 @@ defmodule ZcashExplorerWeb.AddressController do
         |> EQRCode.png(width: 150, color: <<0, 0, 0>>, background_color: :transparent)
         |> Base.encode64()
 
-      render(conn, "z_address.html", address: address, qr: qr)
+      render(conn, "z_address.html",
+        address: address,
+        qr: qr,
+        page_title: "Zcash Shielded Address"
+      )
     end
 
     c = 128
@@ -78,7 +87,8 @@ defmodule ZcashExplorerWeb.AddressController do
       end_block: e,
       start_block: s,
       latest_block: latest_block,
-      capped_e: nil
+      capped_e: nil,
+      page_title: "Zcash Address #{address}"
     )
   end
 end

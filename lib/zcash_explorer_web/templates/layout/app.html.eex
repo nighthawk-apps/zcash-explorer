@@ -6,7 +6,7 @@
             <div class="flex items-center px-2 lg:px-0 xl:w-64">
               <a href="/">
                 <div class="flex-shrink-0">
-                    <img class="h-8 w-auto" src="https://z.cash/wp-content/uploads/2020/03/zcash-icon-white.svg" alt="Zcash Explorer">
+                    <img class="h-8 w-auto" src="<%= Routes.static_path(@conn, "/images/zcash-icon-white.svg") %>" alt="Zcash Explorer">
                 </div>
               </a>
                 <a href="/">

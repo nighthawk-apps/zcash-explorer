@@ -42,7 +42,24 @@ module.exports = (env, options) => {
             'postcss-loader',
             'sass-loader',
           ],
-        }
+        }, 
+        {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: 'file-loader', 
+            options: {
+              outputPath: (url, resourcePath, context) => {
+                if(devMode) {
+                  const relativePath = path.relative(context, resourcePath);
+                  return `/${relativePath}`;
+                }
+                return `/assets/fonts/${path.basename(resourcePath)}`;
+              }
+            }
+          }
+        ]
+      }
       ]
     },
     plugins: [

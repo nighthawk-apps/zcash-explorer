@@ -1,5 +1,5 @@
 <main class="py-4">
-  <div class="grid gap-4 grid-cols-1 mx-8">
+<div class="grid gap-4 grid-cols-1 mx-8">
 
  <h3 class="text-lg leading-6 font-medium text-gray-500 py-3">
         Zcash blocks mined on <%= @date %>
@@ -13,7 +13,6 @@
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Time ( UTC )</th>
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Confirmations</th>
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Difficulty</th>
-                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Version</th>
             </tr>
             </thead>
             <tbody class="bg-white-500 divide-y divide-gray-200">
@@ -40,18 +39,30 @@
               	<%= block["difficulty"] %>
               </td>
 
-              <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">  
-              	<%= block["version"] %>
-              </td>
-
+              
           </tr>
           <% end %>
         </table>
-    </div>
-
-
-
-  </div>
 </div>
+
+
+
+
+<div class="flex-1 flex justify-between sm:justify-end">
+
+<%= if !@disable_previous do %>
+    <a href='/blocks?date=<%= @previous %>' class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+      Previous
+    </a>
+<% end %>
+    
+<%= if !@disable_next do %>
+    <a href="='/blocks?date=<%= @next %>" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+      Next
+    </a>
+<% end %>
+
+</div>
+
 </div>
 </main>

@@ -1,6 +1,7 @@
 defmodule ZcashExplorerWeb.BlockView do
   use ZcashExplorerWeb, :view
 
+ 
   def mined_time(nil) do
     "Not yet mined"
   end

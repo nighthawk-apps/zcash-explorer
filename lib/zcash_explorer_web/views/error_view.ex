@@ -15,7 +15,7 @@ defmodule ZcashExplorerWeb.ErrorView do
   end
 
   def render("invalid_input.html", _assigns) do
-    "Not a valid search input"
+    "Invalid input"
   end
 
   def render("404.html", _assigns) do
