@@ -40,7 +40,7 @@ explorer_hostname =
     """
 
 config :zcash_explorer, ZcashExplorerWeb.Endpoint,
-  url: [host: explorer_hostname, port: String.to_integer(System.get_env("PORT") || "4000")],
+  url: [host: explorer_hostname, port: String.to_integer(System.get_env("EXPLORER_PORT") || "443")],
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
