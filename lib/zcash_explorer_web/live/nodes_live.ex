@@ -15,7 +15,7 @@ defmodule ZcashExplorerWeb.NodesLive do
        <tbody class="bg-white-500 divide-y divide-gray-200">
        <%= for node <- @zcash_nodes do %>
         <tr class="hover:bg-indigo-50">
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-indigo-500 animate-pulse">
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-indigo-500">
                <%= node["addr"] %>
         </td>  
         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
