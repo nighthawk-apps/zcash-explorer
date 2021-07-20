@@ -3,7 +3,7 @@ defmodule ZcashExplorerWeb.RawMempoolLive do
 
   def render(assigns) do
     ~L"""
-  <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
+    <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-white-500">
       <tr>
@@ -12,7 +12,6 @@ defmodule ZcashExplorerWeb.RawMempoolLive do
           <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Time</th>
           <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Fee</th>
           <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Size</th>
-          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Currentpriority</th>
         </tr>
        </thead>
        <tbody class="bg-white-500 divide-y divide-gray-200">
@@ -34,9 +33,6 @@ defmodule ZcashExplorerWeb.RawMempoolLive do
         </td>     
         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
           <%= tx["info"]["size"] %>
-        </td>
-        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
-         <%= tx["info"]["currentpriority"] %>
         </td>
        </tr>                                           
       <% end %>

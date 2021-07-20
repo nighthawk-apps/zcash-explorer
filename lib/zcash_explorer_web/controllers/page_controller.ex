@@ -74,4 +74,8 @@ defmodule ZcashExplorerWeb.PageController do
   def mempool(conn, _params) do
     render(conn, "mempool.html", page_title: "Zcash Mempool")
   end
+
+  def nodes(conn, _params) do
+    render(conn, "nodes.html", page_title: "Zcash Nodes")
+  end
 end

@@ -38,6 +38,7 @@ defmodule ZcashExplorerWeb.Router do
     get "/search", SearchController, :search
     get "/blocks", BlockController, :index
     get "/mempool", PageController, :mempool
+    get "/nodes", PageController, :nodes
   end
 
   # Other scopes may use custom stacks.
