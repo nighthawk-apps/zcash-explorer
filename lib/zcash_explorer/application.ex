@@ -37,7 +37,8 @@ defmodule ZcashExplorer.Application do
          warmer(module: ZcashExplorer.Metrics.NetworkSolpsWarmer, state: {}),
          warmer(module: ZcashExplorer.Blocks.BlockWarmer, state: {}),
          warmer(module: ZcashExplorer.Transactions.TransactionWarmer, state: {}),
-         warmer(module: ZcashExplorer.Mempool.MempoolWarmer, state: {})
+         warmer(module: ZcashExplorer.Mempool.MempoolWarmer, state: {}),
+         warmer(module: ZcashExplorer.Nodes.NodeWarmer, state: {})
        ]}
     ]
 

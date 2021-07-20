@@ -17,7 +17,7 @@ defmodule ZcashExplorerWeb.RawMempoolLive do
        <tbody class="bg-white-500 divide-y divide-gray-200">
        <%= for tx <- @raw_mempool do %>
         <tr class="hover:bg-indigo-50">
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 animate-pulse">
           <a href='/transactions/<%= tx["txid"] %>'>
                <%= tx["txid"] %>
           </a>

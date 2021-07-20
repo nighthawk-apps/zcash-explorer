@@ -30,6 +30,7 @@ defmodule ZcashExplorerWeb.Router do
     live "/index/recent_blocks", RecentBlocksLive
     live "/index/recent_transactions", RecentTransactionsLive
     live "/live/raw_mempool", RawMempoolLive
+    live "/live/nodes", NodesLive
     get "/broadcast", PageController, :broadcast
     post "/broadcast", PageController, :do_broadcast
     get "/payment-disclosure", PageController, :disclosure

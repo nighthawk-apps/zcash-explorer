@@ -17,7 +17,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Confirmations
                 </dt>
-                <dd class="mt-1 text-xl font-black text-gray-900">
+                <dd class="mt-1 text-xl font-semibold text-gray-900">
                 <%= if @tx.confirmations == nil do %>
                 0
                 <% else %>
