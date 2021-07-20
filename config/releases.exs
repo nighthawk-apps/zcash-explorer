@@ -41,12 +41,13 @@ explorer_hostname =
 
 config :zcash_explorer, ZcashExplorerWeb.Endpoint,
   url: [
-    host: explorer_hostname, 
+    host: explorer_hostname,
     port: String.to_integer(System.get_env("EXPLORER_PORT") || "443"),
-    scheme: "https"],
+    scheme: "https"
+  ],
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
-    transport_options: [socket_opts: [:inet6]]
+    transport_options: [socket_opts: [:inet6], compress: true]
   ],
   secret_key_base: secret_key_base
 
