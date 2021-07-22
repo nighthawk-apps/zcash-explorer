@@ -24,21 +24,18 @@ defmodule ZcashExplorerWeb.TransactionView do
     ""
   end
 
-  # functions to get the label for 
+  # functions to get the label for
   # shielding  tx without vjoinsplit
   def get_shielded_pool_label(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) == 0 
-      and length(tx.vin) > 0 
-      and length(tx.vout) == 0 
-      and length(tx.vShieldedOutput) > 0 
-      and (tx.valueBalance) < 0.0 
-      do
-        IO.inspect("38")
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) > 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) > 0 and
+             tx.valueBalance < 0.0 do
+    IO.inspect("38")
     "Transferred to shielded pool"
   end
-
 
   # handle when  vjoinsplit is present ( indicated legacy transaction)
   # 1
@@ -48,27 +45,23 @@ defmodule ZcashExplorerWeb.TransactionView do
     "Transferred to shielded pool"
   end
 
-  # handle when and vjoinsplit is present  and vin == 0 .. 
+  # handle when and vjoinsplit is present  and vin == 0 ..
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) > 0 and length(tx.vin) == 0 do
-    IO.inspect("54")
+    IO.inspect("")
     "Transferred from shielded pool"
   end
 
-
-# handle mixed tx
+  # handle mixed tx
   def get_shielded_pool_label(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) == 0 
-      and length(tx.vin) > 0 
-      and length(tx.vShieldedOutput) > 0
-      and tx.valueBalance < 0.0
-      do
-        IO.inspect("68")
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) > 0 and
+             length(tx.vShieldedOutput) > 0 and
+             tx.valueBalance < 0.0 do
+    IO.inspect("68")
     "Transferred to shielded pool"
   end
-
 
   # handle public tx
   def get_shielded_pool_label(tx)
@@ -77,8 +70,7 @@ defmodule ZcashExplorerWeb.TransactionView do
     "Transferred from/to shielded pool"
   end
 
-
-  # 3 with value balance 
+  # 3 with value balance
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) == 0 and length(tx.vin) == 0 and
              length(tx.vout) > 0 and tx.valueBalance > 0 do
@@ -90,120 +82,151 @@ defmodule ZcashExplorerWeb.TransactionView do
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) == 0 and length(tx.vin) == 0 and
              length(tx.vout) == 0 and tx.valueBalance > 0 do
-     IO.inspect("93")
+    IO.inspect("93")
     "Transferred from shielded pool"
   end
 
-
-
-  # mixed 
-   def get_shielded_pool_value(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) == 0 
-      and length(tx.vin) > 0 
-      and length(tx.vShieldedOutput) > 0
-      and tx.valueBalance < 0.0
-      do
-        abs(tx.valueBalance)
+  # mixed
+  def get_shielded_pool_value(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) > 0 and
+             length(tx.vShieldedOutput) > 0 and
+             tx.valueBalance < 0.0 do
+    abs(tx.valueBalance)
   end
 
-
-
-   def get_shielded_pool_value(tx)
-    when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) == 0 
-      and length(tx.vin) > 0 
-      and length(tx.vout) == 0 
-      and length(tx.vShieldedOutput) > 0 
-      and (tx.valueBalance) < 0.0 
-      do
-        abs(tx.valueBalance)
+  def get_shielded_pool_value(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) > 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) > 0 and
+             tx.valueBalance < 0.0 do
+    abs(tx.valueBalance)
   end
-
-
 
   # 1
   def get_shielded_pool_value(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) > 0 
-      and length(tx.vin) > 0 do
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) > 0 and
+             length(tx.vin) > 0 do
     Map.get(tx, :vjoinsplit) |> Enum.reduce(0, fn x, acc -> Map.get(x, :vpub_old) + acc end)
   end
 
-
-  # 3 
+  # 3
   def get_shielded_pool_value(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) == 0 
-      and length(tx.vin) == 0 
-      and length(tx.vout) > 0 
-      and tx.valueBalance > 0 do
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) > 0 and
+             tx.valueBalance > 0 do
     abs(tx.valueBalance)
   end
 
-
-  # 4 
+  # 4
   def get_shielded_pool_value(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) > 0 
-      and length(tx.vin) == 0 
-      and length(tx.vout) == 0 
-      do
-    
-    val = tx
-    |> Map.get(:vjoinsplit)
-    |> List.flatten()
-    |> Enum.reduce(0, fn x, acc -> Map.get(x, :vpub_new) + acc end)
-    |> Kernel.+(0.0)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) > 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 do
+    val =
+      tx
+      |> Map.get(:vjoinsplit)
+      |> List.flatten()
+      |> Enum.reduce(0, fn x, acc -> Map.get(x, :vpub_new) + acc end)
+      |> Kernel.+(0.0)
+
     abs(val)
   end
 
-
-
-  # 4 
+  # 4 Deshielding legacy
   def get_shielded_pool_value(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) > 0 
-      and length(tx.vin) == 0 
-      and length(tx.vout) > 0 
-      do
-    
-    val = tx
-    |> Map.get(:vout)
-    |> List.flatten()
-    |> Enum.reduce(0, fn x, acc -> Map.get(x, :value) + acc end)
-    |> Kernel.+(0.0)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) > 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) > 0 do
+    IO.inspect(177)
+
+    val =
+      tx
+      |> Map.get(:vjoinsplit)
+      |> List.flatten()
+      |> Enum.reduce(0, fn x, acc -> Map.get(x, :vpub_new) + acc end)
+      |> Kernel.+(0.0)
+
     abs(val)
   end
 
-
-
-  # 4 
+  # 4
   def get_shielded_pool_value(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) == 0 
-      and length(tx.vin) == 0 
-      and length(tx.vout) == 0 
-      and tx.valueBalance > 0 do
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             tx.valueBalance > 0 do
     abs(tx.valueBalance)
   end
-
 
   # handle public tx
   def get_shielded_pool_value(tx)
-      when 
-      tx.vjoinsplit != nil 
-      and length(tx.vjoinsplit) == 0 
-      and length(tx.vin) > 0 do
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) > 0 do
     0.00
   end
 
+  def tx_in_total(tx) when is_map(tx) do
+    IO.inspect(tx.vin)
+    tx.vin |> Enum.reduce(0, fn x, acc -> x.value + acc end)
+  end
 
+  def tx_out_total(tx) when is_map(tx) do
+    tx.vout |> Enum.reduce(0, fn x, acc -> x.value + acc end)
+  end
+
+  def transparent_tx_fee(public_tx) do
+    fee = tx_in_total(public_tx) - tx_out_total(public_tx)
+    fee |> format_zec()
+  end
+
+  def vjoinsplit_vpub_old_total(tx) when is_map(tx) do
+    tx.vjoinsplit |> Enum.reduce(0, fn x, acc -> x.vpub_old + acc end)
+  end
+
+  def vjoinsplit_vpub_new_total(tx) when is_map(tx) do
+    tx.vjoinsplit |> Enum.reduce(0, fn x, acc -> x.vpub_new + acc end)
+  end
+
+  def shielding_tx_fee(tx) when is_map(tx) and length(tx.vjoinsplit) > 0 do
+    fee = tx_in_total(tx) - vjoinsplit_vpub_old_total(tx)
+    fee |> format_zec()
+  end
+
+  def shielding_tx_fee(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 do
+    fee = tx_in_total(tx) - abs(tx.valueBalance)
+    fee |> format_zec()
+  end
+
+  def deshielding_tx_fees(tx) when is_map(tx) and length(tx.vjoinsplit) > 0 do
+    fee = vjoinsplit_vpub_new_total(tx) - tx_out_total(tx)
+    fee |> format_zec()
+  end
+
+  def deshielding_tx_fees(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 do
+    fee = tx.valueBalance - tx_out_total(tx)
+    fee |> format_zec()
+  end
+
+  def mixed_tx_fees(tx)
+      when is_map(tx) and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vShieldedOutput) > 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance < 0 and
+             length(tx.vin) > 0 and
+             length(tx.vout) > 0 do
+    fee = tx_in_total(tx) - abs(tx.valueBalance) - tx_out_total(tx)
+    fee |> format_zec()
+  end
 end

@@ -36,7 +36,7 @@
                 </dd>
               </div>
 
-              
+
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">
                 Tx Type
@@ -124,14 +124,48 @@
                 <%= @tx.locktime %>
                 </dd>
               </div>
+              <div class="sm:col-span-1">
+                <dt class="text-sm font-medium text-gray-500">
+                Transaction fee
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900">
+                  <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "coinbase" do %>
+                  0.0 ZEC
+                  <% end %>
+                  <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "transparent" do %>
+                    <%= transparent_tx_fee(@tx) %>
+                  <% end %>
+
+                  <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "shielded" do %>
+                    <%= format_zec(get_shielded_pool_value(@tx)) %>
+                  <% end %>
+
+                <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "shielding" do %>
+                  <%= shielding_tx_fee(@tx) %>
+                <% end %>
+
+                  <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "deshielding" do %>
+                    <%= deshielding_tx_fees(@tx) %>
+                  <% end %>
+
+                  <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "mixed" do %>
+                    <%= mixed_tx_fees(@tx) %>
+                  <% end %>
+
+
+
+
+
+                </dd>
+              </div>
             </dl>
           </div>
         </div>
       </section>
-      
+
 <h4  class="font-medium text-gray-900">
       Public transfers
-</h4>  
+</h4>
 <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1 lg:grid-cols-9">
 <div class="sm:col-span-9 md:col-span-9 lg:col-span-4">
 Inputs (<%= vin_count(@tx.vin) %>)
@@ -141,7 +175,7 @@ Inputs (<%= vin_count(@tx.vin) %>)
       <dd class="mt-1 text-sm text-gray-900 sm:mt-0 py-2">
           <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
           <%= for input <- @tx.vin do %>
-         
+
           <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
             <div class="w-0 flex-1 flex items-center">
               <a href='/address/<%= input.address %>'>
@@ -154,7 +188,7 @@ Inputs (<%= vin_count(@tx.vin) %>)
               <%= format_zec input.value %>
             </div>
           </li>
-        
+
           <% end %>
         </ul>
        </dd>
@@ -179,7 +213,7 @@ Inputs (<%= vin_count(@tx.vin) %>)
 </div>
 </div>
 
-      
+
 <div class="lg:col-span-1 justify-self-center py-4">
 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" class="h-5 w-5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
   <path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
@@ -195,7 +229,7 @@ Outputs (<%= vout_count(@tx.vout) %>)
           <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
           <%= for op <- @tx.vout do %>
           <%= for address <- op.scriptPubKey.addresses do %>
-          
+
           <li class="pl-2 pr-4 py-3 flex items-center justify-between text-sm">
             <a href='/address/<%= address %>'>
             <div class="w-0 flex-1 flex items-center">
@@ -208,7 +242,7 @@ Outputs (<%= vout_count(@tx.vout) %>)
             <%= format_zec op.value %>
              </div>
           </li>
-        
+
           <% end %>
           <% end %>
         </ul>
@@ -240,7 +274,7 @@ Shielded transfers
   <div class="bg-white p-6">
     <div class="sm:flex sm:items-center sm:justify-between">
       <div class="sm:flex sm:space-x-5">
-     
+
 
 <dl class="grid grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-6">
 
@@ -260,8 +294,8 @@ Shielded transfers
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 break-words">
                 <%= if ZcashExplorerWeb.BlockView.contains_sprout(@tx) do  %>
-                  Yes - 
-                  <%= ZcashExplorerWeb.BlockView.get_joinsplit_count(@tx) %> JoinSplits
+                  Yes -
+                  <%= ZcashExplorerWeb.BlockView.get_joinsplit_count(@tx) %>
                 <% else %>
                   No
                   <% end %>
