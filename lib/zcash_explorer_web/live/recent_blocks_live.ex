@@ -45,13 +45,6 @@ defmodule ZcashExplorerWeb.RecentBlocksLive do
             <% end %>
     </tbody>
     </table>
-    <nav class="bg-white-500 px-4 py-3 flex items-center justify-between border-t border-gray-200 px-4">
-    <div class="flex-1 flex justify-between sm:justify-end">
-        <a href="/blocks" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        View More
-        </a>
-    </div>
-    </nav>
     """
   end
 

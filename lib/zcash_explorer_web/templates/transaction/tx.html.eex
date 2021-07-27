@@ -84,14 +84,49 @@
                 </a>
                 </dd>
               </div>
+
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">
-                Inputs / Outputs
+                Public Inputs / Outputs
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900">
-                <%= vin_vout_count @tx %>
+                 <%= vin_vout_count @tx %>
                 </dd>
               </div>
+
+              <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">
+                Shielded Inputs / Outputs
+              </dt>
+               <dd class="mt-1 text-sm text-gray-900 break-words">
+                <%= length(@tx.vShieldedSpend) %> / <%= length(@tx.vShieldedOutput) %>
+              </dd>
+              </div>
+
+              <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">
+                JoinSplits ?
+              </dt>
+              <dd class="mt-1 text-sm text-gray-900 break-words">
+                <%= if ZcashExplorerWeb.BlockView.contains_sprout(@tx) do  %>
+                  Yes -
+                  <%= ZcashExplorerWeb.BlockView.get_joinsplit_count(@tx) %>
+                <% else %>
+                  No
+                  <% end %>
+              </dd>
+              </div>
+
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">
+                <%= get_shielded_pool_label(@tx) %>
+              </dt>
+              <dd class="mt-1 text-sm text-gray-900 break-words">
+                 <%= format_zec(get_shielded_pool_value(@tx)) %>
+              </dd>
+            </div>
+
+
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">
                 Overwintered?
@@ -151,10 +186,6 @@
                   <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "mixed" do %>
                     <%= mixed_tx_fees(@tx) %>
                   <% end %>
-
-
-
-
 
                 </dd>
               </div>
@@ -265,61 +296,6 @@ Outputs (<%= vout_count(@tx.vout) %>)
 
     </div>
 
-<h4 class="font-medium text-gray-900">
-Shielded transfers
-</h4>
 
-
-<div class="rounded-lg bg-white overflow-hidden shadow">
-  <div class="bg-white p-6">
-    <div class="sm:flex sm:items-center sm:justify-between">
-      <div class="sm:flex sm:space-x-5">
-
-
-<dl class="grid grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-6">
-
-            <div class="col-span-2 md:border-r lg:border-r">
-              <dt class="text-sm font-medium text-gray-500">
-                <%= get_shielded_pool_label(@tx) %>
-                </dt>
-                  <dd class="mt-1 text-sm text-gray-900 break-words">
-                     <%= format_zec(get_shielded_pool_value(@tx)) %>
-                  </dd>
-            </div>
-
-
-            <div class="col-span-2 md:col-span-1 md:border-r lg:border-r">
-                <dt class="text-sm font-medium text-gray-500">
-                JoinSplits ?
-                </dt>
-                <dd class="mt-1 text-sm text-gray-900 break-words">
-                <%= if ZcashExplorerWeb.BlockView.contains_sprout(@tx) do  %>
-                  Yes -
-                  <%= ZcashExplorerWeb.BlockView.get_joinsplit_count(@tx) %>
-                <% else %>
-                  No
-                  <% end %>
-                </dd>
-            </div>
-
-            <div class="sm:col-span-1 md:border-r lg:border-r">
-                <dt class="text-sm font-medium text-gray-500">
-                  Shielded inputs
-                </dt>
-                <dd class="mt-1 text-sm text-gray-900 break-words">
-                   <%= length(@tx.vShieldedSpend) %>
-                </dd>
-            </div>
-
-            <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
-                  Shielded outputs
-                </dt>
-                <dd class="mt-1 text-sm text-gray-900 break-words">
-                  <%= length(@tx.vShieldedOutput) %>
-                </dd>
-            </div>
-
-    </div>
   </div>
 </main>

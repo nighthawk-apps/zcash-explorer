@@ -6,7 +6,7 @@ defmodule ZcashExplorer.Metrics.MempoolInfoWarmer do
   Returns the interval for this warmer.
   """
   def interval,
-    do: :timer.seconds(5)
+    do: :timer.seconds(3)
 
   @doc """
   Executes this cache warmer.
