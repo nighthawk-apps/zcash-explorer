@@ -78,4 +78,8 @@ defmodule ZcashExplorerWeb.PageController do
   def nodes(conn, _params) do
     render(conn, "nodes.html", page_title: "Zcash Nodes")
   end
+
+  def vk(conn, _params) do
+    render(conn, "vk.html", csrf_token: get_csrf_token(), page_title: "Zcash Viewing Key")
+  end
 end
