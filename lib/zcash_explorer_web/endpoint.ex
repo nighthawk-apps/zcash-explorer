@@ -24,7 +24,7 @@ defmodule ZcashExplorerWeb.Endpoint do
     at: "/",
     from: :zcash_explorer,
     gzip: true,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt privacy.html)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
