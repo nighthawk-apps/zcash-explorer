@@ -39,6 +39,18 @@ explorer_hostname =
     environment variable EXPLORER_HOSTNAME is missing 
     """
 
+vk_cpus =
+  System.fetch_env!("VK_CPUS") ||
+    raise """
+    environment variable EXPLORER_HOSTNAME is missing 
+    """
+
+vk_mem =
+  System.fetch_env!("VK_MEM") ||
+    raise """
+    environment variable EXPLORER_HOSTNAME is missing 
+    """
+
 config :zcash_explorer, ZcashExplorerWeb.Endpoint,
   url: [
     host: explorer_hostname,
