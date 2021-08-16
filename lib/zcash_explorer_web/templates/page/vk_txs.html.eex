@@ -1,0 +1,8 @@
+<main class="py-4">
+<div class="grid grid-cols-1 mx-8">
+ <h3 class="text-lg leading-6 font-medium text-gray-500 py-2">
+        Zcash Viewing Key
+ </h3>
+<%= live_render(@conn, ZcashExplorerWeb.VkLive,session: %{"container_id" => @container_id}) %>
+</div>
+</main>

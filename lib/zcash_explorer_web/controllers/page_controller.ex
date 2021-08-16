@@ -1,5 +1,6 @@
 defmodule ZcashExplorerWeb.PageController do
   use ZcashExplorerWeb, :controller
+  alias Phoenix.PubSub
 
   def index(conn, _params) do
     render(conn, "index.html", page_title: "Zcash Explorer - Search the Zcash Blockchain")
@@ -17,7 +18,6 @@ defmodule ZcashExplorerWeb.PageController do
 
     case Zcashex.sendrawtransaction(tx_hex) do
       {:ok, resp} ->
-        # IO.inspect(resp)
         conn
         |> put_flash(:info, resp)
         |> render("broadcast.html",
@@ -26,7 +26,6 @@ defmodule ZcashExplorerWeb.PageController do
         )
 
       {:error, reason} ->
-        # IO.inspect(reason)
         conn
         |> put_flash(:error, reason)
         |> render("broadcast.html",
@@ -80,6 +79,73 @@ defmodule ZcashExplorerWeb.PageController do
   end
 
   def vk(conn, _params) do
-    render(conn, "vk.html", csrf_token: get_csrf_token(), page_title: "Zcash Viewing Key")
+    height =
+      case Cachex.get(:app_cache, "metrics") do
+        {:ok, info} ->
+          info["blocks"] - 10000
+
+        {:error, _reason} ->
+          # hardcoded to canopy
+          1_046_400
+      end
+
+    render(conn, "vk.html",
+      csrf_token: get_csrf_token(),
+      height: height,
+      page_title: "Zcash Viewing Key"
+    )
+  end
+
+  def do_import_vk(conn, params) do
+    height = params["scan-height"]
+    vkey = params["vkey"]
+
+    with true <- String.starts_with?(vkey, "zxview"),
+         true <- is_integer(String.to_integer(height)),
+         true <- String.to_integer(height) >= 0 do
+      cmd =
+        MuonTrap.cmd("docker", [
+          "create",
+          "-t",
+          "-i",
+          "--rm",
+          "--cpus",
+          Application.get_env(:zcash_explorer, Zcashex)[:vk_cpus],
+          "-m",
+          Application.get_env(:zcash_explorer, Zcashex)[:vk_mem],
+          "nighthawkapps/vkrunner",
+          "zecwallet-cli",
+          "import",
+          vkey,
+          height
+        ])
+
+      container_id = elem(cmd, 0) |> String.trim_trailing("\n") |> String.slice(0, 12)
+      task = Task.start(fn -> MuonTrap.cmd("docker", ["start", "-a", "-i", container_id]) end)
+
+      render(conn, "vk_txs.html",
+        csrf_token: get_csrf_token(),
+        height: height,
+        container_id: container_id,
+        page_title: "Zcash Viewing Key"
+      )
+    else
+      false ->
+        conn
+        |> put_flash(:error, "Invalid Input")
+        |> render("vk.html",
+          csrf_token: get_csrf_token(),
+          height: height,
+          page_title: "Zcash Viewing Key"
+        )
+    end
+  end
+
+  def vk_from_zecwalletcli(conn, params) do
+    container_id = Map.get(params, "hostname")
+    chan = "VK:" <> "#{container_id}"
+    txs = Map.get(params, "_json")
+    Phoenix.PubSub.broadcast(ZcashExplorer.PubSub, chan, {:received_txs, txs})
+    json(conn, %{status: "received"})
   end
 end

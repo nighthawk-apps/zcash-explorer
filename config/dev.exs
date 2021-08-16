@@ -34,7 +34,9 @@ config :zcash_explorer, Zcashex,
   zcashd_hostname: "localhost",
   zcashd_port: "38232",
   zcashd_username: "zcashrpc",
-  zcashd_password: "changeme"
+  zcashd_password: "changeme",
+  vk_cpus: "0.2",
+  vk_mem: "2048M"
 
 # ## SSL Support
 #

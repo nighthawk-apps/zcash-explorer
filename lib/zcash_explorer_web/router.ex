@@ -31,6 +31,7 @@ defmodule ZcashExplorerWeb.Router do
     live "/index/recent_transactions", RecentTransactionsLive
     live "/live/raw_mempool", RawMempoolLive
     live "/live/nodes", NodesLive
+    live "/vkdetails", VkLive
     get "/broadcast", PageController, :broadcast
     post "/broadcast", PageController, :do_broadcast
     get "/payment-disclosure", PageController, :disclosure
@@ -41,6 +42,13 @@ defmodule ZcashExplorerWeb.Router do
     get "/mempool", PageController, :mempool
     get "/nodes", PageController, :nodes
     get "/vk", PageController, :vk
+    post "/vk", PageController, :do_import_vk
+  end
+
+  scope "/", ZcashExplorerWeb do
+    pipe_through :api
+
+    post "/api/vk/:hostname", PageController, :vk_from_zecwalletcli
   end
 
   # Other scopes may use custom stacks.

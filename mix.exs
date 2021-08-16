@@ -56,7 +56,8 @@ defmodule ZcashExplorer.MixProject do
       {:timex, "~> 3.0"},
       {:sizeable, "~> 1.0"},
       {:eqrcode, "~> 0.1.8"},
-      {:contex, "~> 0.3.0"}
+      {:contex, "~> 0.3.0"},
+      {:muontrap, "~> 0.6.1"}
     ]
   end
 
