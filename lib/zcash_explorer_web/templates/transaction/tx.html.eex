@@ -1,4 +1,4 @@
-<main class="py-4">
+<main class="py-4 lg:px-12">
   <div class="grid gap-4 mx-2 grid-cols-1 md:mx-8">
     <div class="space-y-6 lg:col-start-1 lg:col-span-2">
       <section aria-labelledby="block-details-title">
@@ -11,7 +11,6 @@
           </div>
           <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
-
 
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500">
@@ -195,7 +194,7 @@
       </section>
 
 <h4  class="font-medium text-gray-900">
-      Public transfers
+      Transfers
 </h4>
 <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1 lg:grid-cols-9">
 <div class="sm:col-span-9 md:col-span-9 lg:col-span-4">
@@ -207,7 +206,7 @@ Inputs (<%= vin_count(@tx.vin) %>)
           <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
           <%= for input <- @tx.vin do %>
 
-          <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+          <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50">
             <div class="w-0 flex-1 flex items-center">
               <a href='/address/<%= input.address %>'>
             <span class="flex-1 w-0 break-all">
@@ -261,7 +260,7 @@ Outputs (<%= vout_count(@tx.vout) %>)
           <%= for op <- @tx.vout do %>
           <%= for address <- op.scriptPubKey.addresses do %>
 
-          <li class="pl-2 pr-4 py-3 flex items-center justify-between text-sm">
+          <li class="pl-2 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50">
             <a href='/address/<%= address %>'>
             <div class="w-0 flex-1 flex items-center">
             <span class="flex-1 w-0 break-all">
@@ -293,9 +292,6 @@ Outputs (<%= vout_count(@tx.vout) %>)
 <% end %>
 </div>
 </div>
-
-    </div>
-
-
-  </div>
+</div>
+</div>
 </main>

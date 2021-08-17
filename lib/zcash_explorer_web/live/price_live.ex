@@ -38,7 +38,7 @@ defmodule ZcashExplorerWeb.PriceLive do
 
     <div class="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
           <div class="text-sm">
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> View more<span class="sr-only"> View detailed price charts of Zcash.</span></a>
+            <a href="https://www.coingecko.com/en/coins/zcash" target="_blank" class="font-medium text-indigo-600 hover:text-indigo-500"> View more<span class="sr-only"> View detailed price charts of Zcash.</span></a>
           </div>
     </div>
       </dd>
