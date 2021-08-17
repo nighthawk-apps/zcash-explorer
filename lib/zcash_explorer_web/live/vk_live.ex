@@ -47,12 +47,10 @@ defmodule ZcashExplorerWeb.VkLive do
      </tbody>
     </table>
     <% end %>
-
-
-
     """
   end
 
+  @impl true
   def mount(params, session, socket) do
     if connected?(socket) do
       container_id = Map.get(session, "container_id")
@@ -68,6 +66,7 @@ defmodule ZcashExplorerWeb.VkLive do
      })}
   end
 
+  @impl true
   def handle_info(:update, socket) do
     if length(socket.assigns.message["txs"]) == 0 do
       Process.send_after(self(), :update, 3000)
@@ -84,6 +83,7 @@ defmodule ZcashExplorerWeb.VkLive do
      })}
   end
 
+  @impl true
   def handle_info({:received_txs, txs}, socket) do
     {:noreply,
      assign(socket, :message, %{
@@ -91,5 +91,23 @@ defmodule ZcashExplorerWeb.VkLive do
        "container_id" => socket.assigns.message["container_id"],
        "txs" => txs
      })}
+  end
+
+  @impl true
+  def terminate(reason, socket) do
+    container_id = socket.assigns.message["container_id"]
+
+    if disconnected?(reason) do
+      # stop the container when the user is no longer connected to the Socket
+      MuonTrap.cmd("docker", ["stop", container_id])
+    end
+  end
+
+  defp disconnected?(reason) do
+    case reason do
+      :shutdown -> true
+      {:shutdown, shutdown_reason} when shutdown_reason in [:left, :closed] -> true
+      _other -> false
+    end
   end
 end
