@@ -2,6 +2,13 @@ defmodule ZcashExplorerWeb.SearchController do
   use ZcashExplorerWeb, :controller
 
   def search(conn, %{"qs" => qs}) do
+    # query zcashd to find out if the user has entered a valid resource
+    # Valid resources:
+    #  Block - height, hash
+    #  Transaction - hash 
+    #  Address - Transparent , Shielded
+    # If zcashd responds that a resource is valid, we redirect the user 
+    # to the appropriate resource view or redirect them to an error view.
     tasks = [
       block_resp = Task.async(fn -> Zcashex.getblock(qs, 0) end),
       tx_resp = Task.async(fn -> Zcashex.getrawtransaction(qs, 0) end),

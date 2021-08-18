@@ -25,10 +25,6 @@ defmodule ZcashExplorerWeb.BlockController do
           page_title: "Zcash block #{hash}"
         )
     end
-
-    # TODO : display block subsidy
-    # {:ok, block_subsidy} = Zcashex.getblocksubsidy(block_data.height)
-    # IO.inspect(block_subsidy)
   end
 
   def index(conn, %{"date" => date}) do

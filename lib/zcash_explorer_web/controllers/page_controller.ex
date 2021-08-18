@@ -99,6 +99,7 @@ defmodule ZcashExplorerWeb.PageController do
   end
 
   def do_import_vk(conn, params) do
+
     height = params["scan-height"]
     vkey = params["vkey"]
 
@@ -116,7 +117,7 @@ defmodule ZcashExplorerWeb.PageController do
           Application.get_env(:zcash_explorer, Zcashex)[:vk_cpus],
           "-m",
           Application.get_env(:zcash_explorer, Zcashex)[:vk_mem],
-          "nighthawkapps/vkrunner",
+          Application.get_env(:zcash_explorer, Zcashex)[:vk_runnner_image],
           "zecwallet-cli",
           "import",
           vkey,

@@ -42,31 +42,46 @@ explorer_hostname =
 vk_cpus =
   System.fetch_env!("VK_CPUS") ||
     raise """
-    environment variable EXPLORER_HOSTNAME is missing 
+    environment variable VK_CPUS is missing 
     """
 
 vk_mem =
   System.fetch_env!("VK_MEM") ||
     raise """
-    environment variable EXPLORER_HOSTNAME is missing 
+    environment variable VK_MEM is missing 
+    """
+
+vk_runnner_image =
+  System.fetch_env!("VK_RUNNER_IMAGE") ||
+    raise """
+    environment variable VK_RUNNER_IMAGE is missing 
     """
 
 config :zcash_explorer, ZcashExplorerWeb.Endpoint,
   url: [
     host: explorer_hostname,
     port: String.to_integer(System.get_env("EXPLORER_PORT") || "443"),
-    scheme: "https"
+    scheme: System.get_env("EXPLORER_SCHEME") || "https"
   ],
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6], compress: true]
   ],
-  secret_key_base: secret_key_base
+  secret_key_base: secret_key_base,
+  # add all the domain names that will be routed to this application ( including TOR Onion Service)
+  check_origin: [
+    "http://127.0.0.1:4000",
+    "//zcashblockexplorer.com",
+    "//zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion"
+  ]
 
 config :zcash_explorer, Zcashex,
   zcashd_hostname: zcashd_hostname,
   zcashd_port: zcashd_port,
   zcashd_username: zcashd_username,
-  zcashd_password: zcashd_password
+  zcashd_password: zcashd_password,
+  vk_cpus: vk_cpus,
+  vk_mem: vk_mem,
+  vk_runnner_image: vk_runnner_image
 
 config :zcash_explorer, ZcashExplorerWeb.Endpoint, server: true
