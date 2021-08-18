@@ -1,5 +1,4 @@
 defmodule ZcashExplorer.Metrics.MempoolInfoWarmer do
-  alias ZcashExplorer.Metrics.MetricsService
   use Cachex.Warmer
 
   @doc """

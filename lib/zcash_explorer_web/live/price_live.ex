@@ -1,6 +1,7 @@
 defmodule ZcashExplorerWeb.PriceLive do
   use Phoenix.LiveView
 
+  @impl true
   def render(assigns) do
     ~L"""
     <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
@@ -26,7 +27,7 @@ defmodule ZcashExplorerWeb.PriceLive do
 
           <svg class="self-center flex-shrink-0 h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-     
+
           <span class="sr-only">
             Decreased by
           </span>
@@ -58,6 +59,7 @@ defmodule ZcashExplorerWeb.PriceLive do
     end
   end
 
+  @impl true
   def handle_info(:update, socket) do
     Process.send_after(self(), :update, 3000)
     {:ok, price} = Cachex.get(:app_cache, "price")

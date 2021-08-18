@@ -1,6 +1,7 @@
 defmodule ZcashExplorerWeb.RawMempoolLive do
   use Phoenix.LiveView
 
+  @impl true
   def render(assigns) do
     ~L"""
     <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
@@ -21,7 +22,7 @@ defmodule ZcashExplorerWeb.RawMempoolLive do
           <a href='/transactions/<%= tx["txid"] %>'>
                <%= tx["txid"] %>
           </a>
-        </td>  
+        </td>
         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
             <%= tx["info"]["height"] %>
           </td>
@@ -30,11 +31,11 @@ defmodule ZcashExplorerWeb.RawMempoolLive do
         </td>
         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
          <%= ZcashExplorerWeb.TransactionView.format_zec(tx["info"]["fee"]) %>
-        </td>     
+        </td>
         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
           <%= tx["info"]["size"] %>
         </td>
-       </tr>                                           
+       </tr>
       <% end %>
     </tbody>
     </table>
@@ -55,6 +56,7 @@ defmodule ZcashExplorerWeb.RawMempoolLive do
     end
   end
 
+  @impl true
   def handle_info(:update, socket) do
     Process.send_after(self(), :update, 5000)
     {:ok, mempool} = Cachex.get(:app_cache, "raw_mempool")

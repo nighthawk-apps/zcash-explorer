@@ -10,10 +10,10 @@ defmodule ZcashExplorerWeb.SearchController do
     # If zcashd responds that a resource is valid, we redirect the user 
     # to the appropriate resource view or redirect them to an error view.
     tasks = [
-      block_resp = Task.async(fn -> Zcashex.getblock(qs, 0) end),
-      tx_resp = Task.async(fn -> Zcashex.getrawtransaction(qs, 0) end),
-      tadd_resp = Task.async(fn -> Zcashex.validateaddress(qs) end),
-      zadd_resp = Task.async(fn -> Zcashex.z_validateaddress(qs) end)
+      Task.async(fn -> Zcashex.getblock(qs, 0) end),
+      Task.async(fn -> Zcashex.getrawtransaction(qs, 0) end),
+      Task.async(fn -> Zcashex.validateaddress(qs) end),
+      Task.async(fn -> Zcashex.z_validateaddress(qs) end)
     ]
 
     run = Task.yield_many(tasks, 5000)
@@ -24,6 +24,7 @@ defmodule ZcashExplorerWeb.SearchController do
         res || Task.shutdown(task, :brutal_kill)
       end)
 
+    # order in which the tasks are above defined matters
     {:ok, block_resp} = Enum.at(results, 0)
     {:ok, tx_resp} = Enum.at(results, 1)
     {:ok, tadd_resp} = Enum.at(results, 2)
@@ -50,23 +51,23 @@ defmodule ZcashExplorerWeb.SearchController do
     end
   end
 
-  def is_valid_block?({:ok, hex}) do
-    true
-  end
-
-  def is_valid_block?({:error, reason}) do
-    false
-  end
-
   def is_valid_block?({:ok, {:error, "Block not found"}}) do
     false
   end
 
-  def is_valid_tx?({:ok, hex}) do
+  def is_valid_block?({:ok, _hex}) do
     true
   end
 
-  def is_valid_tx?({:error, reason}) do
+  def is_valid_block?({:error, _reason}) do
+    false
+  end
+
+  def is_valid_tx?({:ok, _hex}) do
+    true
+  end
+
+  def is_valid_tx?({:error, _reason}) do
     false
   end
 

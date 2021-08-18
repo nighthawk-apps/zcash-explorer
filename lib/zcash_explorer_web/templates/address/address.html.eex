@@ -91,11 +91,7 @@
     </svg>
   </a>
   </button>
-  <%= end %>
-
-
-
-
+  <% end %>
 </span>
 
 
@@ -105,8 +101,6 @@
 </div>
 </div>
 </div>
-
-
 
   <div class="col-span-2 md:col-span-2 lg:col-span-2 sm:col-span-3">
       <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">

@@ -1,6 +1,7 @@
 defmodule ZcashExplorerWeb.NodesLive do
   use Phoenix.LiveView
 
+  @impl true
   def render(assigns) do
     ~L"""
     <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
@@ -17,14 +18,14 @@ defmodule ZcashExplorerWeb.NodesLive do
         <tr class="hover:bg-indigo-50">
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-indigo-500">
                <%= node["addr"] %>
-        </td>  
+        </td>
         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
             <%= node["subver"] %>
         </td>
         <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
             <%= node["synced_blocks"] %>
         </td>
-       </tr>                                           
+       </tr>
       <% end %>
     </tbody>
     </table>
@@ -45,6 +46,7 @@ defmodule ZcashExplorerWeb.NodesLive do
     end
   end
 
+  @impl true
   def handle_info(:update, socket) do
     Process.send_after(self(), :update, 5000)
     {:ok, zcash_nodes} = Cachex.get(:app_cache, "zcash_nodes")

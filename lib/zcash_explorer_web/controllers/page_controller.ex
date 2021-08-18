@@ -1,6 +1,5 @@
 defmodule ZcashExplorerWeb.PageController do
   use ZcashExplorerWeb, :controller
-  alias Phoenix.PubSub
 
   def index(conn, _params) do
     render(conn, "index.html", page_title: "Zcash Explorer - Search the Zcash Blockchain")
@@ -99,7 +98,6 @@ defmodule ZcashExplorerWeb.PageController do
   end
 
   def do_import_vk(conn, params) do
-
     height = params["scan-height"]
     vkey = params["vkey"]
 
@@ -125,7 +123,7 @@ defmodule ZcashExplorerWeb.PageController do
         ])
 
       container_id = elem(cmd, 0) |> String.trim_trailing("\n") |> String.slice(0, 12)
-      task = Task.start(fn -> MuonTrap.cmd("docker", ["start", "-a", "-i", container_id]) end)
+      Task.start(fn -> MuonTrap.cmd("docker", ["start", "-a", "-i", container_id]) end)
 
       render(conn, "vk_txs.html",
         csrf_token: get_csrf_token(),

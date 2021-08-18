@@ -16,7 +16,7 @@ defmodule ZcashExplorerWeb.BlockView do
   end
 
   def mined_time_rel(timestamp) do
-    rel = timestamp |> Timex.from_unix() |> Timex.format!("{relative}", :relative)
+    timestamp |> Timex.from_unix() |> Timex.format!("{relative}", :relative)
   end
 
   def transaction_count(txs) do
@@ -40,7 +40,7 @@ defmodule ZcashExplorerWeb.BlockView do
 
     case Map.fetch(first_tx, :coinbase) do
       {:ok, nil} -> false
-      {:ok, value} -> true
+      {:ok, _value} -> true
       {:error, _reason} -> false
     end
   end
@@ -168,15 +168,4 @@ defmodule ZcashExplorerWeb.BlockView do
     end
   end
 
-  # TODO : complete later
-  def block_subsidy(block_subsidy) do
-    case block_subsidy do
-      %{"founders" => founders, "miner" => miner} when is_map(block_subsidy) ->
-        %{"founder" => founders, "miner" => miner}
-
-      %{"founders" => 0.0, "fundingstreams" => fundingstreams, "miner" => miner}
-      when is_map(block_subsidy) ->
-        %{}
-    end
-  end
 end

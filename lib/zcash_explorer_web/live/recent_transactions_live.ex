@@ -1,6 +1,7 @@
 defmodule ZcashExplorerWeb.RecentTransactionsLive do
   use Phoenix.LiveView
 
+  @impl true
   def render(assigns) do
     ~L"""
     <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
@@ -86,6 +87,7 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
     end
   end
 
+  @impl true
   def handle_info(:update, socket) do
     Process.send_after(self(), :update, 1000)
     {:ok, info} = Cachex.get(:app_cache, "transaction_cache")

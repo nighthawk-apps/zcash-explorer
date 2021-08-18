@@ -1,13 +1,12 @@
 defmodule ZcashExplorerWeb.VkLive do
   use Phoenix.LiveView
 
+  @impl true
   def render(assigns) do
     ~L"""
-
     <div class="text-green-400 font-mono break-all ">
     <%= @message["message"] %>
     </div>
-
     <%= if length(@message["txs"]) > 0  do %>
     <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200">
@@ -21,7 +20,6 @@ defmodule ZcashExplorerWeb.VkLive do
         </tr>
        </thead>
       <tbody class="bg-white-500 divide-y divide-gray-200">
-
     <%= for tx <- @message["txs"] do %>
     <tr class="hover:bg-indigo-50">
      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
@@ -37,13 +35,12 @@ defmodule ZcashExplorerWeb.VkLive do
     </td>
     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
         <%= ZcashExplorerWeb.BlockView.mined_time_rel(tx["datetime"]) %>
-    </td>    
+    </td>
     <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 break-all">
         <%= tx["memo"] %>
-    </td> 
-           </tr>        
+    </td>
+           </tr>
     <% end %>
-
      </tbody>
     </table>
     <% end %>
@@ -51,11 +48,11 @@ defmodule ZcashExplorerWeb.VkLive do
   end
 
   @impl true
-  def mount(params, session, socket) do
+  def mount(_params, session, socket) do
     if connected?(socket) do
       container_id = Map.get(session, "container_id")
       Process.send_after(self(), :update, 3000)
-      subscribed = Phoenix.PubSub.subscribe(ZcashExplorer.PubSub, "VK:" <> "#{container_id}")
+      Phoenix.PubSub.subscribe(ZcashExplorer.PubSub, "VK:" <> "#{container_id}")
     end
 
     {:ok,

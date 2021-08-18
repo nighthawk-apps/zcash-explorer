@@ -1,6 +1,7 @@
 defmodule ZcashExplorerWeb.MempoolInfoLive do
   use Phoenix.LiveView
 
+  @impl true
   def render(assigns) do
     ~L"""
     <p class="text-2xl font-semibold text-gray-900">
@@ -22,6 +23,7 @@ defmodule ZcashExplorerWeb.MempoolInfoLive do
     end
   end
 
+  @impl true
   def handle_info(:update, socket) do
     Process.send_after(self(), :update, 1000)
     {:ok, info} = Cachex.get(:app_cache, "mempool_info")

@@ -54,7 +54,7 @@
                      
                      <%= if @block_data["previousblockhash"] do %>
                           <%= @block_data["height"] - 1 %>
-                     <%= end %>
+                     <% end %>
                   </dd>
                 </div>
 
@@ -65,7 +65,7 @@
                   <dd class="mt-1 text-sm text-gray-900">
                      <%= if @block_data["nextblockhash"] do %>
                           <%= @block_data["height"] + 1 %>
-                     <%= end %>
+                     <% end %>
                   </dd>
                 </div>
 

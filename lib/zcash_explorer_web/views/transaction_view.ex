@@ -33,7 +33,6 @@ defmodule ZcashExplorerWeb.TransactionView do
              length(tx.vout) == 0 and
              length(tx.vShieldedOutput) > 0 and
              tx.valueBalance < 0.0 do
-    IO.inspect("38")
     "Transferred to shielded pool"
   end
 
@@ -41,14 +40,12 @@ defmodule ZcashExplorerWeb.TransactionView do
   # 1
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) > 0 and length(tx.vin) > 0 do
-    IO.inspect("47")
     "Transferred to shielded pool"
   end
 
   # handle when and vjoinsplit is present  and vin == 0 ..
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) > 0 and length(tx.vin) == 0 do
-    IO.inspect("")
     "Transferred from shielded pool"
   end
 
@@ -59,14 +56,12 @@ defmodule ZcashExplorerWeb.TransactionView do
              length(tx.vin) > 0 and
              length(tx.vShieldedOutput) > 0 and
              tx.valueBalance < 0.0 do
-    IO.inspect("68")
     "Transferred to shielded pool"
   end
 
   # handle public tx
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) == 0 and length(tx.vin) > 0 do
-    IO.inspect("76")
     "Transferred from/to shielded pool"
   end
 
@@ -74,7 +69,6 @@ defmodule ZcashExplorerWeb.TransactionView do
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) == 0 and length(tx.vin) == 0 and
              length(tx.vout) > 0 and tx.valueBalance > 0 do
-    IO.inspect("85")
     "Transferred from shielded pool"
   end
 
@@ -82,7 +76,6 @@ defmodule ZcashExplorerWeb.TransactionView do
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) == 0 and length(tx.vin) == 0 and
              length(tx.vout) == 0 and tx.valueBalance > 0 do
-    IO.inspect("93")
     "Transferred from shielded pool"
   end
 
@@ -146,8 +139,6 @@ defmodule ZcashExplorerWeb.TransactionView do
              length(tx.vjoinsplit) > 0 and
              length(tx.vin) == 0 and
              length(tx.vout) > 0 do
-    IO.inspect(177)
-
     val =
       tx
       |> Map.get(:vjoinsplit)
@@ -177,7 +168,6 @@ defmodule ZcashExplorerWeb.TransactionView do
   end
 
   def tx_in_total(tx) when is_map(tx) do
-    IO.inspect(tx.vin)
     tx.vin |> Enum.reduce(0, fn x, acc -> x.value + acc end)
   end
 
