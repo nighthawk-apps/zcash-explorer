@@ -1,4 +1,4 @@
-FROM elixir:1.12.1-alpine AS build
+FROM elixir:1.12.2-alpine AS build
 
 # install build dependencies
 RUN apk add --update --no-cache build-base --update nodejs npm git
@@ -13,28 +13,28 @@ RUN mix local.hex --force && \
 # set build ENV
 ENV MIX_ENV=prod
 
-# install mix dependencies
+
 COPY mix.exs mix.lock ./
 COPY config config
 RUN mix do deps.get, deps.compile
 
-# build assets
-COPY assets/package.json assets/package-lock.json ./assets/
-RUN npm --prefix ./assets ci --progress=false --no-audit --loglevel=error
+COPY assets/package.json  ./assets/
+RUN npm install --prefix=assets
+
+# should be before running npm deploy
+COPY lib lib
+copy rel rel
 
 COPY priv priv
 COPY assets assets
-RUN npm run --prefix ./assets deploy
-RUN mix phx.digest
+RUN npm run deploy --prefix=assets
 
-# compile and build release
-COPY lib lib
-COPY rel rel
-RUN mix do compile, release
+RUN mix phx.digest
+RUN mix do release
 
 # prepare release image
 FROM alpine:3.14 AS app
-RUN apk add --no-cache openssl ncurses-libs
+RUN apk add --no-cache openssl ncurses-libs libstdc++ libgcc
 
 WORKDIR /app
 
