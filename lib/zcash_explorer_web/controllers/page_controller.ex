@@ -153,4 +153,8 @@ defmodule ZcashExplorerWeb.PageController do
     Cachex.decr(:app_cache, "nbjobs")
     json(conn, %{status: "received"})
   end
+
+  def blockchain_info(conn, _params) do
+    render(conn, "blockchain_info.html", page_title: "Zcash Blockchain Info")
+  end
 end

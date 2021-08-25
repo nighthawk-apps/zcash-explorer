@@ -76,7 +76,7 @@
 
         <div class="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
           <div class="text-sm">
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">View blockchain info<span class="sr-only"> View blockchain info</span></a>
+            <a href="/blockchain-info" class="font-medium text-indigo-600 hover:text-indigo-500">View blockchain info<span class="sr-only"> View blockchain info</span></a>
           </div>
         </div>
       </dd>
@@ -84,9 +84,7 @@
 
   </dl>
 </div>
-
 </div>
-
 
 
 <div class="grid gap-4 grid-cols-1  md:grid-cols-1 mx-8 my-2">

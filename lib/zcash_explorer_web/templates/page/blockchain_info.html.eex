@@ -1,0 +1,6 @@
+<main class="py-4">
+<div class="grid grid-cols-1 mx-8">
+
+ <%= live_render(@conn, ZcashExplorerWeb.BlockChainInfoLive) %>
+</div>
+</main>

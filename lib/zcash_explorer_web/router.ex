@@ -32,6 +32,7 @@ defmodule ZcashExplorerWeb.Router do
     live "/live/raw_mempool", RawMempoolLive
     live "/live/nodes", NodesLive
     live "/vkdetails", VkLive
+    live "/blockchain-info-live", BlockChainInfoLive
     get "/broadcast", PageController, :broadcast
     post "/broadcast", PageController, :do_broadcast
     get "/payment-disclosure", PageController, :disclosure
@@ -43,6 +44,7 @@ defmodule ZcashExplorerWeb.Router do
     get "/nodes", PageController, :nodes
     get "/vk", PageController, :vk
     post "/vk", PageController, :do_import_vk
+    get "/blockchain-info", PageController, :blockchain_info
   end
 
   scope "/", ZcashExplorerWeb do
