@@ -36,7 +36,8 @@ config :zcash_explorer, Zcashex,
   zcashd_username: "zcashrpc",
   zcashd_password: "changeme",
   vk_cpus: "0.2",
-  vk_mem: "2048M"
+  vk_mem: "2048M",
+  vk_runnner_image: "nighthawkapps/vkrunner"
 
 # ## SSL Support
 #

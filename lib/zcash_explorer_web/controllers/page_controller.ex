@@ -102,7 +102,7 @@ defmodule ZcashExplorerWeb.PageController do
     with true <- String.starts_with?(vkey, "zxview"),
          true <- is_integer(String.to_integer(height)),
          true <- String.to_integer(height) >= 0,
-         true <- Cachex.get!(:app_cache, "nbjobs") <= 10 do
+         true <- Cachex.get!(:app_cache, "nbjobs") || 1 <= 10  do
       cmd =
         MuonTrap.cmd("docker", [
           "create",
