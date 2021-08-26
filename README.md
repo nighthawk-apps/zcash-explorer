@@ -4,6 +4,8 @@ Web: https://zcashblockexplorer.com
 
 V3 Onion: http://zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion/
 
+## Setup Guide: 
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
@@ -17,7 +19,6 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ## Documentation: 
 
 https://nighthawkapps.gitbook.io/zcash-explorer/
-
 
 ## Disclosure Policy
 Do not disclose any bug or vulnerability on public forums, message boards, mailing lists, etc. prior to responsibly disclosing to Nighthawk Apps and giving sufficient time for the issue to be fixed and deployed. Do not execute on or exploit any vulnerability.
