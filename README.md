@@ -1,7 +1,8 @@
 # ZcashExplorer
 
-https://zcashblockexplorer.com
-http://zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion/
+Web: https://zcashblockexplorer.com
+
+V3 Onion: http://zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion/
 
 To start your Phoenix server:
 
