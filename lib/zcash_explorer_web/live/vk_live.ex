@@ -51,6 +51,7 @@ defmodule ZcashExplorerWeb.VkLive do
   def mount(_params, session, socket) do
     if connected?(socket) do
       container_id = Map.get(session, "container_id")
+      Cachex.incr!(:app_cache, "nbjobs")
       Process.send_after(self(), :update, 3000)
       Phoenix.PubSub.subscribe(ZcashExplorer.PubSub, "VK:" <> "#{container_id}")
     end
@@ -82,6 +83,8 @@ defmodule ZcashExplorerWeb.VkLive do
 
   @impl true
   def handle_info({:received_txs, txs}, socket) do
+    Cachex.decr!(:app_cache, "nbjobs")
+
     {:noreply,
      assign(socket, :message, %{
        "message" => "Got list of txs",
@@ -95,6 +98,7 @@ defmodule ZcashExplorerWeb.VkLive do
     container_id = socket.assigns.message["container_id"]
 
     if disconnected?(reason) do
+      Cachex.decr!(:app_cache, "nbjobs")
       # stop the container when the user is no longer connected to the Socket
       MuonTrap.cmd("docker", ["stop", container_id])
     end

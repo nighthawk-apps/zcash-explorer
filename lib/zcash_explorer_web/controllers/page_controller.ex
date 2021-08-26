@@ -88,8 +88,6 @@ defmodule ZcashExplorerWeb.PageController do
           1_046_400
       end
 
-    Cachex.incr(:app_cache, "nbjobs")
-
     render(conn, "vk.html",
       csrf_token: get_csrf_token(),
       height: height,
@@ -133,8 +131,6 @@ defmodule ZcashExplorerWeb.PageController do
       )
     else
       false ->
-        Cachex.decr(:app_cache, "nbjobs")
-
         conn
         |> put_flash(:error, "Invalid Input")
         |> render("vk.html",
@@ -150,7 +146,6 @@ defmodule ZcashExplorerWeb.PageController do
     chan = "VK:" <> "#{container_id}"
     txs = Map.get(params, "_json")
     Phoenix.PubSub.broadcast(ZcashExplorer.PubSub, chan, {:received_txs, txs})
-    Cachex.decr(:app_cache, "nbjobs")
     json(conn, %{status: "received"})
   end
 
