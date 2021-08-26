@@ -1,5 +1,8 @@
 # ZcashExplorer
 
+https://zcashblockexplorer.com
+http://zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion/
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
