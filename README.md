@@ -1,5 +1,11 @@
 # ZcashExplorer
 
+Web: https://zcashblockexplorer.com
+
+V3 Onion: http://zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion/
+
+## Setup Guide: 
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
@@ -13,7 +19,6 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ## Documentation: 
 
 https://nighthawkapps.gitbook.io/zcash-explorer/
-
 
 ## Disclosure Policy
 Do not disclose any bug or vulnerability on public forums, message boards, mailing lists, etc. prior to responsibly disclosing to Nighthawk Apps and giving sufficient time for the issue to be fixed and deployed. Do not execute on or exploit any vulnerability.
@@ -29,3 +34,9 @@ A PGP key/fingerprint for us to provide encrypted responses to your disclosure. 
 
 ## Encrypting the Disclosure
 We highly encourage all disclosures to be encrypted to prevent interception and exploitation by third-parties prior to a fix being developed and deployed.  Please encrypt using the PGP public key with fingerprint: `8c07e1261c5d9330287f4ec35aff0fd018b01972`
+
+## Contact Nighthawk Devs
+zs1nhawkewaslscuey9qhnv9e4wpx77sp73kfu0l8wh9vhna7puazvfnutyq5ymg830hn5u2dmr0sf
+
+### License
+Apache License 2.0
