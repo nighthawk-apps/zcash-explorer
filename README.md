@@ -29,3 +29,9 @@ A PGP key/fingerprint for us to provide encrypted responses to your disclosure. 
 
 ## Encrypting the Disclosure
 We highly encourage all disclosures to be encrypted to prevent interception and exploitation by third-parties prior to a fix being developed and deployed.  Please encrypt using the PGP public key with fingerprint: `8c07e1261c5d9330287f4ec35aff0fd018b01972`
+
+## Contact Nighthawk Devs
+zs1nhawkewaslscuey9qhnv9e4wpx77sp73kfu0l8wh9vhna7puazvfnutyq5ymg830hn5u2dmr0sf
+
+### License
+Apache License 2.0
