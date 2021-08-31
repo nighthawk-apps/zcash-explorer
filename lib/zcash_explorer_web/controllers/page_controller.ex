@@ -98,11 +98,12 @@ defmodule ZcashExplorerWeb.PageController do
   def do_import_vk(conn, params) do
     height = params["scan-height"]
     vkey = params["vkey"]
+    cur_jobs = Cachex.get!(:app_cache, "nbjobs") || 1
 
     with true <- String.starts_with?(vkey, "zxview"),
          true <- is_integer(String.to_integer(height)),
          true <- String.to_integer(height) >= 0,
-         true <- Cachex.get!(:app_cache, "nbjobs") || 1 <= 10  do
+         true <- cur_jobs <= 10 do
       cmd =
         MuonTrap.cmd("docker", [
           "create",
