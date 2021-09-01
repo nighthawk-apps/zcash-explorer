@@ -110,6 +110,8 @@ defmodule ZcashExplorerWeb.PageController do
           "-t",
           "-i",
           "--rm",
+          "--ulimit",
+          "nofile=90000:90000",
           "--cpus",
           Application.get_env(:zcash_explorer, Zcashex)[:vk_cpus],
           "-m",

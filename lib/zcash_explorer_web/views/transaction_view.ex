@@ -212,6 +212,24 @@ defmodule ZcashExplorerWeb.TransactionView do
       when is_map(tx) and
              length(tx.vjoinsplit) == 0 and
              length(tx.vShieldedOutput) > 0 and
+             length(tx.vShieldedSpend) > 0 and
+             tx.valueBalance > 0 and
+             length(tx.vin) > 0 and
+             length(tx.vout) > 0 do
+
+              IO.inspect(tx_in_total(tx))
+              IO.inspect(tx.valueBalance)
+              IO.inspect(tx_out_total(tx))
+    fee =  tx_in_total(tx) - tx_out_total(tx) + tx.valueBalance
+    fee |> format_zec()
+
+  end
+
+  # Example TX: 1e16ee0732744d3a6bedf1f3a3b16d66c46354b78cd915412c0bc7ab8ca2b309
+  def mixed_tx_fees(tx)
+      when is_map(tx) and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vShieldedOutput) > 0 and
              length(tx.vShieldedSpend) == 0 and
              tx.valueBalance < 0 and
              length(tx.vin) > 0 and
@@ -219,4 +237,6 @@ defmodule ZcashExplorerWeb.TransactionView do
     fee = tx_in_total(tx) - abs(tx.valueBalance) - tx_out_total(tx)
     fee |> format_zec()
   end
+
+
 end
