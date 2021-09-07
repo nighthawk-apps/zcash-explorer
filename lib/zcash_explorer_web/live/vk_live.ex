@@ -2,11 +2,19 @@ defmodule ZcashExplorerWeb.VkLive do
   use Phoenix.LiveView
 
   @impl true
-  def render(assigns) do
+  def render(%{message: %{"txs" => []}} = assigns) do
     ~L"""
-    <div class="text-green-400 font-mono break-all ">
+    <div id="clogsholder" class="text-green-400 font-mono break-all overscroll-auto overflow-auto mx-16 h-28  min-h-full border-solid  rounded-md border-opacity-25 shadow-inner border-4 border-light-blue-500 " phx-hook="VkContainerLog">
+    <div id="clogs min-h-full">
     <%= @message["message"] %>
     </div>
+    </div>
+     """
+  end
+
+  @impl true
+  def render(assigns) do
+    ~L"""
     <%= if length(@message["txs"]) > 0  do %>
     <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200">
