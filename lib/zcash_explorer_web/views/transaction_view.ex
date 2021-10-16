@@ -24,8 +24,20 @@ defmodule ZcashExplorerWeb.TransactionView do
     ""
   end
 
+  def get_shielded_pool_label(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) > 0 and
+             length(tx.vShieldedSpend) > 0 and
+             tx.valueBalance == 0.0 do
+    "Transferred from/to shielded pool"
+  end
+
   # functions to get the label for
-  # shielding  tx without vjoinsplit
+  # tx with 0 tx fee ?
+  # TODO : do more research on how this is possible ?
   def get_shielded_pool_label(tx)
       when tx.vjoinsplit != nil and
              length(tx.vjoinsplit) == 0 and
@@ -77,6 +89,18 @@ defmodule ZcashExplorerWeb.TransactionView do
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) == 0 and length(tx.vin) == 0 and
              length(tx.vout) == 0 and tx.valueBalance > 0 do
     "Transferred from shielded pool"
+  end
+
+  # 0 feed tx ( not legacy )
+  def get_shielded_pool_value(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) > 0 and
+             length(tx.vShieldedSpend) > 0 and
+             tx.valueBalance == 0.0 do
+    0.0
   end
 
   # mixed
@@ -208,7 +232,19 @@ defmodule ZcashExplorerWeb.TransactionView do
     fee |> format_zec()
   end
 
-  # exampple tx ( mainnet ) 
+  def unknown_tx_fees(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) > 0 and
+             length(tx.vShieldedSpend) > 0 and
+             tx.valueBalance == 0.0 do
+    fee = 0.0
+    fee |> format_zec()
+  end
+
+  # exampple tx ( mainnet )
   # 872878da4a04b54d7134000d2f81d3bea3319cd946cab69a43699261415bb583
   def mixed_tx_fees(tx)
       when is_map(tx) and
@@ -218,12 +254,11 @@ defmodule ZcashExplorerWeb.TransactionView do
              tx.valueBalance > 0 and
              length(tx.vin) > 0 and
              length(tx.vout) > 0 do
-    fee =  tx_in_total(tx) - tx_out_total(tx) + tx.valueBalance
+    fee = tx_in_total(tx) - tx_out_total(tx) + tx.valueBalance
     fee |> format_zec()
-
   end
 
-  # exampple tx ( mainnet ) 
+  # exampple tx ( mainnet )
   # 00050f6582dba82305b2d5d25332445293f6cd784c829446704891167806a89f
   def mixed_tx_fees(tx)
       when is_map(tx) and
@@ -232,12 +267,12 @@ defmodule ZcashExplorerWeb.TransactionView do
              length(tx.vShieldedSpend) == 0 and
              tx.valueBalance < 0 and
              length(tx.vin) > 0 and
-             length(tx.vout) > 0 do 
+             length(tx.vout) > 0 do
     fee = tx_in_total(tx) - abs(tx.valueBalance) - tx_out_total(tx)
     fee |> format_zec()
   end
 
-  # exampple tx ( mainnet ) 
+  # exampple tx ( mainnet )
   # 32aa7ca775e5d6ea94a6bea855a2fa6f97b208cb82fa75c9c6081cdf222cb658
   def mixed_tx_fees(tx)
       when is_map(tx) and
@@ -250,5 +285,4 @@ defmodule ZcashExplorerWeb.TransactionView do
     fee = tx_in_total(tx) - abs(tx.valueBalance) - tx_out_total(tx)
     fee |> format_zec()
   end
-
 end

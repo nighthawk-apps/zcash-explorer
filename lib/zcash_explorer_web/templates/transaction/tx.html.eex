@@ -71,6 +71,11 @@
                   Mixed
                 </span>
                 <% end %>
+                <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "unknown" do %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-gray-200 text-gray-900 capitalize">
+                  Unknown
+                </span>
+                <% end %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
@@ -184,6 +189,10 @@
 
                   <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "mixed" do %>
                     <%= mixed_tx_fees(@tx) %>
+                  <% end %>
+
+                  <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "unknown" do %>
+                    <%= unknown_tx_fees(@tx) %>
                   <% end %>
 
                 </dd>
