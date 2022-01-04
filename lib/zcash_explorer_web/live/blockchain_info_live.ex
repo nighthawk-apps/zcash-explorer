@@ -51,7 +51,14 @@ defmodule ZcashExplorerWeb.BlockChainInfoLive do
       </dd>
     </div>
 
-
+    <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+      <dt class="text-sm font-medium text-gray-500 truncate">
+        zcashd version
+      </dt>
+      <dd class="mt-1 text-3xl font-semibold text-gray-900">
+      <%= @blockchain_info["build"] %>
+      </dd>
+    </div>
     </dl>
     </div>
 
@@ -65,6 +72,8 @@ defmodule ZcashExplorerWeb.BlockChainInfoLive do
 
     case Cachex.get(:app_cache, "metrics") do
       {:ok, info} ->
+        {:ok, %{"build" => build}} = Cachex.get(:app_cache, "info")
+        info = Map.put(info, "build", build)
         {:ok, assign(socket, :blockchain_info, info)}
 
       {:error, _reason} ->
@@ -76,6 +85,8 @@ defmodule ZcashExplorerWeb.BlockChainInfoLive do
   def handle_info(:update, socket) do
     Process.send_after(self(), :update, 15000)
     {:ok, info} = Cachex.get(:app_cache, "metrics")
+    {:ok, %{"build" => build}} = Cachex.get(:app_cache, "info")
+    info = Map.put(info, "build", build)
     {:noreply, assign(socket, :blockchain_info, info)}
   end
 
