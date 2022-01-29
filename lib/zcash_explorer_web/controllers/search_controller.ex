@@ -2,6 +2,7 @@ defmodule ZcashExplorerWeb.SearchController do
   use ZcashExplorerWeb, :controller
 
   def search(conn, %{"qs" => qs}) do
+    qs = String.trim(qs)
     # query zcashd to find out if the user has entered a valid resource
     # Valid resources:
     #  Block - height, hash
