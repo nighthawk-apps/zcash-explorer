@@ -33,7 +33,7 @@
 <% end %>
      
     <p class="mt-1 mb-2 max-w-2xl text-sm text-gray-600">
-          Paste the viewing key, click on the "start importing" button and grab a coffee !
+          Paste the viewing key, click on the "Start Importing" button and grab a coffee!
     </p>
   <input type="hidden" value="<%= @csrf_token %>" name="_csrf_token"/>
 
@@ -51,7 +51,7 @@
 <div class="pt-5 pb-5">
     <div class="flex justify-center">
       <button type="submit" class="flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        Start importing
+        Start Importing
       </button>
     </div>
   </div>
