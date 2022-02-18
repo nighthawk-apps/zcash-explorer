@@ -43,7 +43,7 @@
     </div>
     <div class="ml-3">
       <h3 class="text-sm font-medium text-green-800">
-        Details of the payment disclosure successfully retreived from zcashd.
+        Details of the payment disclosure successfully retrieved from zcashd.
       </h3>
     </div>
   </div>
@@ -143,7 +143,7 @@
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 break-all">
             <%= @disclosed_data["memo"] %>
           </dd>
-        </div> 
+        </div>
         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-500">
             value
@@ -167,15 +167,15 @@
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             <%= @disclosed_data["valid"] %>
           </dd>
-        </div>                                    
+        </div>
       </dl>
     </div>
   </div>
 <% end %>
-  
 
 
- 
+
+
     <p class="mt-1 mb-2 max-w-2xl text-sm text-gray-600 py-4">
           Paste the Zcash payment disclosure hexdata here to reveal details of a shielded payment.
     </p>
@@ -187,11 +187,11 @@
 
   <textarea id="disclosure" name="disclosure-hex" rows="22" class="w-full  shadow-sm  bg-indigo-400 bg-opacity-5  focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md font-mono text-green-400">
   </textarea>
-     
+
 
 <div class="pt-5 pb-5">
     <div class="flex justify-center">
-  
+
       <button type="submit" class="flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
         Disclose transaction
       </button>
