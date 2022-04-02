@@ -62,11 +62,8 @@
         </div>
       </li>
     </ul>
-<div class="py-6 float-right hidden md:inline  xl:inline sm:hidden lg:inline">
-  <!-- This example requires Tailwind CSS v2.0+ -->
+<div class="py-6 float-right md:inline  xl:inline sm:inline lg:inline">
 <span class="relative z-0 inline-flex shadow-sm rounded-md">
-
-
 
     <%= if !disable_previous(@start_block) do %>
   <button type="button" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
@@ -102,7 +99,7 @@
 </div>
 </div>
 
-  <div class="col-span-2 md:col-span-2 lg:col-span-2 sm:col-span-3">
+  <div class="col-span-3 md:col-span-2 lg:col-span-2 sm:col-span-3">
       <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
 <h2 id="technical-details" class="text-lg font-medium text-gray-900">Transactions from block
   <%= if @capped_e == nil do%>
