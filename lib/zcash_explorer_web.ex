@@ -71,6 +71,8 @@ defmodule ZcashExplorerWeb do
 
       import ZcashExplorerWeb.ErrorHelpers
       import ZcashExplorerWeb.Gettext
+      import Phoenix.LiveView.Helpers
+
       alias ZcashExplorerWeb.Router.Helpers, as: Routes
     end
   end
