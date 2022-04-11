@@ -6,7 +6,7 @@
             <div class="flex items-center px-2 lg:px-0 xl:w-64">
               <a href="/">
                 <div class="flex-shrink-0">
-                    <img class="h-8 w-auto" src="<%= Routes.static_path(@conn, "/images/zcash-icon-white.svg") %>" alt="Block Explorer">
+                    <img class="h-8 w-auto" src={"#{ Routes.static_path(@conn, "/images/zcash-icon-white.svg")}"} alt="Block Explorer">
                 </div>
               </a>
                 <a href="/">
@@ -78,8 +78,6 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
             </div>
         </div>
     </div>
-    </div>
-
     <div x-description="Mobile menu, show/hide based on menu state." class="lg:hidden" id="mobile-menu" x-show="open">
         <div class="px-2 pt-2 pb-3">
 

@@ -1,6 +1,6 @@
 defmodule ZcashExplorerWeb.RawMempoolLive do
-  use Phoenix.LiveView
-
+  use ZcashExplorerWeb, :live_view
+  import Phoenix.LiveView.Helpers
   @impl true
   def render(assigns) do
     ~L"""
