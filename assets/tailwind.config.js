@@ -3,18 +3,19 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   purge: [
-      '../lib/**/*.ex',
-      '../lib/**/*.leex',
-      '../lib/**/*.eex',
-      './js/**/*.js'
+    '../lib/**/*.ex',
+    '../lib/**/*.leex',
+    '../lib/**/*.heex',
+    '../lib/**/*.eex',
+    './js/**/*.js'
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
-              fontFamily: {
+      fontFamily: {
         sans: ['Inter', defaultTheme.fontFamily.sans],
       }
-      },
+    },
   },
   variants: {
     extend: {

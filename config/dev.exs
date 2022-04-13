@@ -32,7 +32,7 @@ config :zcash_explorer, ZcashExplorerWeb.Endpoint,
 
 config :zcash_explorer, Zcashex,
   zcashd_hostname: "localhost",
-  zcashd_port: "38232",
+  zcashd_port: "8232",
   zcashd_username: "zcashrpc",
   zcashd_password: "changeme",
   vk_cpus: "0.2",
