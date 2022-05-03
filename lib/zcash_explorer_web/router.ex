@@ -49,7 +49,7 @@ defmodule ZcashExplorerWeb.Router do
 
   scope "/", ZcashExplorerWeb do
     pipe_through :api
-
+    get "/api/v1/blockchain-info", PageController, :blockchain_info_api
     post "/api/vk/:hostname", PageController, :vk_from_zecwalletcli
   end
 

@@ -155,4 +155,12 @@ defmodule ZcashExplorerWeb.PageController do
   def blockchain_info(conn, _params) do
     render(conn, "blockchain_info.html", page_title: "Zcash Blockchain Info")
   end
+
+  def blockchain_info_api(conn, _params) do
+    {:ok, info} = Cachex.get(:app_cache, "metrics")
+    {:ok, %{"build" => build}} = Cachex.get(:app_cache, "info")
+    info = Map.put(info, "build", build)
+    json(conn, info)
+  end
+
 end

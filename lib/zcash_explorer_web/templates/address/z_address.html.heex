@@ -3,13 +3,13 @@
   <div class="col-span-3 md:col-span-1 lg:col-span-1 sm:col-span-3">
     <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 sticky top-10">
 
-<h2 id="technical-details" class="font-medium text-gray-900">Details for the Zcash address:
-</h2>
+    <h2 id="technical-details" class="font-medium text-gray-900">Details for the Zcash address:
+    </h2>
     <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words">
       <%= @address %>
     </p>
    <div class="px-0">
-    <img src='data:image/png;base64, <%= @qr %>' atl="QR code for the Zcash address <%= @address %>"/>
+    <img src={'data:image/png;base64, #{ @qr }'} atl={"QR code for the Zcash address #{ @address }"}/>
     </div>
 
 <div>
@@ -55,15 +55,13 @@
         </div>
       </li>
     </ul>
-    </div>
-
 </div>
 </div>
 </div>
-
+</div>
 <div class="col-span-3 md:col-span-2 lg:col-span-2 sm:col-span-3 
 ">
-      <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
+<div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
       <div class="bg-white lg:min-w-0 lg:flex-1">
         <h2 class="text-2xl tracking-tight font-extrabold text-gray-900 sm:text-2xl md:text-2xl">
               <span class="block xl:inline">Transactions using Z addresses are</span>
@@ -71,9 +69,7 @@
               <span class="block text-indigo-600 inline">Private.</span>
             </h2>
      </div>
-
-  </div>
-
 </div>
-
+</div>
+</div>
 </main>

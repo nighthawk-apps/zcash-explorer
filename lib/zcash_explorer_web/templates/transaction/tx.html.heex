@@ -83,7 +83,7 @@
                 Block Id
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 break-words">
-                <a href='/blocks/<%= @tx.blockhash %>'>
+                <a href={'/blocks/#{@tx.height}'}>
                   <%= @tx.height %>
                 </a>
                 </dd>
@@ -217,7 +217,10 @@ Inputs (<%= vin_count(@tx.vin) %>)
 
           <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50">
             <div class="w-0 flex-1 flex items-center">
-              <a href='/address/<%= input.address %>'>
+
+              
+              <a href={'/address/#{input.address}'}>
+
             <span class="flex-1 w-0 break-all">
             <%= input.address %>
             </span>
@@ -263,29 +266,33 @@ Inputs (<%= vin_count(@tx.vin) %>)
 Outputs (<%= vout_count(@tx.vout) %>)
 
 <div class="py-3">
+
       <%= if vout_count(@tx.vout) > 0 do %>
+
       <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 py-2">
           <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
           <%= for op <- @tx.vout do %>
           <%= for address <- op.scriptPubKey.addresses do %>
 
           <li class="pl-2 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50">
-            <a href='/address/<%= address %>'>
+            
             <div class="w-0 flex-1 flex items-center">
+            <a href={'/address/#{address }'}>
             <span class="flex-1 w-0 break-all">
-            <%= address %>
+                    <%= address %>
+
             </span>
             </a>
             </div>
-            <div class="ml-4 flex-shrink-0 font-medium text-indigo-600 hover:text-indigo-500 break-words">
-            <%= format_zec op.value %>
-             </div>
+              <div class="ml-4 flex-shrink-0 font-medium text-indigo-600 hover:text-indigo-500 break-words">
+                <%= format_zec op.value %>
+              </div>
           </li>
 
           <% end %>
           <% end %>
         </ul>
-        </dd>
+      </dd>
         <% end %>
 
 <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "shielding" do %>
@@ -299,6 +306,7 @@ Outputs (<%= vout_count(@tx.vout) %>)
         🛡 Shielded
       </span>
 <% end %>
+</div>
 </div>
 </div>
 </div>
