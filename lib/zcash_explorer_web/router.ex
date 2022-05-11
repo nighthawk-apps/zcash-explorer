@@ -45,6 +45,7 @@ defmodule ZcashExplorerWeb.Router do
     get "/vk", PageController, :vk
     post "/vk", PageController, :do_import_vk
     get "/blockchain-info", PageController, :blockchain_info
+    get "/ua/:address", AddressController, :get_ua
   end
 
   scope "/", ZcashExplorerWeb do

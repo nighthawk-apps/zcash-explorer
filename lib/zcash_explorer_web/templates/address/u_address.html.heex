@@ -1,0 +1,115 @@
+<main class="py-4">
+<div class="grid grid-cols-3 gap-4 px-4">
+  <div class="col-span-3 md:col-span-1 lg:col-span-1 sm:col-span-3">
+    <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 sticky top-10">
+
+    <h2 id="technical-details" class="font-medium text-gray-900">Details for the Zcash Unified Address:
+    </h2>
+    <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words select-all">
+      <%= @address %>
+    </p>
+   <div class="px-0">
+    <img src={'data:image/png;base64, #{ @qr }'} atl={"QR code for the Zcash Unified Address #{ @address }"}/>
+    </div>
+
+<div>
+
+</div>
+</div>
+</div>
+<div class="col-span-3 md:col-span-2 lg:col-span-2 sm:col-span-3 
+">
+<div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
+      <div class="bg-white lg:min-w-0 lg:flex-1">
+        <h2 class="text-2xl tracking-tight font-extrabold text-gray-900 sm:text-2xl md:text-2xl">
+              <span class="block xl:inline">You are viewing the details of a </span>
+              <!-- space -->
+              <span class="block text-indigo-600 inline">Zcash Unified Address.</span>
+            </h2>
+     </div>
+
+     <div class="mt-12">
+
+        <ul role="list" class="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
+
+          <li class="relative py-6 flex  space-x-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-50">
+                <!-- Heroicon name: outline/book-open -->
+<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+</svg>
+              </span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <h3 class="text-gray-900 text-xl">
+                <span class="rounded-sm focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                 
+                    <span class="inset-0" aria-hidden="true"></span>
+                    Orchard Address
+                 
+                </span>
+              </h3>
+              <p class="text-base text-gray-500 font-mono select-all">
+               <%= if @orchard_present == true do %>
+                           <%= @details["orchard"] %>
+              <% end %>
+              </p>
+            </div>
+            </li>
+
+                      <li class="relative py-6 flex items-start space-x-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-50">
+                <!-- Heroicon name: outline/book-open -->
+<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+</svg>
+              </span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <h3 class="text-gray-900 text-xl">
+                    <span class="inset-0" aria-hidden="true"></span>
+                    Sapling Address
+              </h3>
+              <p class="text-gray-500 font-mono py-2">
+              <a class="text-indigo-600 hover:text-indigo-500" href={'/address/#{@details["sapling"]}'}>
+              <%= if @sapling_present == true do %>
+                           <%= @details["sapling"] %>
+              <% end %>
+              </a>
+              </p>
+            </div>
+            </li>
+
+        <li class="relative py-6 flex  space-x-4">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-50">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+</svg>
+              </span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <h3 class="text-gray-900 text-xl">
+                  
+                    <span class="inset-0" aria-hidden="true"></span>
+                    Transparent Address
+              </h3>
+              <p class="text-gray-500 font-mono py-2">
+              <a class="text-indigo-600 hover:text-indigo-500" href={'/address/#{@details["p2pkh"]}'}>
+              <%= if @transparent_present == true do %>
+                           <%= @details["p2pkh"] %>
+              <% end %>
+              </a>
+              </p>
+            </div>
+            </li>
+
+
+            </ul>
+            </div>
+</div>
+</div>
+</div>
+</main>

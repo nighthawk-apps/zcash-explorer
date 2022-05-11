@@ -31,6 +31,11 @@ defmodule ZcashExplorerWeb.SearchController do
     {:ok, tadd_resp} = Enum.at(results, 2)
     {:ok, zadd_resp} = Enum.at(results, 3)
 
+    IO.inspect(block_resp)
+    IO.inspect(tx_resp)
+    IO.inspect(tadd_resp)
+    IO.inspect(zadd_resp)
+
     cond do
       is_valid_block?(block_resp) ->
         redirect(conn, to: "/blocks/#{qs}")
@@ -43,6 +48,9 @@ defmodule ZcashExplorerWeb.SearchController do
 
       is_valid_zaddr?(zadd_resp) ->
         redirect(conn, to: "/address/#{qs}")
+
+      is_valid_unified_address?(zadd_resp) ->
+        redirect(conn, to: "/ua/#{qs}")
 
       true ->
         conn
@@ -80,11 +88,27 @@ defmodule ZcashExplorerWeb.SearchController do
     false
   end
 
-  def is_valid_zaddr?({:ok, %{"isvalid" => true}}) do
+  def is_valid_zaddr?({:ok, %{"isvalid" => true, "type" => "sprout"}}) do
     true
   end
 
+  def is_valid_zaddr?({:ok, %{"isvalid" => true, "type" => "sapling"}}) do
+    true
+  end
+
+  def is_valid_zaddr?({:ok, %{"isvalid" => true, "type" => "unified"}}) do
+    false
+  end
+
   def is_valid_zaddr?({:ok, %{"isvalid" => false}}) do
+    false
+  end
+
+  def is_valid_unified_address?({:ok, %{"isvalid" => true, "type" => "unified"}}) do
+    true
+  end
+
+  def is_valid_unified_address?(resp) do
     false
   end
 end
