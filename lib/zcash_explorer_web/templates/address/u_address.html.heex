@@ -8,7 +8,7 @@
     <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words select-all">
       <%= @address %>
     </p>
-   <div class="px-0">
+   <div class="px-0 py-2">
     <img src={'data:image/png;base64, #{ @qr }'} atl={"QR code for the Zcash Unified Address #{ @address }"}/>
     </div>
 
@@ -72,7 +72,7 @@
                     <span class="inset-0" aria-hidden="true"></span>
                     Sapling Address
               </h3>
-              <p class="text-gray-500 font-mono py-2">
+              <p class="text-gray-500 font-mono py-2 break-words">
               <a class="text-indigo-600 hover:text-indigo-500" href={'/address/#{@details["sapling"]}'}>
               <%= if @sapling_present == true do %>
                            <%= @details["sapling"] %>
@@ -96,7 +96,7 @@
                     <span class="inset-0" aria-hidden="true"></span>
                     Transparent Address
               </h3>
-              <p class="text-gray-500 font-mono py-2">
+              <p class="text-gray-500 font-mono py-2 break-words">
               <a class="text-indigo-600 hover:text-indigo-500" href={'/address/#{@details["p2pkh"]}'}>
               <%= if @transparent_present == true do %>
                            <%= @details["p2pkh"] %>
