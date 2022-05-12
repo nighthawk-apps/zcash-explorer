@@ -53,6 +53,15 @@ defmodule ZcashExplorerWeb.BlockChainInfoLive do
     </div>
 
     <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
+    <dt class="text-sm font-medium text-gray-500 truncate">
+      Orchard pool
+    </dt>
+    <dd class="mt-1 text-3xl font-semibold text-gray-900">
+        <%= orchard_value(@blockchain_info["valuePools"]) %> ZEC
+    </dd>
+  </div>
+
+    <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
       <dt class="text-sm font-medium text-gray-500 truncate">
         zcashd version
       </dt>
@@ -97,6 +106,10 @@ defmodule ZcashExplorerWeb.BlockChainInfoLive do
 
   defp sapling_value(value_pools) do
     value_pools |> get_value_pools() |> Map.get("sapling")
+  end
+
+  defp orchard_value(value_pools) do
+    value_pools |> get_value_pools |> Map.get("orchard")
   end
 
   defp get_value_pools(value_pools) do
