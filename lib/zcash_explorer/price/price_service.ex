@@ -13,7 +13,7 @@ defmodule ZcashExplorer.Price.PriceService do
 
   defp fetch_price() do
     url()
-    |> HTTPoison.get!()
+    |> HTTPoison.get!([{"User-agent", "curl/7.83.1"}])
     |> Map.get(:body)
     |> Poison.decode!()
   end
