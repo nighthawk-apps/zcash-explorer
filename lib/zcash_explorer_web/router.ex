@@ -30,6 +30,7 @@ defmodule ZcashExplorerWeb.Router do
     live "/index/recent_blocks", RecentBlocksLive
     live "/index/recent_transactions", RecentTransactionsLive
     live "/live/raw_mempool", RawMempoolLive
+    live "/live/orchard_pool", OrchardPoolLive
     live "/live/nodes", NodesLive
     live "/vkdetails", VkLive
     live "/blockchain-info-live", BlockChainInfoLive

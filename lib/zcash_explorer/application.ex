@@ -31,7 +31,6 @@ defmodule ZcashExplorer.Application do
       {Cachex,
        name: :app_cache,
        warmers: [
-         warmer(module: ZcashExplorer.Price.PriceWarmer, state: {}),
          warmer(module: ZcashExplorer.Metrics.MetricsWarmer, state: {}),
          warmer(module: ZcashExplorer.Metrics.MempoolInfoWarmer, state: {}),
          warmer(module: ZcashExplorer.Metrics.NetworkSolpsWarmer, state: {}),

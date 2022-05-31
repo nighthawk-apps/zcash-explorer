@@ -2,16 +2,24 @@
 
 <div>
   <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
     <div class="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
       <dt>
-        <div class="absolute bg-indigo-500 rounded-md p-3">
-         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+        <div class="absolute bg-green-500 rounded-md p-3">
+<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
          </svg>
         </div>
-        <p class="ml-16 text-sm font-medium text-gray-500 truncate">Price</p>
+        <p class="ml-16 text-sm font-medium text-gray-500 truncate">Blockchain Size</p>
       </dt>
-    <%= live_render(@conn, ZcashExplorerWeb.PriceLive) %>
+      <dd class="ml-16 pb-6 flex items-baseline sm:pb-7">
+         <%= live_render(@conn, ZcashExplorerWeb.OrchardPoolLive) %>
+      <div class="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+          <div class="text-sm">
+            <a href="/blockchain-info" class="font-medium text-indigo-600 hover:text-indigo-500">View blockchain info<span class="sr-only"> View blockchain info</span></a>
+      </div>
+      </div>
+      </dd>
     </div>
 
 
