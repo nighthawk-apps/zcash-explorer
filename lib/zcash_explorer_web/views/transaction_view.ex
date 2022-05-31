@@ -29,6 +29,17 @@ defmodule ZcashExplorerWeb.TransactionView do
              length(tx.vjoinsplit) == 0 and
              length(tx.vin) == 0 and
              length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance == 0.0 do
+    "Transferred from/to shielded pool"
+  end
+
+  def get_shielded_pool_label(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
              length(tx.vShieldedOutput) > 0 and
              length(tx.vShieldedSpend) > 0 and
              tx.valueBalance == 0.0 do
@@ -89,6 +100,18 @@ defmodule ZcashExplorerWeb.TransactionView do
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) == 0 and length(tx.vin) == 0 and
              length(tx.vout) == 0 and tx.valueBalance > 0 do
     "Transferred from shielded pool"
+  end
+
+  # 
+  def get_shielded_pool_value(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance == 0.0 do
+    0.0
   end
 
   # 0 feed tx ( not legacy )
@@ -230,6 +253,17 @@ defmodule ZcashExplorerWeb.TransactionView do
   def deshielding_tx_fees(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 do
     fee = tx.valueBalance - tx_out_total(tx)
     fee |> format_zec()
+  end
+
+  def unknown_tx_fees(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance == 0.0 do
+    "¯\\_(ツ)_/¯"
   end
 
   def unknown_tx_fees(tx)
