@@ -53,6 +53,7 @@ defmodule ZcashExplorerWeb.Router do
     pipe_through :api
     get "/api/v1/blockchain-info", PageController, :blockchain_info_api
     post "/api/vk/:hostname", PageController, :vk_from_zecwalletcli
+    get "/transactions/:txid/raw", TransactionController, :get_raw_transaction
   end
 
   # Other scopes may use custom stacks.
