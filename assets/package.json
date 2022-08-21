@@ -26,7 +26,7 @@
     "hard-source-webpack-plugin": "^0.13.1",
     "is-svg": ">=4.2.2",
     "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "postcss": "^8.2.10",
     "postcss-loader": "^4.2.0",
     "sass": "^1.45.0",
