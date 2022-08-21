@@ -24,11 +24,16 @@ defmodule ZcashExplorerWeb.TransactionView do
       when tx.orchard.actions == nil do
     0
   end
-
+  
   def orchard_actions(tx)
       when tx.orchard.actions != nil do
     length(tx.orchard.actions)
   end
+ 
+  def orchard_actions(tx) do
+    0
+  end
+
 
   def format_zec(value) when value == nil do
     ""
