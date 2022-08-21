@@ -20,8 +20,48 @@ defmodule ZcashExplorerWeb.TransactionView do
     float_value <> " " <> "ZEC"
   end
 
+  def orchard_actions(tx)
+      when tx.orchard.actions == nil do
+    0
+  end
+
+  def orchard_actions(tx)
+      when tx.orchard.actions != nil do
+    length(tx.orchard.actions)
+  end
+
   def format_zec(value) when value == nil do
     ""
+  end
+
+  def get_shielded_pool_label(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance == 0.0 and
+             tx.version == 5 and
+             tx.orchard.actions != nil and
+             length(tx.orchard.actions) > 0 and
+             tx.orchard.valueBalance > 0 do
+    "Transferred from shielded pool"
+  end
+
+  def get_shielded_pool_label(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance == 0.0 and
+             tx.version == 5 and
+             tx.orchard.actions != nil and
+             length(tx.orchard.actions) > 0 and
+             tx.orchard.valueBalance < 0 do
+    "Transferred to shielded pool"
   end
 
   def get_shielded_pool_label(tx)
@@ -123,6 +163,21 @@ defmodule ZcashExplorerWeb.TransactionView do
       when tx.vjoinsplit != nil and length(tx.vjoinsplit) == 0 and length(tx.vin) == 0 and
              length(tx.vout) == 0 and tx.valueBalance > 0 do
     "Transferred from shielded pool"
+  end
+
+  # 247aaa9a1307ab094cc077123867b019a20aa35cc7e394d7607127e146d54922
+  def get_shielded_pool_value(tx)
+      when tx.vjoinsplit != nil and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) == 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance == 0.0 and
+             tx.version == 5 and
+             tx.orchard.actions != nil and
+             length(tx.orchard.actions) > 0 do
+    tx.orchard.valueBalance
   end
 
   # 
