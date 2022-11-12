@@ -24,16 +24,15 @@ defmodule ZcashExplorerWeb.TransactionView do
       when tx.orchard.actions == nil do
     0
   end
-  
+
   def orchard_actions(tx)
       when tx.orchard.actions != nil do
     length(tx.orchard.actions)
   end
- 
+
   def orchard_actions(tx) do
     0
   end
-
 
   def format_zec(value) when value == nil do
     ""
@@ -349,6 +348,43 @@ defmodule ZcashExplorerWeb.TransactionView do
   def deshielding_tx_fees(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 do
     fee = tx.valueBalance - tx_out_total(tx)
     fee |> format_zec()
+  end
+
+  # e145617c5d7d1646674da1d36540faff8e548738c0f500857e3230b35e85ca5f
+  def unknown_tx_fees(tx)
+      when tx.vjoinsplit != nil and
+             tx.version == 5 and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) > 0 and
+             length(tx.vout) == 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance == 0.0 do
+    "¯\\_(ツ)_/¯"
+  end
+
+  def unknown_tx_fees(tx)
+      when tx.vjoinsplit != nil and
+             tx.version == 5 and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) > 0 and
+             length(tx.vout) > 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance < 0.0 do
+    "¯\\_(ツ)_/¯"
+  end
+
+  def unknown_tx_fees(tx)
+      when tx.vjoinsplit != nil and
+             tx.version == 5 and
+             length(tx.vjoinsplit) == 0 and
+             length(tx.vin) > 0 and
+             length(tx.vout) > 0 and
+             length(tx.vShieldedOutput) == 0 and
+             length(tx.vShieldedSpend) == 0 and
+             tx.valueBalance == 0.0 do
+    "¯\\_(ツ)_/¯"
   end
 
   def unknown_tx_fees(tx)
