@@ -1,16 +1,16 @@
 <header>
-<nav x-data="{ open: false }" class="flex-shrink-0 bg-indigo-600">
+<nav x-data="{ open: false }" class="shrink-0 bg-indigo-600">
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <!-- Logo section -->
             <div class="flex items-center px-2 lg:px-0 xl:w-64">
               <a href="/">
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                     <img class="h-8 w-auto" src={"#{Routes.static_path(@conn, "/images/zcash-icon-white.svg")}"} alt="Zcash Block Explorer" >
                 </div>
               </a>
                 <a href="/">
-                <div class="flex-shrink-0 px-1 text-white">
+                <div class="shrink-0 px-1 text-white">
                     Zcash Block Explorer
                 </div>
               </a>
@@ -26,7 +26,7 @@
                             </svg>
                         </div>
                     <form action="/search">
-                        <input id="search" name="qs" class="block w-full pl-10 pr-3 py-2 bg-white border border-transparent rounded-md leading-5 bg-indigo-400 bg-opacity-25 text-indigo-100 placeholder-indigo-200 focus:outline-none focus:bg-white focus:ring-0 focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm" placeholder="transaction / block / address" type="search">
+                        <input id="search" name="qs" class="block w-full pl-10 pr-3 py-2 bg-white/25 border border-transparent rounded-md leading-5 bg-indigo-400/25  text-indigo-100 placeholder-indigo-200 focus:outline-none focus:bg-white focus:ring-0 focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm" placeholder="transaction / block / address" type="search">
                     </form>
                     </div>
                 </div>
