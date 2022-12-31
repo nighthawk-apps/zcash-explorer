@@ -1,6 +1,6 @@
-<div class="mx-8 my-4">
+<div class="mx-8 h-screen">
 
-<h3 class="text-lg leading-6 font-medium text-gray-900 py-3">
+<h3 class="text-lg leading-6 font-medium text-gray-900 py-3 dark:text-white">
      Payment Disclosure
 </h3>
 
@@ -41,7 +41,7 @@
       </svg>
     </div>
     <div class="ml-3">
-      <h3 class="text-sm font-medium text-green-800">
+      <h3 class="text-sm font-medium text-green-800 dark:text-white">
         Details of the payment disclosure successfully retrieved from zcashd.
       </h3>
     </div>
@@ -171,12 +171,12 @@
 
 
 
-<p class="mt-1 mb-2 max-w-2xl text-sm text-gray-600 py-4">
+<p class="mt-1 mb-2 max-w-2xl text-sm text-gray-600 py-4 dark:text-slate-100">
           Paste the Zcash payment disclosure hexdata here to reveal details of a shielded payment.
 </p>
 
 <form class="space-y-8" action="/payment-disclosure" method="post">  
-  <div class="space-y-8 divide-y divide-red-200 sm:space-y-5">
+  <div class="space-y-8 sm:space-y-5">
 
     <input type="hidden" value={@csrf_token} name="_csrf_token"/>
 

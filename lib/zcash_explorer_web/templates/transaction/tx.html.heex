@@ -2,11 +2,11 @@
   <div class="grid gap-4 mx-2 grid-cols-1 md:mx-8">
     <div class="space-y-6 lg:col-start-1 lg:col-span-2">
       <section aria-labelledby="block-details-title">
-        <div class="bg-white-500 shadow rounded-lg">
+        <div class="bg-white-500 shadow rounded-lg dark:bg-gray-800">
           <div class="px-4 py-5 sm:px-6">
-            <h2 id="block-details-title" class="text-lg leading-6 font-medium text-gray-900 inline-block break-words">
+            <h2 id="block-details-title" class="text-lg leading-6 font-medium text-gray-900 inline-block break-words dark:text-gray-50">
             Details for the Zcash Transaction ID </h2>
-            <h2 class="md:inline-block  text-gun-powder-500 break-words"><%= @tx.txid %>
+            <h2 class="md:inline-block  text-gun-powder-500 break-words dark:text-gray-200"><%= @tx.txid %>
             </h2>
           </div>
           <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
@@ -16,7 +16,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Confirmations
                 </dt>
-                <dd class="mt-1 text-xl font-semibold text-gray-900">
+                <dd class="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-50">
                 <%= if @tx.confirmations == nil do %>
                 0
                 <% else %>
@@ -30,7 +30,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Time (UTC)
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= ZcashExplorerWeb.BlockView.mined_time(@tx.time) %>
                 </dd>
               </div>
@@ -82,7 +82,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Block Id
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900 break-words">
+                <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-50">
                 <a href={'/blocks/#{@tx.height}'}>
                   <%= @tx.height %>
                 </a>
@@ -93,7 +93,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Public Inputs / Outputs
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                  <%= vin_vout_count @tx %>
                 </dd>
               </div>
@@ -102,7 +102,7 @@
               <dt class="text-sm font-medium text-gray-500">
                 Shielded Inputs / Outputs
               </dt>
-               <dd class="mt-1 text-sm text-gray-900 break-words">
+               <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-50">
                 <%= length(@tx.vShieldedSpend) %> / <%= length(@tx.vShieldedOutput) %>
               </dd>
               </div>
@@ -111,7 +111,7 @@
               <dt class="text-sm font-medium text-gray-500">
                 JoinSplits ?
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 break-words">
+              <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-50">
                 <%= if ZcashExplorerWeb.BlockView.contains_sprout(@tx) do  %>
                   Yes -
                   <%= ZcashExplorerWeb.BlockView.get_joinsplit_count(@tx) %>
@@ -125,7 +125,7 @@
               <dt class="text-sm font-medium text-gray-500">
                 <%= get_shielded_pool_label(@tx) %>
               </dt>
-              <dd class="mt-1 text-sm text-gray-900 break-words">
+              <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-50">
                  <%= format_zec(get_shielded_pool_value(@tx)) %>
               </dd>
             </div>
@@ -135,7 +135,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Overwintered?
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= @tx.overwintered %>
                 </dd>
               </div>
@@ -143,7 +143,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Size (bytes)
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= @tx.size %>
                 </dd>
               </div>
@@ -151,7 +151,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Version
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= @tx.version %>
                 </dd>
               </div>
@@ -159,7 +159,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Locktime
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= @tx.locktime %>
                 </dd>
               </div>
@@ -167,7 +167,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Transaction fee
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                   <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "coinbase" do %>
                   0.0 ZEC
                   <% end %>
@@ -201,7 +201,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Raw TX
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                    <a href={'/transactions/#{@tx.txid}/raw'} class="font-medium text-indigo-600 hover:text-indigo-500">
                   <span class="flex-1 w-0 break-all">
                    JSON 
@@ -215,7 +215,7 @@
                 <dt class="text-sm font-medium text-gray-500">
                 Orchard Action transfers
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
               
                   <span class="flex-1 w-0 break-all">
                    <%= orchard_actions(@tx) %>
@@ -229,21 +229,21 @@
         </div>
       </section>
 
-<h4  class="font-medium text-gray-900">
-      Transfers
+<h4  class="font-medium text-gray-900 dark:text-gray-50">
+      PublicTransfers
 </h4>
 <div class="grid md:grid-cols-2 gap-4 sm:grid-cols-1 lg:grid-cols-9">
 <div class="sm:col-span-9 md:col-span-9 lg:col-span-4">
-Inputs (<%= vin_count(@tx.vin) %>)
+<h6 class="dark:text-gray-50">Inputs (<%= vin_count(@tx.vin) %>) </h6>
 <div class="py-4">
 
      <%= if vin_count(@tx.vin) > 0 && ZcashExplorerWeb.BlockView.tx_type(@tx) != "coinbase" do %>
       <dd class="mt-1 text-sm text-gray-900 sm:mt-0 py-2">
-          <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+          <ul class="border border-gray-200 rounded-md divide-y divide-gray-200 dark:border-gray-800 dark:divide-gray-600">
           <%= for input <- @tx.vin do %>
 
-          <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50">
-            <div class="w-0 flex-1 flex items-center">
+          <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50 dark:hover:bg-gray-800">
+            <div class="w-0 flex-1 flex items-center dark:text-gray-50">
 
               
               <a href={'/address/#{input.address}'}>
@@ -290,22 +290,24 @@ Inputs (<%= vin_count(@tx.vin) %>)
 
 
 <div class="lg:col-span-4">
+<h6 class="dark:text-gray-50">
 Outputs (<%= vout_count(@tx.vout) %>)
+</h6>
 
 <div class="py-3">
 
       <%= if vout_count(@tx.vout) > 0 do %>
 
       <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 py-2">
-          <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
+          <ul class="border  rounded-md divide-y  border-gray-200 divide-gray-200 dark:border-gray-800 dark:divide-gray-600">
           <%= for op <- @tx.vout do %>
           <%= for address <- op.scriptPubKey.addresses do %>
 
-          <li class="pl-2 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50">
+          <li class="pl-2 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50 dark:hover:bg-gray-800">
             
             <div class="w-0 flex-1 flex items-center">
             <a href={'/address/#{address }'}>
-            <span class="flex-1 w-0 break-all">
+            <span class="flex-1 w-0 break-all dark:text-gray-50">
                     <%= address %>
 
             </span>

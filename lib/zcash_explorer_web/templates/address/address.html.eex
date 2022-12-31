@@ -1,45 +1,47 @@
 <main class="py-4">
 <div class="grid grid-cols-3 gap-4 px-4">
   <div class="col-span-3 md:col-span-1 lg:col-span-1 sm:col-span-3">
-    <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 sticky top-10">
+    <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 sticky top-10 dark:bg-gray-800">
 
-<h2 id="technical-details" class="font-medium text-gray-900">Details for the Zcash address:
+<h2 id="technical-details" class="font-medium text-gray-900 dark:text-white">Details for the Zcash address:
 </h2>
-    <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words">
+    <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words dark:text-100">
       <%= @address %>
     </p>
-   <div class="px-0">
+
+   <div class="flex flex-row py-2">
+   <div class="px-0 dark:bg-gray-400	">
     <img src='data:image/png;base64, <%= @qr %>' atl="QR code for the Zcash address <%= @address %>"/>
     </div>
-
+  </div>
 
 
 <div>
   <div class="flow-root mt-6">
-    <ul class="-my-5 divide-y divide-gray-200">
-      <li class="py-4 hover:bg-gray-50">
+    <ul class="my-5 divide-y divide-gray-200 dark:divide-gray-900">
+      <li class="py-4 hover:bg-gray-50 dark:hover:bg-gray-700 rounded">
         <div class="flex items-center space-x-4">
           <div class="flex-1 min-w-0">
-            <p class="text-sm text-gray-900 font-medium ">
+            <p class="text-sm text-gray-900 font-medium dark:text-gray-200">
               Balance
             </p>
           </div>
-          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased dark:text-gray-50">
             <%= ZcashExplorerWeb.TransactionView.format_zec(zatoshi_to_zec(@balance["balance"])) %>
           </div>
         </div>
       </li>
 
 
-      <li class="py-4 hover:bg-gray-50">
+      <li class="py-4 hover:bg-gray-50 dark:hover:bg-gray-700 rounded">
         <div class="flex items-center space-x-4">
           <div class="flex-1 min-w-0">
-            <p class="text-sm text-gray-900 font-medium">
+            <p class="text-sm text-gray-900 font-medium dark:text-gray-200">
               Received
             </p>
           </div>
-          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
-             
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased dark:text-gray-50">
+          
             <%= ZcashExplorerWeb.TransactionView.format_zec(zatoshi_to_zec(@balance["received"])) %>
            
           </div>
@@ -47,14 +49,14 @@
       </li>
 
 
-      <li class="py-4 hover:bg-gray-50">
+      <li class="py-4 hover:bg-gray-50 dark:hover:bg-gray-700 rounded">
         <div class="flex items-center space-x-4">
           <div class="flex-1 min-w-0">
-            <p class="text-sm text-gray-900 font-medium">
+            <p class="text-sm text-gray-900 font-medium dark:text-gray-200">
               Spent
             </p>
           </div>
-          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased">
+          <div class="inline-flex items-center  px-2.5 py-0.5 text-sm leading-5 font-medium  text-gray-700  tabular-nums antialiased dark:text-gray-50">
              
             <%= ZcashExplorerWeb.TransactionView.format_zec(spend_zatoshi(@balance["received"],@balance["balance"])) %>
             
@@ -100,8 +102,8 @@
 </div>
 
   <div class="col-span-3 md:col-span-2 lg:col-span-2 sm:col-span-3">
-      <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
-<h2 id="technical-details" class="text-lg font-medium text-gray-900">Transactions from block
+      <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 dark:bg-gray-800">
+<h2 id="technical-details" class="text-lg font-medium text-gray-900 dark:text-gray-300">Transactions from block
   <%= if @capped_e == nil do%>
   #<%= @end_block %>
   <% else %>
@@ -114,14 +116,14 @@
 
 
       <!-- TX List -->
-      <div class="bg-white lg:min-w-0 lg:flex-1">
+      <div class="bg-white lg:min-w-0 lg:flex-1 dark:bg-gray-800">
       
-        <ul class="relative z-0 divide-y divide-gray-200 border-b border-gray-200">
+        <ul class="relative z-0 divide-y divide-gray-200  border-gray-200 dark:divide-gray-500">
 
 
 <%= for delta <- @txs do %>
       
-      <li class="relative pl-4 pr-6 py-5 hover:bg-indigo-50 sm:py-6 sm:pl-6 lg:pl-8 xl:pl-6">
+      <li class="relative pl-4 pr-6 py-5 hover:bg-indigo-50 sm:py-6 sm:pl-6 lg:pl-8 xl:pl-6 dark:hover:bg-gray-700 rounded">
 
             <div class="flex items-center justify-between space-x-4">
               <div class="min-w-0 space-y-3">
@@ -140,7 +142,7 @@
  <% end %>
 
                   <span class="block">
-                    <h2 class="text-sm font-medium">
+                    <h2 class="text-sm font-medium dark:text-gray-50">
                       <a href='/transactions/<%= delta["txid"] %>'>
                         <span class="absolute inset-0" aria-hidden="true"></span>
                          <%= if delta["satoshis"] > 0 do %>

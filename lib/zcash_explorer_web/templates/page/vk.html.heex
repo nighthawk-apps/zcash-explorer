@@ -1,6 +1,6 @@
-<main class="py-4">
+<main class="py-4 h-screen">
 <div class="grid grid-cols-1 mx-8">
- <h3 class="text-lg leading-6 font-medium text-gray-500 py-2">
+ <h3 class="text-lg leading-6 font-medium text-gray-500 py-2 dark:text-white">
         Zcash Viewing Key
  </h3>
    <form class="space-y-8" action="/vk" method="post">
@@ -32,7 +32,7 @@
 </div>
 <% end %>
      
-    <p class="mt-1 mb-2 max-w-2xl text-sm text-gray-600">
+    <p class="mt-1 mb-2 max-w-2xl text-sm text-gray-600 dark:text-slate-50">
           Paste the viewing key, click on the "Start Importing" button and grab a coffee!
     </p>
   <input type="hidden" value={@csrf_token} name="_csrf_token"/>
@@ -41,9 +41,9 @@
 
 
 <div>
-  <label for="height" class="block text-sm font-medium text-gray-700">Start Height</label>
+  <label for="height" class="block text-sm font-medium text-gray-700 dark:text-white">Start Height</label>
   <div class="mt-1">
-    <input type="text" name="scan-height" id="scan-height" class="shadow-sm focus:ring-indigo-500 bg-opacity-5  focus:border-indigo-500 block w-1/4  sm:text-sm border-gray-300` bg-indigo-400/25 rounded-md text-green-400 font-mono" placeholder="height" value={@height}>
+    <input type="text" name="scan-height" id="scan-height" class="shadow-sm focus:ring-indigo-500 bg-opacity-5  focus:border-indigo-500 block w-1/4  sm:text-sm border-gray-300 bg-indigo-400/25 rounded-md text-green-400 font-mono border dark:border-gray-100" placeholder="height" value={@height}>
   </div>
 </div>
 

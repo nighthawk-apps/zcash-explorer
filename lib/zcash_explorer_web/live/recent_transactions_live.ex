@@ -4,38 +4,38 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
   @impl true
   def render(assigns) do
     ~L"""
-    <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead  class="bg-white-500">
-            <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Transaction ID</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Block#</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Time (UTC )</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Output (ZEC) </th>
-                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">TX Type</th>
+    <div class="shadow overflow-hidden border-gray-200 rounded-lg overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <tr>
+                <th scope="col" class="px-6 py-3">Transaction ID</th>
+                <th scope="col" class="px-6 py-3">Block#</th>
+                <th scope="col" class="px-6 py-3">Time (UTC )</th>
+                <th scope="col" class="px-6 py-3">Public Output (ZEC) </th>
+                <th scope="col" class="px-4 py-3">TX Type</th>
             </tr>
             </thead>
-    <tbody class="bg-white-500 divide-y divide-gray-200">
+    <tbody>
       <%= for tx <- @transaction_cache do %>
-            <tr class="hover:bg-indigo-50">
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-white dark:hover:text-white">
                 <a href='/transactions/<%= tx["txid"] %>'>
                   <%= tx["txid"] %>
                 </a>
               </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+            <td class="px-6 py-4 whitespace-nowrap">
               <a href='/blocks/<%= tx["block_height"] %>'>
                 <%= tx["block_height"] %>
               </a>
             </td>
 
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+              <td class="px-6 py-4 whitespace-nowrap">
                 <%= tx["time"] %>
               </td>
-             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+             <td class="px-6 py-4 whitespace-nowrap">
                 <%= tx["tx_out_total"] %>
              </td>
-             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+             <td class="px-6 py-4 whitespace-nowrap">
                   <%= if tx["type"] == "coinbase" do %>
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-yellow-400 text-gray-900 capitalize">
                     💰 Coinbase
@@ -64,6 +64,11 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
                   <%= if tx["type"] == "mixed" do %>
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-gray-200 text-gray-900 capitalize">
                     Mixed
+                  </span>
+                  <% end %>
+                  <%= if  tx["type"] == "unknown" do %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-gray-200 text-gray-900 capitalize">
+                    Unknown
                   </span>
                   <% end %>
               </td>

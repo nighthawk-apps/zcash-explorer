@@ -1,5 +1,5 @@
 <header>
-<nav x-data="{ open: false }" class="shrink-0 bg-indigo-600">
+<nav x-data="{ open: false }" class="shrink-0 bg-indigo-600 dark:bg-gray-800">
     <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <!-- Logo section -->
@@ -10,7 +10,7 @@
                 </div>
               </a>
                 <a href="/">
-                <div class="shrink-0 px-1 text-white">
+                <div class="shrink-0 px-1 text-white dark:text-white">
                     Zcash Block Explorer
                 </div>
               </a>
@@ -19,21 +19,50 @@
             <div class="flex-1 flex justify-center lg:justify-end">
                 <div class="w-full px-2 lg:px-6">
                     <label for="search" class="sr-only">transaction / block / address</label>
-                    <div class="relative text-indigo-200 focus-within:text-gray-400">
+                    <div class="relative text-gray-200 dark:text-slate-200 focus-within:text-gray-400 dark:focus-within:text-slate-800">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg class="h-5 w-5" x-description="Heroicon name: solid/search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                             </svg>
                         </div>
                     <form action="/search">
-                        <input id="search" name="qs" class="block w-full pl-10 pr-3 py-2 bg-white/25 border border-transparent rounded-md leading-5 bg-indigo-400/25  text-indigo-100 placeholder-indigo-200 focus:outline-none focus:bg-white focus:ring-0 focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm" placeholder="transaction / block / address" type="search">
+                        <input id="search" name="qs" class="
+                        block 
+                        w-full 
+                        pl-10 
+                        pr-3 
+                        py-2   
+                        border 
+                        border-transparent 
+                        rounded-md 
+                        leading-5 
+                        text-indigo-100 
+                        placeholder-indigo-200 
+                        focus:outline-none 
+                        focus:bg-white
+                        focus:ring-0 focus:placeholder-gray-400 
+                        focus:text-gray-900 
+                        sm:text-sm
+                        dark:focus:placeholder-white 
+                        dark:border-slate-600 
+                        dark:placeholder-slate-400 
+                        dark:text-white 
+                        dark:focus:ring-slate-500 
+                        dark:focus:border-slate-500
+                        dark:hover:bg-slate-700 dark:focus:ring-slate-800
+                        bg-white/25
+                        dark:bg-slate-700
+                        dark:focus:bg-slate-600
+                        dark:placeholder-slate-200 
+                        dark:focus:text-gray-200 
+                        " placeholder="transaction / block / address" type="search">
                     </form>
                     </div>
                 </div>
             </div>
             <div class="flex lg:hidden">
                 <!-- Mobile menu button -->
-                <button type="button" class="bg-indigo-600 inline-flex items-center justify-center p-2 rounded-md text-indigo-400 hover:text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white" aria-controls="mobile-menu" @click="open = !open" aria-expanded="true" x-bind:aria-expanded="open.toString()">
+                <button type="button" class="bg-indigo-600 dark:bg-slate-600 inline-flex items-center justify-center p-2 rounded-md text-indigo-400 dark:text-white hover:text-white hover:bg-indigo-600 dark:hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 dark:focus:ring-offset-slate-600 focus:ring-white dark:focus:ring-white" aria-controls="mobile-menu" @click="open = !open" aria-expanded="true" x-bind:aria-expanded="open.toString()">
                     <span class="sr-only">Open main menu</span>
                     <svg x-description="Icon when menu is closed.
 Heroicon name: outline/menu-alt-1" x-state:on="Menu open" x-state:off="Menu closed" class="h-6 w-6 hidden" :class="{ 'hidden': open, 'block': !(open) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -50,13 +79,13 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
                 <div class="flex items-center justify-end">
                     <div class="flex">
 
-                      <a href="/mempool" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Mempool</a>
+                      <a href="/mempool" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white dark:text-gray-400">Mempool</a>
                        
-                     <a href="/blocks" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white">Blocks</a>
+                     <a href="/blocks" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white dark:text-gray-400">Blocks</a>
                        
                         <div x-data="{ open: false }" @keydown.escape.stop="open = false" @click.away="open = false" class="relative inline-block text-left">
                             <div>
-                                <button type="button" class=" inline-flex justify-center rounded-md px-4 py-2 text-sm font-medium  focus:outline-none text-indigo-200 hover:text-white" id="options-menu" aria-expanded="true" @click="open = !open" aria-haspopup="true" x-bind:aria-expanded="open">
+                                <button type="button" class=" inline-flex justify-center rounded-md px-4 py-2 text-sm font-medium  focus:outline-none text-indigo-200 hover:text-white dark:text-gray-400" id="options-menu" aria-expanded="true" @click="open = !open" aria-haspopup="true" x-bind:aria-expanded="open">
                                     Tools
                                     <svg class="-mr-1 ml-2 h-5 w-5" x-description="Heroicon name: solid/chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -64,18 +93,25 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
                                 </button>
                             </div>
 
-                            <div x-description="Dropdown menu, show/hide based on menu state." x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            <div x-description="Dropdown menu, show/hide based on menu state." x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-300" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                 <div class="py-1" role="none">
-                                    <a href="/nodes" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white" role="menuitem">Nodes</a>
-                                    <a href="/broadcast" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white" role="menuitem">Broadcast Transaction</a>
-                                    <a href="/payment-disclosure" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white" role="menuitem">Payment Disclosure</a>
-                                   <a href="/vk" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white" role="menuitem">Viewing Key</a>
+                                    <a href="/nodes" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Nodes</a>
+                                    <a href="/broadcast" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Broadcast Transaction</a>
+                                    <a href="/payment-disclosure" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Payment Disclosure</a>
+                                   <a href="/vk" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Viewing Key</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+<button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+</button>
+
+
         </div>
     </div>
     <div x-description="Mobile menu, show/hide based on menu state." class="lg:hidden" id="mobile-menu" x-show="open">

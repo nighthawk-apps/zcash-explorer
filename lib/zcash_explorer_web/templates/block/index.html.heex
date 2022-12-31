@@ -2,96 +2,96 @@
   <div class="grid gap-4 grid-cols-1 mx-8">
     <div class="space-y-6 lg:col-start-1 lg:col-span-2">
       <section aria-labelledby="block-details-title">
-        <div class="bg-white shadow rounded-lg">
+        <div class="bg-white shadow rounded-lg dark:bg-gray-800">
           <div class="px-4 py-5 sm:px-6">
             
-            <h2 id="block-details-title" class="text-lg leading-6 font-medium text-gray-900 inline-block">
+            <h2 id="block-details-title" class="text-lg leading-6 font-medium text-gray-900 inline-block dark:text-gray-50">
             Details for the Zcash block</h2>
-            <h2 class="inline-block text-gun-powder-500"> #<%= @block_data.height %></h2>
+            <h2 class="inline-block text-gun-powder-500  dark:text-stone-300"> #<%= @block_data.height %></h2>
           </div>
           <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
               <div class="sm:col-span-2">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Hash
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900 break-words">
+                <dd class="mt-1 text-sm text-gray-900 break-words dark:text-gray-50">
                 <%= @block_data.hash %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Mined on
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= mined_time @block_data.time %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Miner
                 </dt>
                 
                 <a href={'/address/#{mined_by(@block_data.tx)}'}>
-                <dd class="mt-1 text-sm text-indigo-600 hover:text-indigo-500 break-words">
+                <dd class="mt-1 text-sm text-indigo-600 hover:text-indigo-400 break-words dark:text-indigo-200">
                 <%= mined_by @block_data.tx %>
                 </dd>
               </a>
               </div>
               
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Height
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= @block_data.height %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Transaction count
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= transaction_count @block_data.tx %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Input count
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= vin_count @block_data.tx %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Output count
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= vout_count @block_data.tx %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Input total
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= input_total @block_data.tx %> ZEC
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Output total
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= output_total @block_data.tx %> ZEC
                 </dd>
               </div>
               <div class="sm:col-span-1">
-                <dt class="text-sm font-medium text-gray-500">
+                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Output total
                 </dt>
-                <dd class="mt-1 text-sm text-gray-900">
+                <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                 <%= output_total @block_data.tx %> ZEC
                 </dd>
               </div>
@@ -102,51 +102,51 @@
       </section>
     </div>
     <section aria-labelledby="technical-details-title" class="lg:col-start-3 lg:col-span-1">
-      <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
-        <h2 id="technical-details-" class="text-lg font-medium text-gray-900">Technical Details
+      <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 dark:bg-gray-800">
+        <h2 id="technical-details-" class="text-lg font-medium text-gray-900 dark:text-gray-50">Technical Details
         </h2>
-        <dl class="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200 ">
+        <dl class="mt-4 border-t  border-gray-200 divide-y divide-gray-200 divide-gray-600">
           
           <div class="py-3 flex justify-between text-sm font-medium">
-            <dt class="text-gray-500">Difficulty</dt>
-            <dd class="text-gray-900"><%= @block_data.difficulty %></dd>
+            <dt class="text-gray-500 dark:text-gray-300">Difficulty</dt>
+            <dd class="text-gray-900 dark:text-gray-400"><%= @block_data.difficulty %></dd>
           </div>
           <div class="py-3 flex justify-between text-sm font-medium">
-            <dt class="text-gray-500">Size</dt>
-            <dd class="text-gray-900"><%= @block_data.size %> bytes</dd>
+            <dt class="text-gray-500 dark:text-gray-300">Size</dt>
+            <dd class="text-gray-900 dark:text-gray-400"><%= @block_data.size %> bytes</dd>
           </div>
           <div class="py-3 flex justify-between text-sm font-medium">
-            <dt class="text-gray-500">Version</dt>
-            <dd class="text-gray-900"><%= @block_data.version %></dd>
+            <dt class="text-gray-500 dark:text-gray-300">Version</dt>
+            <dd class="text-gray-900 dark:text-gray-50"><%= @block_data.version %></dd>
           </div>
           <div class="py-3 flex justify-between text-sm font-medium">
-            <dt class="text-gray-500">Confirmations</dt>
-            <dd class="text-gray-900"><%= @block_data.confirmations %></dd>
+            <dt class="text-gray-500 dark:text-gray-300">Confirmations</dt>
+            <dd class="text-gray-900 dark:text-gray-100"><%= @block_data.confirmations %></dd>
           </div>
           <div class="py-3 flex justify-between text-sm font-medium">
-            <dt class="text-gray-500">Bits</dt>
-            <dd class="text-gray-900"><%= @block_data.bits %></dd>
+            <dt class="text-gray-500 dark:text-gray-300">Bits</dt>
+            <dd class="text-gray-900 dark:text-gray-500"><%= @block_data.bits %></dd>
           </div>
           <div class="sm:col-span-2">
             <div class="py-3 text-sm font-medium">
-              <dt class="text-gray-500">Merkle root</dt>
-              <dd class="text-gray-900 py-1 select-all break-words">
+              <dt class="text-gray-500 dark:text-gray-300">Merkle root</dt>
+              <dd class="text-gray-900 py-1 select-all break-words dark:text-gray-500">
               <%= @block_data.merkleroot %>
               </dd>
             </div>
           </div>
           <div class="sm:col-span-2">
             <div class="py-3 text-sm font-medium">
-              <dt class="text-gray-500">Chainwork</dt>
-              <dd class="text-gray-900 py-1 select-all break-words">
+              <dt class="text-gray-500 dark:text-gray-300">Chainwork</dt>
+              <dd class="text-gray-900 py-1 select-all break-words dark:text-gray-500">
               <%= @block_data.chainwork %>
               </dd>
             </div>
           </div>
           <div class="sm:col-span-2">
             <div class="py-3 text-sm font-medium">
-              <dt class="text-gray-500">Nonce</dt>
-              <dd class="text-gray-900 py-1 select-all break-words">
+              <dt class="text-gray-500 dark:text-gray-300">Nonce</dt>
+              <dd class="text-gray-900 py-1 select-all break-words dark:text-gray-500">
               <%= @block_data.nonce %>
               </dd>
             </div>
@@ -157,14 +157,14 @@
       <div class="space-y-6 lg:col-start-1 lg:col-span-4">
         <h4  class="font-medium text-gray-900">Transactions included in this block
         </h4>
-        <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200 bg-white shadow rounded-lg">
-            <thead class="bg-white">
+        <div class="shadow overflow-hidden  rounded-lg overflow-x-auto">
+          <table class="min-w-full bg-white shadow rounded-lg dark:text-gray-400">
+            <thead class="bg-white dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ">
                   Block#
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left  text-xs font-medium text-gray-500 uppercase tracking-wider ">
                   Hash
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -173,7 +173,7 @@
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Outputs
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left  text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Output (ZEC)
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -184,23 +184,23 @@
             <tbody>
               
               <%= for transaction <- @block_data.tx do %>
-              <tr class="bg-white hover:bg-indigo-50">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-white dark:hover:text-white">
                   <%= @block_data.height %>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-200 dark:hover:text-indigo-400">
               <a href={'/transactions/#{transaction.txid}'}>
 
                     <%= transaction.txid %>
                   </a>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-50">
                   <%= length(transaction.vin) %>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-50">
                   <%= length(transaction.vout) %>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-50">
                   <%= tx_out_total transaction %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -232,6 +232,11 @@
                   <%= if tx_type(transaction) == "mixed" do %>
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-gray-200 text-gray-900 capitalize">
                     Mixed
+                  </span>
+                  <% end %>
+                  <%= if  tx_type(transaction) == "unknown" do %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-gray-200 text-gray-900 capitalize">
+                    Unknown
                   </span>
                   <% end %>
                 </td>

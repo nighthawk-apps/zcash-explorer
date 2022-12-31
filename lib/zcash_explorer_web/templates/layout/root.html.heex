@@ -7,7 +7,14 @@
     <%= live_title_tag assigns[:page_title] || " " %>
     <link rel="stylesheet" href={"#{Routes.static_path(@conn, "/css/app.css")}"}/>
     <%= csrf_meta_tag() %>
-    <script defer type="text/javascript" src={"#{Routes.static_path(@conn, "/js/app.js")}"}></script>
+  <script defer type="text/javascript" src={"#{Routes.static_path(@conn, "/js/app.js")}"}></script>
+  <script>
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+</script>
 </head>
 <body>
 <%= @inner_content %>

@@ -4,35 +4,35 @@ defmodule ZcashExplorerWeb.RawMempoolLive do
   @impl true
   def render(assigns) do
     ~L"""
-    <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-white-500">
+    <div class="shadow overflow-hidden border-gray-200 rounded-lg overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
-         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Tx ID</th>
-         <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Block</th>
-          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Time</th>
-          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Fee</th>
-          <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Size</th>
+         <th scope="col" class="px-6 py-3">Tx ID</th>
+         <th scope="col" class="px-4 py-3">Block</th>
+          <th scope="col" class="px-4 py-3">Time</th>
+          <th scope="col" class="px-4 py-3">Fee</th>
+          <th scope="col" class="px-4 py-3">Size</th>
         </tr>
        </thead>
        <tbody class="bg-white-500 divide-y divide-gray-200">
        <%= for tx <- @raw_mempool do %>
-        <tr class="hover:bg-indigo-50">
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 animate-pulse">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 animate-pulse dark:text-white dark:hover:text-white">
           <a href='/transactions/<%= tx["txid"] %>'>
                <%= tx["txid"] %>
           </a>
         </td>
-        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
+        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
             <%= tx["info"]["height"] %>
           </td>
-        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
+        <td class="px-4 py-4 whitespace-nowrap text-sm font-MEDI">
           <%= ZcashExplorerWeb.BlockView.mined_time_rel(tx["info"]["time"]) %>
         </td>
-        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
+        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
          <%= ZcashExplorerWeb.TransactionView.format_zec(tx["info"]["fee"]) %>
         </td>
-        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
+        <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
           <%= tx["info"]["size"] %>
         </td>
        </tr>

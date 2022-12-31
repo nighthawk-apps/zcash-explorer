@@ -5,8 +5,8 @@
         Zcash blocks mined on <%= @date %>
         </h3>
 <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-white-500">
+        <table class="min-w-full  dark:text-gray-400">
+            <thead class="bg-white-500 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Height</th>
                 <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Hash</th>
@@ -17,8 +17,8 @@
             </thead>
             <tbody class="bg-white-500 divide-y divide-gray-200">
       <%= for block <- @blocks_data do %>
-            <tr class="hover:bg-indigo-50">
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
+            <tr class="hover:bg-indigo-50 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-white dark:hover:text-white">
 
             <a href={'/blocks/#{block["height"]}'}>
 
@@ -26,19 +26,19 @@
             </a>
             </td>
             
-            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+            <td class="px-4 py-4 whitespace-nowrap">
                     <a href={'/blocks/#{block["hash"] }'}>
                     <%= block["hash"] %>
                     </a>
               </td>
-                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+                <td class="px-4 py-4 whitespace-nowrap">
                 <%= mined_time_without_rel(block["time"]) %>
               </td> 
-              <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">  
+              <td class="px-4 py-4 whitespace-nowrap">  
               	<%= block["confirmations"] %>
               </td>
 
-              <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">  
+              <td class="px-4 py-4 whitespace-nowrap">  
               	<%= block["difficulty"] %>
               </td>
 

@@ -4,41 +4,41 @@ defmodule ZcashExplorerWeb.RecentBlocksLive do
   @impl true
   def render(assigns) do
     ~L"""
-    <div class="shadow overflow-hidden border-b border-gray-200 rounded-lg overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-white-500">
+    <div class="shadow overflow-hidden border-gray-200 rounded-lg overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Height</th>
-                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Hash</th>
-                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Mined on</th>
-                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Txns</th>
-                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Size</th>
-                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-midnight-500 uppercase tracking-wider">Output (ZEC)</th>
+                <th scope="col" class="px-6 py-3">Height</th>
+                <th scope="col" class="px-4 py-3">Hash</th>
+                <th scope="col" class="px-4 py-3">Mined on</th>
+                <th scope="col" class="px-4 py-3">Txns</th>
+                <th scope="col" class="px-4 py-3">Size</th>
+                <th scope="col" class="px-4 py-3">Output (ZEC)</th>
             </tr>
             </thead>
-    <tbody class="bg-white-500 divide-y divide-gray-200">
+    <tbody>
       <%= for block <- @block_cache do %>
-            <tr class="hover:bg-indigo-50">
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-white dark:hover:text-white">
             <a href='/blocks/<%= block["height"] %>'>
                 <%= block["height"] %>
               </td>
             </a>
-            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-600">
+            <td class="px-4 py-4 whitespace-nowrap">
                     <a href='/blocks/<%= block["hash"] %>'>
                     <%= block["hash"] %>
                     </a>
               </td>
-              <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+              <td class="px-4 py-4 whitespace-nowrap">
                 <%= block["time"] %>
               </td>
-             <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+             <td class="px-4 py-4 whitespace-nowrap">
                 <%= block["tx_count"] %>
               </td>
-            <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+            <td class="px-4 py-4 whitespace-nowrap">
                 <%= block["size"] %>
               </td>
-             <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
+             <td class="px-4 py-4 whitespace-nowrap">
                 <%= block["output_total"] %>
               </td>
 

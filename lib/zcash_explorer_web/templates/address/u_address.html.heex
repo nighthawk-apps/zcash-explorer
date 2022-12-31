@@ -1,15 +1,17 @@
-<main class="py-4">
+<main class="py-4 h-screen">
 <div class="grid grid-cols-3 gap-4 px-4">
   <div class="col-span-3 md:col-span-1 lg:col-span-1 sm:col-span-3">
-    <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 sticky top-10">
+    <div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 sticky top-10 dark:bg-gray-800">
 
-    <h2 id="technical-details" class="font-medium text-gray-900">Details for the Zcash Unified Address:
+    <h2 id="technical-details" class="font-medium text-gray-900 dark:text-white">Details for the Zcash Unified Address:
     </h2>
-    <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words select-all">
+    <p class="mt-1 text-lg leading-6 max-w-2xl  text-gray-500 font-mono break-words select-all dark:text-100">
       <%= @address %>
     </p>
-   <div class="px-0 py-2">
+   <div class="flex flex-row py-2">
+   <div class="px-0 dark:bg-gray-400	">
     <img src={'data:image/png;base64, #{ @qr }'} atl={"QR code for the Zcash Unified Address #{ @address }"}/>
+    </div>
     </div>
 
 <div>
@@ -19,18 +21,18 @@
 </div>
 <div class="col-span-3 md:col-span-2 lg:col-span-2 sm:col-span-3 
 ">
-<div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6">
-      <div class="bg-white lg:min-w-0 lg:flex-1">
-        <h2 class="text-2xl tracking-tight font-extrabold text-gray-900 sm:text-2xl md:text-2xl">
-              <span class="block xl:inline">You are viewing the details of a </span>
+<div class="bg-white px-4 py-5 shadow rounded-lg sm:px-6 dark:bg-gray-800">
+      <div class="bg-white lg:min-w-0 lg:flex-1 dark:bg-gray-800">
+        <h2 class="text-2xl tracking-tight text-gray-900 sm:text-2xl md:text-2xl">
+              <span class="block xl:inline dark:text-gray-200">You are viewing the details of a </span>
               <!-- space -->
-              <span class="block text-indigo-600 inline">Zcash Unified Address.</span>
+              <span class="block text-indigo-600 inline dark:text-indigo-300">Zcash Unified Address.</span>
             </h2>
      </div>
 
      <div class="mt-8">
 
-        <ul role="list" class="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
+        <ul role="list" class="mt-2 border-t divide-y divide-gray-200 dark:divide-gray-900 dark:border-red-600">
 
           <li class="relative py-6 flex  space-x-4">
             <div class="shrink-0">
@@ -43,7 +45,7 @@
             </div>
             <div class="min-w-0 flex-1">
               <h3 class="text-gray-900 text-xl">
-                <span class="rounded-sm focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                <span class="rounded-sm focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 dark:text-gray-200">
                  
                     <span class="inset-0" aria-hidden="true"></span>
                     Orchard Address
@@ -68,7 +70,7 @@
               </span>
             </div>
             <div class="min-w-0 flex-1">
-              <h3 class="text-gray-900 text-xl">
+              <h3 class="text-gray-900 text-xl dark:text-gray-200">
                     <span class="inset-0" aria-hidden="true"></span>
                     Sapling Address
               </h3>
@@ -91,7 +93,7 @@
               </span>
             </div>
             <div class="min-w-0 flex-1">
-              <h3 class="text-gray-900 text-xl">
+              <h3 class="text-gray-900 text-xl dark:text-gray-200">
                   
                     <span class="inset-0" aria-hidden="true"></span>
                     Transparent Address
