@@ -3751,7 +3751,7 @@ __metadata:
 
 "fsevents@patch:fsevents@^1.2.7#~builtin<compat/fsevents>":
   version: 1.2.13
-  resolution: "fsevents@patch:fsevents@npm%3A1.2.13#~builtin<compat/fsevents>::version=1.2.13&hash=d11327"
+  resolution: "fsevents@patch:fsevents@npm%3A1.2.13#~builtin<compat/fsevents>::version=1.2.13&hash=18f3a7"
   dependencies:
     bindings: ^1.5.0
     nan: ^2.12.1
@@ -3761,7 +3761,7 @@ __metadata:
 
 "fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -4816,13 +4816,13 @@ __metadata:
   linkType: hard
 
 "json5@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "json5@npm:1.0.1"
+  version: 1.0.2
+  resolution: "json5@npm:1.0.2"
   dependencies:
     minimist: ^1.2.0
   bin:
     json5: lib/cli.js
-  checksum: e76ea23dbb8fc1348c143da628134a98adf4c5a4e8ea2adaa74a80c455fc2cdf0e2e13e6398ef819bfe92306b610ebb2002668ed9fc1af386d593691ef346fc3
+  checksum: 866458a8c58a95a49bef3adba929c625e82532bcff1fe93f01d29cb02cac7c3fe1f4b79951b7792c2da9de0b32871a8401a6e3c5b36778ad852bf5b8a61165d7
   languageName: node
   linkType: hard
 
@@ -5947,22 +5947,22 @@ __metadata:
 
 "phoenix@file:../deps/phoenix::locator=root-workspace-0b6124%40workspace%3A.":
   version: 1.6.11
-  resolution: "phoenix@file:../deps/phoenix#../deps/phoenix::hash=320851&locator=root-workspace-0b6124%40workspace%3A."
-  checksum: a39c430dc7405aaea6d03b0d75fbe6c4d41458a6a3603ce71347fffbd6fcb170ef966f6326b9daf9a4af7bac3a7bc224c19cddbcde885ce77953a00620649798
+  resolution: "phoenix@file:../deps/phoenix#../deps/phoenix::hash=cd9b11&locator=root-workspace-0b6124%40workspace%3A."
+  checksum: b5a0fc28540ae99cf88c8182ce688823ba1eb30ef7cb3c3de16d3dea43402825b400b0b412129bf9cc6d4ade1a048749570095f252fa1e06d8de65510d10ffe7
   languageName: node
   linkType: hard
 
 "phoenix_html@file:../deps/phoenix_html::locator=root-workspace-0b6124%40workspace%3A.":
   version: 3.2.0
-  resolution: "phoenix_html@file:../deps/phoenix_html#../deps/phoenix_html::hash=9efbf7&locator=root-workspace-0b6124%40workspace%3A."
-  checksum: b48f77802705cf87c6d0bc5af6c64178db7b10aa8d98be376933ee531f8b4bb21a262f5b40ffbcc07514e657eb4e292ccc4d5d48acf12fd70a94f04a6664a432
+  resolution: "phoenix_html@file:../deps/phoenix_html#../deps/phoenix_html::hash=49bead&locator=root-workspace-0b6124%40workspace%3A."
+  checksum: 0733f6fcb5bc98a6652f4f9bf615c79d515d637e2a7a1917d091bbd9b74342162e077613bb538140c0f65c44a8487ff829b5090b34547d0fa44feabd406d6f22
   languageName: node
   linkType: hard
 
 "phoenix_live_view@file:../deps/phoenix_live_view::locator=root-workspace-0b6124%40workspace%3A.":
   version: 0.17.11
-  resolution: "phoenix_live_view@file:../deps/phoenix_live_view#../deps/phoenix_live_view::hash=642433&locator=root-workspace-0b6124%40workspace%3A."
-  checksum: a573842709da4c24c0addb4c7a88de65fda0e40636f9d58b116559ca207afd2c7d498370f285bd4b22286fb8cf10e771fb262c18f276e328e30c87d7c202cd68
+  resolution: "phoenix_live_view@file:../deps/phoenix_live_view#../deps/phoenix_live_view::hash=597920&locator=root-workspace-0b6124%40workspace%3A."
+  checksum: ed9a317d916f93c06f588a4c6d3ff9db556dc741d17a03840fe73d2c607259e7c321edc97834df93c840b10f534112fd87caeaad13f894e1ff25bb22147a5d28
   languageName: node
   linkType: hard
 
@@ -6903,7 +6903,7 @@ __metadata:
 
 "resolve@patch:resolve@^1.1.7#~builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.1#~builtin<compat/resolve>":
   version: 1.22.1
-  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=07638b"
   dependencies:
     is-core-module: ^2.9.0
     path-parse: ^1.0.7
