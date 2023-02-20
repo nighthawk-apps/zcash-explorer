@@ -1,4 +1,4 @@
-<div class="mx-8 h-screen">
+<div class="mx-8">
 
 <h3 class="text-lg leading-6 font-medium text-gray-900 py-3 dark:text-white">
      Payment Disclosure
@@ -175,7 +175,7 @@
           Paste the Zcash payment disclosure hexdata here to reveal details of a shielded payment.
 </p>
 
-<form class="space-y-8" action="/payment-disclosure" method="post">  
+<form class="space-y-8" action="/payment-disclosure" method="post">
   <div class="space-y-8 sm:space-y-5">
 
     <input type="hidden" value={@csrf_token} name="_csrf_token"/>
