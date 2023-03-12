@@ -6,9 +6,9 @@ defmodule ZcashExplorerWeb.SearchController do
     # query zcashd to find out if the user has entered a valid resource
     # Valid resources:
     #  Block - height, hash
-    #  Transaction - hash 
+    #  Transaction - hash
     #  Address - Transparent , Shielded
-    # If zcashd responds that a resource is valid, we redirect the user 
+    # If zcashd responds that a resource is valid, we redirect the user
     # to the appropriate resource view or redirect them to an error view.
     tasks = [
       Task.async(fn -> Zcashex.getblock(qs, 0) end),
@@ -104,11 +104,19 @@ defmodule ZcashExplorerWeb.SearchController do
     false
   end
 
+  def is_valid_zaddr?({:ok, %{"isvalid" => true, "address_type" => "unified"}}) do
+    false
+  end
+
   def is_valid_unified_address?({:ok, %{"isvalid" => true, "type" => "unified"}}) do
     true
   end
 
-  def is_valid_unified_address?(resp) do
+  def is_valid_unified_address?({:ok, %{"isvalid" => true, "address_type" => "unified"}}) do
+    true
+  end
+
+  def is_valid_unified_address?(_resp) do
     false
   end
 end
