@@ -204,7 +204,7 @@
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                    <a href={'/transactions/#{@tx.txid}/raw'} class="font-medium text-indigo-600 hover:text-indigo-500">
                   <span class="flex-1 w-0 break-all">
-                   JSON 
+                   JSON
                   </span>
                   </a>
 
@@ -216,11 +216,11 @@
                 Orchard Action transfers
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
-              
+
                   <span class="flex-1 w-0 break-all">
                    <%= orchard_actions(@tx) %>
                   </span>
-                  
+
 
                 </dd>
               </div>
@@ -245,7 +245,7 @@
           <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50 dark:hover:bg-gray-800">
             <div class="w-0 flex-1 flex items-center dark:text-gray-50">
 
-              
+
               <a href={'/address/#{input.address}'}>
 
             <span class="flex-1 w-0 break-all">
@@ -263,10 +263,22 @@
        </dd>
        <% end %>
 <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "coinbase" do %>
+
 <div class="py-4">
+
   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-s font-medium bg-yellow-400 text-gray-900 capitalize">
                   💰 Coinbase
   </span>
+
+
+  <%= if String.length(ZcashExplorerWeb.BlockView.get_coinbase_hex(@tx)) > 5 do %>
+  <span class="inline-block bg-sky-100 px-2.5 font-bold text-sm text-slate-900 font-mono rounded dark:bg-slate-600 dark:text-slate-200 br">
+  <%=  ZcashExplorerWeb.BlockView.get_coinbase_hex(@tx) %>
+  </span>
+
+
+  <% end %>
+
 </div>
 <% end %>
 <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "deshielding" do %>
@@ -304,7 +316,7 @@ Outputs (<%= vout_count(@tx.vout) %>)
           <%= for address <- op.scriptPubKey.addresses do %>
 
           <li class="pl-2 pr-4 py-3 flex items-center justify-between text-sm hover:bg-indigo-50 dark:hover:bg-gray-800">
-            
+
             <div class="w-0 flex-1 flex items-center">
             <a href={'/address/#{address }'}>
             <span class="flex-1 w-0 break-all dark:text-gray-50">

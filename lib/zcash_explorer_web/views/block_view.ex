@@ -46,6 +46,27 @@ defmodule ZcashExplorerWeb.BlockView do
     end
   end
 
+  def get_coinbase_hex(tx) do
+    tx
+    |> Map.get(:vin)
+    |> List.first()
+    |> Map.get(:coinbase)
+    |> decode_coinbase_tx_hex()
+
+    # |> String.normalize(:nfkc)
+  end
+
+  def decode_coinbase_tx_hex(coinbase_hex)
+      when is_binary(coinbase_hex) do
+    try do
+      coinbase_binary = Base.decode16!(coinbase_hex, case: :mixed)
+      coinbase_list = :erlang.binary_to_list(coinbase_binary)
+      List.to_string(coinbase_list) |> IO.inspect(charlists: :as_charlists)
+    rescue
+      _e in ArgumentError -> "unable to decode coinbase hex"
+    end
+  end
+
   def mined_by(txs) do
     first_trx = txs |> List.first()
 
@@ -152,8 +173,6 @@ defmodule ZcashExplorerWeb.BlockView do
   end
 
   def tx_type(tx) do
-    IO.inspect(tx)
-
     cond do
       is_coinbase_tx?(tx) ->
         "coinbase"
