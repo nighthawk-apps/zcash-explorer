@@ -15,27 +15,20 @@ defmodule ZcashExplorerWeb.TransactionView do
     length(vout)
   end
 
+  def format_zec(value) when value == nil do
+    ""
+  end
+
   def format_zec(value) when value != nil do
     float_value = (value + 0.0) |> :erlang.float_to_binary([:compact, {:decimals, 10}])
     float_value <> " " <> "ZEC"
   end
 
-  def orchard_actions(tx)
-      when tx.orchard.actions == nil do
-    0
-  end
-
-  def orchard_actions(tx)
-      when tx.orchard.actions != nil do
-    length(tx.orchard.actions)
-  end
-
   def orchard_actions(tx) do
-    0
-  end
-
-  def format_zec(value) when value == nil do
-    ""
+    case tx do
+      %{orchard: %{actions: actions}} when is_list(actions) -> length(actions)
+      _ -> 0
+    end
   end
 
   def get_shielded_pool_label(tx)
@@ -184,7 +177,7 @@ defmodule ZcashExplorerWeb.TransactionView do
     tx.orchard.valueBalance
   end
 
-  # 
+  #
   def get_shielded_pool_value(tx)
       when tx.vjoinsplit != nil and
              length(tx.vjoinsplit) == 0 and
@@ -197,7 +190,7 @@ defmodule ZcashExplorerWeb.TransactionView do
     0
   end
 
-  # 
+  #
   def get_shielded_pool_value(tx)
       when tx.vjoinsplit != nil and
              length(tx.vjoinsplit) == 0 and
@@ -335,8 +328,14 @@ defmodule ZcashExplorerWeb.TransactionView do
     fee |> format_zec()
   end
 
-  def shielding_tx_fee(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 do
+  def shielding_tx_fee(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 and tx.version <= 4 do
     fee = tx_in_total(tx) - abs(tx.valueBalance)
+    fee |> format_zec()
+  end
+
+  # c7eb2ac6252fd266a74f5266ed9c1e585571ae941901480053f7886330829dea
+  def shielding_tx_fee(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 and tx.version == 5 do
+    fee = tx_in_total(tx) - abs(tx.orchard.valueBalance)
     fee |> format_zec()
   end
 
@@ -345,8 +344,16 @@ defmodule ZcashExplorerWeb.TransactionView do
     fee |> format_zec()
   end
 
-  def deshielding_tx_fees(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 do
+  def deshielding_tx_fees(tx)
+      when is_map(tx) and length(tx.vjoinsplit) == 0 and tx.version <= 4 do
     fee = tx.valueBalance - tx_out_total(tx)
+    fee |> format_zec()
+  end
+
+  # 2e6b1180f806af3b4e0b51604a4b846f881db3801a410486269bfda5cb39c716
+  def deshielding_tx_fees(tx)
+      when is_map(tx) and length(tx.vjoinsplit) == 0 and tx.version == 5 do
+    fee = tx.orchard.valueBalance - tx_out_total(tx)
     fee |> format_zec()
   end
 
