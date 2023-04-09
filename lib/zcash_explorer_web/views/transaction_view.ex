@@ -324,11 +324,22 @@ defmodule ZcashExplorerWeb.TransactionView do
   end
 
   def shielding_tx_fee(tx) when is_map(tx) and length(tx.vjoinsplit) > 0 do
+    IO.inspect("s1")
     fee = tx_in_total(tx) - vjoinsplit_vpub_old_total(tx)
     fee |> format_zec()
   end
 
   def shielding_tx_fee(tx) when is_map(tx) and length(tx.vjoinsplit) == 0 and tx.version <= 4 do
+    IO.inspect("s2")
+
+    fee = tx_in_total(tx) - abs(tx.valueBalance)
+    fee |> format_zec()
+  end
+
+  # example 1b0f70849ff66402553d696e154c3db1f54cf1512d19a2683f4576f5f990a69d
+  def shielding_tx_fee(tx)
+      when is_map(tx) and length(tx.vjoinsplit) == 0 and tx.version == 5 and
+             tx.orchard.valueBalance == 0 do
     fee = tx_in_total(tx) - abs(tx.valueBalance)
     fee |> format_zec()
   end
