@@ -4,7 +4,7 @@
       <section aria-labelledby="block-details-title">
         <div class="bg-white shadow rounded-lg dark:bg-gray-800">
           <div class="px-4 py-5 sm:px-6">
-            
+
             <h2 id="block-details-title" class="text-lg leading-6 font-medium text-gray-900 inline-block dark:text-gray-50">
             Details for the Zcash block</h2>
             <h2 class="inline-block text-gun-powder-500  dark:text-stone-300"> #<%= @block_data.height %></h2>
@@ -31,14 +31,14 @@
                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Miner
                 </dt>
-                
+
                 <a href={'/address/#{mined_by(@block_data.tx)}'}>
                 <dd class="mt-1 text-sm text-indigo-600 hover:text-indigo-400 break-words dark:text-indigo-200">
                 <%= mined_by @block_data.tx %>
                 </dd>
               </a>
               </div>
-              
+
               <div class="sm:col-span-1">
                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Height
@@ -76,7 +76,7 @@
                 Input total
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
-                <%= input_total @block_data.tx %> ZEC
+                <%= input_total @block_data.tx %>  <%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
@@ -84,7 +84,7 @@
                 Output total
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
-                <%= output_total @block_data.tx %> ZEC
+                <%= output_total @block_data.tx %>  <%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
@@ -92,10 +92,10 @@
                 Output total
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
-                <%= output_total @block_data.tx %> ZEC
+                <%= output_total @block_data.tx %> <%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>
                 </dd>
               </div>
-              
+
             </dl>
           </div>
         </div>
@@ -106,7 +106,7 @@
         <h2 id="technical-details-" class="text-lg font-medium text-gray-900 dark:text-gray-50">Technical Details
         </h2>
         <dl class="mt-4 border-t  border-gray-200 divide-y divide-gray-200 divide-gray-600">
-          
+
           <div class="py-3 flex justify-between text-sm font-medium">
             <dt class="text-gray-500 dark:text-gray-300">Difficulty</dt>
             <dd class="text-gray-900 dark:text-gray-400"><%= @block_data.difficulty %></dd>
@@ -174,7 +174,7 @@
                   Outputs
                 </th>
                 <th scope="col" class="px-6 py-3 text-left  text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Output (ZEC)
+                  Output (<%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>)
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Tx Type
@@ -182,7 +182,7 @@
               </tr>
             </thead>
             <tbody>
-              
+
               <%= for transaction <- @block_data.tx do %>
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-white dark:hover:text-white">

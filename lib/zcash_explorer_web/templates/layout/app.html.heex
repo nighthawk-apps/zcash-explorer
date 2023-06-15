@@ -1,5 +1,5 @@
-<%= render ZcashExplorerWeb.LayoutView, "header.html", assigns %> 
-<div class="bg-gray-50 dark:bg-gray-900">
-<%= @inner_content %>
+<%= render ZcashExplorerWeb.LayoutView, "header.html", assigns %>
+<div class={bg_class(assigns)}>
+  <%= @inner_content %>
 </div>
-<%= render ZcashExplorerWeb.LayoutView, "footer.html", assigns %> 
+<%= render ZcashExplorerWeb.LayoutView, "footer.html", assigns %>

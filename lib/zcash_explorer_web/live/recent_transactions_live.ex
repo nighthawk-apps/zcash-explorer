@@ -11,7 +11,12 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
                 <th scope="col" class="px-6 py-3">Transaction ID</th>
                 <th scope="col" class="px-6 py-3">Block#</th>
                 <th scope="col" class="px-6 py-3">Time (UTC )</th>
-                <th scope="col" class="px-6 py-3">Public Output (ZEC) </th>
+                <th scope="col" class="px-6 py-3">Public Output ( <%= case @chain do %>
+                <% "main" -> %>
+                  ZEC
+                <% _ -> %>
+                  TAZ
+              <% end %>  )</th>
                 <th scope="col" class="px-4 py-3">TX Type</th>
             </tr>
             </thead>
@@ -85,7 +90,13 @@ defmodule ZcashExplorerWeb.RecentTransactionsLive do
 
     case Cachex.get(:app_cache, "transaction_cache") do
       {:ok, info} ->
-        {:ok, assign(socket, :transaction_cache, info)}
+        {:ok, %{"chain" => chain}} = Cachex.get(:app_cache, "metrics")
+
+        {:ok,
+         assign(socket,
+           transaction_cache: info,
+           chain: chain
+         )}
 
       {:error, _reason} ->
         {:ok, assign(socket, :transaction_cache, "loading...")}

@@ -13,7 +13,8 @@ defmodule ZcashExplorerWeb.RecentBlocksLive do
                 <th scope="col" class="px-4 py-3">Mined on</th>
                 <th scope="col" class="px-4 py-3">Txns</th>
                 <th scope="col" class="px-4 py-3">Size</th>
-                <th scope="col" class="px-4 py-3">Output (ZEC)</th>
+                <th scope="col" class="px-4 py-3">Output ( <%= if @chain == "main", do: "ZEC", else: "TAZ" %> )
+                </th>
             </tr>
             </thead>
     <tbody>
@@ -55,7 +56,8 @@ defmodule ZcashExplorerWeb.RecentBlocksLive do
 
     case Cachex.get(:app_cache, "block_cache") do
       {:ok, info} ->
-        {:ok, assign(socket, :block_cache, info)}
+        {:ok, %{"chain" => chain}} = Cachex.get(:app_cache, "metrics")
+        {:ok, assign(socket, block_cache: info, chain: chain)}
 
       {:error, _reason} ->
         {:ok, assign(socket, :block_cache, "loading...")}

@@ -169,7 +169,7 @@
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
                   <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "coinbase" do %>
-                  0.0 ZEC
+                  0.0 <%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>
                   <% end %>
                   <%= if ZcashExplorerWeb.BlockView.tx_type(@tx) == "transparent" do %>
                     <%= transparent_tx_fee(@tx) %>

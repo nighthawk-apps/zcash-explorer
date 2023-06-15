@@ -12,49 +12,55 @@ secret_key_base =
 zcashd_hostname =
   System.fetch_env!("ZCASHD_HOSTNAME") ||
     raise """
-    environment variable ZCASHD_HOSTNAME is missing 
+    environment variable ZCASHD_HOSTNAME is missing
     """
 
 zcashd_port =
   System.fetch_env!("ZCASHD_PORT") ||
     raise """
-    environment variable ZCASHD_PORT is missing 
+    environment variable ZCASHD_PORT is missing
     """
 
 zcashd_username =
   System.fetch_env!("ZCASHD_USERNAME") ||
     raise """
-    environment variable ZCASHD_USERNAME is missing 
+    environment variable ZCASHD_USERNAME is missing
     """
 
 zcashd_password =
   System.fetch_env!("ZCASHD_PASSWORD") ||
     raise """
-    environment variable ZCASHD_PASSWORD is missing 
+    environment variable ZCASHD_PASSWORD is missing
     """
 
 explorer_hostname =
   System.fetch_env!("EXPLORER_HOSTNAME") ||
     raise """
-    environment variable EXPLORER_HOSTNAME is missing 
+    environment variable EXPLORER_HOSTNAME is missing
     """
 
 vk_cpus =
   System.fetch_env!("VK_CPUS") ||
     raise """
-    environment variable VK_CPUS is missing 
+    environment variable VK_CPUS is missing
     """
 
 vk_mem =
   System.fetch_env!("VK_MEM") ||
     raise """
-    environment variable VK_MEM is missing 
+    environment variable VK_MEM is missing
     """
 
 vk_runnner_image =
   System.fetch_env!("VK_RUNNER_IMAGE") ||
     raise """
-    environment variable VK_RUNNER_IMAGE is missing 
+    environment variable VK_RUNNER_IMAGE is missing
+    """
+
+zcash_network =
+  System.fetch_env!("ZCASH_NETWORK") ||
+    raise """
+    environment variable ZCASH_NETWORK is missing
     """
 
 config :zcash_explorer, ZcashExplorerWeb.Endpoint,
@@ -72,6 +78,7 @@ config :zcash_explorer, ZcashExplorerWeb.Endpoint,
   check_origin: [
     "http://127.0.0.1:4000",
     "//zcashblockexplorer.com",
+    "//testnet.zcashblockexplorer.com"
     "//zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion"
   ]
 
@@ -82,6 +89,7 @@ config :zcash_explorer, Zcashex,
   zcashd_password: zcashd_password,
   vk_cpus: vk_cpus,
   vk_mem: vk_mem,
-  vk_runnner_image: vk_runnner_image
+  vk_runnner_image: vk_runnner_image,
+  zcash_network: zcash_network
 
 config :zcash_explorer, ZcashExplorerWeb.Endpoint, server: true

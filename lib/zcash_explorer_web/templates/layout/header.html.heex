@@ -10,9 +10,13 @@
                 </div>
               </a>
                 <a href="/">
-                <div class="shrink-0 px-1 text-white dark:text-white">
-                    Zcash Block Explorer
-                </div>
+                    <div class="shrink-0 px-1 text-white dark:text-white">
+                    <%= if @zcash_network == "testnet" do %>
+                        Zcash Testnet Block Explorer
+                    <% else %>
+                        Zcash Block Explorer
+                    <% end %>
+                    </div>
               </a>
             </div>
             <!-- Search section -->
@@ -27,34 +31,34 @@
                         </div>
                     <form action="/search">
                         <input id="search" name="qs" class="
-                        block 
-                        w-full 
-                        pl-10 
-                        pr-3 
-                        py-2   
-                        border 
-                        border-transparent 
-                        rounded-md 
-                        leading-5 
-                        text-indigo-100 
-                        placeholder-indigo-200 
-                        focus:outline-none 
+                        block
+                        w-full
+                        pl-10
+                        pr-3
+                        py-2
+                        border
+                        border-transparent
+                        rounded-md
+                        leading-5
+                        text-indigo-100
+                        placeholder-indigo-200
+                        focus:outline-none
                         focus:bg-white
-                        focus:ring-0 focus:placeholder-gray-400 
-                        focus:text-gray-900 
+                        focus:ring-0 focus:placeholder-gray-400
+                        focus:text-gray-900
                         sm:text-sm
-                        dark:focus:placeholder-white 
-                        dark:border-slate-600 
-                        dark:placeholder-slate-400 
-                        dark:text-white 
-                        dark:focus:ring-slate-500 
+                        dark:focus:placeholder-white
+                        dark:border-slate-600
+                        dark:placeholder-slate-400
+                        dark:text-white
+                        dark:focus:ring-slate-500
                         dark:focus:border-slate-500
                         dark:hover:bg-slate-700 dark:focus:ring-slate-800
                         bg-white/25
                         dark:bg-slate-700
                         dark:focus:bg-slate-600
-                        dark:placeholder-slate-200 
-                        dark:focus:text-gray-200 
+                        dark:placeholder-slate-200
+                        dark:focus:text-gray-200
                         " placeholder="transaction / block / address" type="search">
                     </form>
                     </div>
@@ -80,9 +84,9 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
                     <div class="flex">
 
                       <a href="/mempool" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white dark:text-gray-400">Mempool</a>
-                       
+
                      <a href="/blocks" class="px-3 py-2 rounded-md text-sm font-medium text-indigo-200 hover:text-white dark:text-gray-400">Blocks</a>
-                       
+
                         <div x-data="{ open: false }" @keydown.escape.stop="open = false" @click.away="open = false" class="relative inline-block text-left">
                             <div>
                                 <button type="button" class=" inline-flex justify-center rounded-md px-4 py-2 text-sm font-medium  focus:outline-none text-indigo-200 hover:text-white dark:text-gray-400" id="options-menu" aria-expanded="true" @click="open = !open" aria-haspopup="true" x-bind:aria-expanded="open">
@@ -98,7 +102,10 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
                                     <a href="/nodes" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Nodes</a>
                                     <a href="/broadcast" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Broadcast Transaction</a>
                                     <a href="/payment-disclosure" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Payment Disclosure</a>
-                                   <a href="/vk" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Viewing Key</a>
+                                 <%= if assigns[:zcash_network] != "testnet" do %>
+  <a href="/vk" class="block px-4 py-2 text-sm hover:bg-gray-200 bg-white dark:bg-gray-300 dark:hover:bg-gray-500" role="menuitem">Viewing Key</a>
+<% end %>
+
                                 </div>
                             </div>
                         </div>
@@ -120,7 +127,7 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
             <a href="/mempool" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Mempool</a>
 
             <a href="/blocks" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Blocks</a>
-           
+
         </div>
         <div class="pt-4 pb-3 border-t ">
             <div class="px-2">
@@ -130,7 +137,10 @@ Heroicon name: outline/x" x-state:on="Menu open" x-state:off="Menu closed" class
 
                 <a href="/payment-disclosure" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Payment Disclosure</a>
 
-                <a href="/vk" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Viewing Key</a>
+          <%= if assigns[:zcash_network] != "testnet" do %>
+  <a href="/vk" class="text-indigo-200 hover:text-indigo-100 hover:bg-indigo-600 block px-3 py-2 rounded-md text-base font-medium">Viewing Key</a>
+<% end %>
+
 
             </div>
         </div>

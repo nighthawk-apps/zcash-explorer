@@ -28,6 +28,11 @@ config :zcash_explorer, ZcashExplorerWeb.Endpoint,
       "--watch-stdin",
       cd: Path.expand("../assets", __DIR__),
       env: [{"NODE_OPTIONS", "--openssl-legacy-provider"}]
+    ],
+    npm: [
+      "run",
+      "watch:css",
+      cd: Path.expand("../assets", __DIR__)
     ]
   ]
 
@@ -38,7 +43,8 @@ config :zcash_explorer, Zcashex,
   zcashd_password: "ffwf",
   vk_cpus: "0.2",
   vk_mem: "2048M",
-  vk_runnner_image: "nighthawkapps/vkrunner"
+  vk_runnner_image: "nighthawkapps/vkrunner",
+  zcash_network: "mainnet"
 
 # ## SSL Support
 #
