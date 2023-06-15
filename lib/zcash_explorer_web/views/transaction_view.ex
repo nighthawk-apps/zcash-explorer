@@ -21,7 +21,7 @@ defmodule ZcashExplorerWeb.TransactionView do
 
   def format_zec(value) when value != nil do
     zcash_network = Application.get_env(:zcash_explorer, Zcashex)[:zcash_network]
-    currency = if zcash_network == "main", do: "ZEC", else: "TAZ"
+    currency = if zcash_network == "mainnet", do: "ZEC", else: "TAZ"
     float_value = (value + 0.0) |> :erlang.float_to_binary([:compact, {:decimals, 10}])
     float_value <> " " <> currency
   end

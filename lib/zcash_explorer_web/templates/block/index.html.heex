@@ -76,7 +76,7 @@
                 Input total
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
-                <%= input_total @block_data.tx %>  <%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>
+                <%= input_total @block_data.tx %>  <%= if @zcash_network == "mainnet", do: "ZEC", else: "TAZ" %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
@@ -84,7 +84,7 @@
                 Output total
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
-                <%= output_total @block_data.tx %>  <%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>
+                <%= output_total @block_data.tx %>  <%= if @zcash_network == "mainnet", do: "ZEC", else: "TAZ" %>
                 </dd>
               </div>
               <div class="sm:col-span-1">
@@ -92,7 +92,7 @@
                 Output total
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-50">
-                <%= output_total @block_data.tx %> <%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>
+                <%= output_total @block_data.tx %> <%= if @zcash_network == "mainnet", do: "ZEC", else: "TAZ" %>
                 </dd>
               </div>
 
@@ -174,7 +174,7 @@
                   Outputs
                 </th>
                 <th scope="col" class="px-6 py-3 text-left  text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Output (<%= if @zcash_network == "main", do: "ZEC", else: "TAZ" %>)
+                  Output (<%= if @zcash_network == "mainnet", do: "ZEC", else: "TAZ" %>)
                 </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Tx Type
