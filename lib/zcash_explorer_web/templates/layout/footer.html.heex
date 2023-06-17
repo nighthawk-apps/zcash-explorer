@@ -7,14 +7,25 @@
         </a>
       </div>
 
+<%= if assigns[:zcash_network] != "testnet" do %>
+  <div class="px-5 py-2">
+    <a href="https://testnet.zcashblockexplorer.com" class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-slate-100">
+    Testnet
+    </a>
+  </div>
+  <div class="px-5 py-2">
+    <a href="http://zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion/" class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-slate-100">
+      Onion V3
+    </a>
+  </div>
+<% else %>
+  <div class="px-5 py-2">
+    <a href="https://zcashblockexplorer.com" class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-slate-100">
+      Mainnet
+    </a>
+  </div>
+<% end %>
 
-       <%= if assigns[:zcash_network] != "testnet" do %>
-      <div class="px-5 py-2">
-        <a href="http://zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion/" class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-slate-100">
-          Onion V3
-        </a>
-      </div>
-      <% end %>
 
     </nav>
     <div class="mt-8 flex justify-center space-x-6">
@@ -32,9 +43,11 @@
         </svg>
       </a>
     </div>
-    <p class="mt-8 text-center text-base text-gray-400">
-    &copy; <%= DateTime.utc_now.year %> Nighthawk Apps.
-        <span class="block sm:inline">No tracker #Zcash Block Explorer.</span>
-    </p>
+<p class="mt-8 text-center text-base text-gray-400">
+&copy; <%= DateTime.utc_now.year %>
+<a href="https://nighthawkapps.com/" target="_blank" rel="noreferrer">Nighthawk Apps</a>.
+<span class="block sm:inline">No tracker #Zcash Block Explorer.</span>
+</p>
+
   </div>
 </footer>
