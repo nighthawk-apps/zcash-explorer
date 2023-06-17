@@ -78,7 +78,7 @@ config :zcash_explorer, ZcashExplorerWeb.Endpoint,
   check_origin: [
     "http://127.0.0.1:4000",
     "//zcashblockexplorer.com",
-    "//testnet.zcashblockexplorer.com"
+    "//testnet.zcashblockexplorer.com",
     "//zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion"
   ]
 

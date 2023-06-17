@@ -1,9 +1,10 @@
 defmodule ZcashExplorerWeb.BlockChainInfoLive do
-  
   use ZcashExplorerWeb, :live_view
   import Phoenix.LiveView.Helpers
   @impl true
   def render(assigns) do
+    currency = if(assigns.blockchain_info["chain"] == "main", do: "ZEC", else: "TAZ")
+
     ~L"""
     <div>
     <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
@@ -39,7 +40,7 @@ defmodule ZcashExplorerWeb.BlockChainInfoLive do
         Sprout pool
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-gray-900 dark:text-white">
-          <%= sprout_value(@blockchain_info["valuePools"]) %> ZEC
+          <%= sprout_value(@blockchain_info["valuePools"]) %> <%= currency %>
       </dd>
     </div>
 
@@ -48,7 +49,7 @@ defmodule ZcashExplorerWeb.BlockChainInfoLive do
         Sapling pool
       </dt>
       <dd class="mt-1 text-3xl font-semibold text-gray-900 dark:text-white">
-          <%= sapling_value(@blockchain_info["valuePools"]) %> ZEC
+          <%= sapling_value(@blockchain_info["valuePools"]) %> <%= currency %>
       </dd>
     </div>
 
@@ -57,9 +58,9 @@ defmodule ZcashExplorerWeb.BlockChainInfoLive do
       Orchard pool
     </dt>
     <dd class="mt-1 text-3xl font-semibold text-gray-900 dark:text-white">
-        <%= orchard_value(@blockchain_info["valuePools"]) %> ZEC
+        <%= orchard_value(@blockchain_info["valuePools"]) %> <%= currency %>
     </dd>
-  </div>
+    </div>
 
     <div class="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6 dark:bg-gray-800">
       <dt class="text-sm font-medium text-gray-500 truncate">

@@ -7,11 +7,15 @@
         </a>
       </div>
 
+
+       <%= if assigns[:zcash_network] != "testnet" do %>
       <div class="px-5 py-2">
         <a href="http://zcashfgzdzxwiy7yq74uejvo2ykppu4pzgioplcvdnpmc6gcu5k6vwyd.onion/" class="text-base text-gray-500 hover:text-gray-900 dark:hover:text-slate-100">
           Onion V3
         </a>
       </div>
+      <% end %>
+
     </nav>
     <div class="mt-8 flex justify-center space-x-6">
      <a href="https://twitter.com/ZcashExplorer" class="text-gray-400 hover:text-gray-500" target="_blank" rel="noreferrer">
