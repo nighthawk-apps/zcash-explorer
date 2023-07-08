@@ -10,13 +10,16 @@
                 </div>
               </a>
                 <a href="/">
-                    <div class="shrink-0 px-1 text-white dark:text-white">
-                    <%= if @zcash_network == "testnet" do %>
-                        Zcash Testnet Block Explorer
-                    <% else %>
-                        Zcash Block Explorer
-                    <% end %>
-                    </div>
+                    
+<%= if @zcash_network == "testnet" do %>
+  <div class="shrink-0 px-1 text-white dark:text-white md:block lg:block xl:block 2xl:block hidden ">
+    Zcash Testnet Block Explorer
+  </div>
+<% else %>
+  <div class="shrink-0 px-1 text-white dark:text-white md:block lg:block xl:block 2xl:block hidden ">
+    Zcash Block Explorer
+  </div>
+<% end %>
               </a>
             </div>
             <!-- Search section -->
