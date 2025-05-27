@@ -163,4 +163,55 @@ defmodule ZcashExplorerWeb.PageController do
     json(conn, info)
   end
 
+  @doc """
+  GET /api/supply
+
+  - If no query params: returns valuePools array as JSON.
+  - If `q=totalSupply`: returns the total chain supply as plain text.
+  - If `q=circulatingSupply`: returns circulating supply (total minus lockbox) as plain text.
+  - If invalid query, returns 404.
+
+  ### Example Usage
+
+  - `/api/supply` → `[ %{...}, ... ]`
+  - `/api/supply?q=totalSupply` → `"123456.78"`
+  - `/api/supply?q=circulatingSupply` → `"654321.09"`
+  """
+  def supply(conn, params) do
+    if params == %{} do 
+      {:ok, info} = Cachex.get(:app_cache, "metrics")
+      {:ok, %{"build" => build}} = Cachex.get(:app_cache, "info")
+      info = Map.put(info, "build", build)
+      # Extract the chainValue from the chainSupply map
+      value_pools = info["valuePools"]
+      json(conn, value_pools)
+    else 
+      case params["q"] do
+        "totalSupply" -> 
+          {:ok, info} = Cachex.get(:app_cache, "metrics")
+          {:ok, %{"build" => build}} = Cachex.get(:app_cache, "info")
+          info = Map.put(info, "build", build)
+          # get total supply (chain value)
+          total_supply =  get_in(info, ["chainSupply", "chainValue"])
+          send_resp(conn, 200, to_string(total_supply))
+
+        "circulatingSupply" -> 
+          {:ok, info} = Cachex.get(:app_cache, "metrics")
+          {:ok, %{"build" => build}} = Cachex.get(:app_cache, "info")
+          info = Map.put(info, "build", build)
+          total_supply =  get_in(info, ["chainSupply", "chainValue"])
+
+          value_pools = info["valuePools"] 
+          # Find the map where id == "lockbox"
+          lockbox = Enum.find(value_pools, fn pool -> pool["id"] == "lockbox" end)
+          
+          lockbox_supply = lockbox["chainValue"]
+          circulating_supply = total_supply - lockbox_supply
+          send_resp(conn, 200, to_string(circulating_supply))
+        _ -> 
+          send_resp(conn, 404, "valid query keys are 'totalSupply' and 'circulatingSupply'")
+      end
+    end
+  end
+
 end

@@ -49,8 +49,8 @@ defmodule ZcashExplorer.Transactions.TransactionWarmer do
   end
 
   # ignores the warmer result in case of error
-  defp handle_result({:error, _reason}) do
-    Logger.error("Error while warming the transaction cache.")
+  defp handle_result({:error, reason}) do
+    Logger.error("Error while warming the transaction cache. #{inspect(reason)}")
     :ignore
   end
 
